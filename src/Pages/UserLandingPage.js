@@ -1,8 +1,12 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -13,6 +17,12 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function UserLandingPage() {
+  const [selectedValue, setSelectedValue] = React.useState('a');
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedValue(event.target.value);
+  };
+
   return (
     <Grid 
       container 
@@ -20,7 +30,7 @@ export default function UserLandingPage() {
       columnSpacing={3}
       pt={6}
     >
-      <Grid item xs={2}>
+      <Grid item xs={2} style={{align: "end"}}>
         <Item>Current Date</Item>
       </Grid>
       <Grid item xs={2}>
@@ -29,11 +39,48 @@ export default function UserLandingPage() {
       <Grid item xs={6}>
       </Grid>
       <Grid item xs={2}>
-        <Item>Toggle</Item>
+        <Item>  
+          <FormControlLabel
+            value="start"
+            control={
+              <Radio
+              checked={selectedValue === 'a'}
+              onChange={handleChange}
+              value="a"
+              name="radio-buttons"
+              inputProps={{ 'aria-label': 'A' }}
+              sx={{
+                '& .MuiSvgIcon-root': {
+                  fontSize: 15
+                }}}
+              />
+            }
+            label="Week"
+            labelPlacement="top"
+          />
+          <FormControlLabel
+            value="start"
+            control={
+              <Radio
+                checked={selectedValue === 'b'}
+                onChange={handleChange}
+                value="b"
+                name="radio-buttons"
+                inputProps={{ 'aria-label': 'B' }}
+                sx={{
+                  '& .MuiSvgIcon-root': {
+                    fontSize: 15
+                  }}}
+              />
+            }
+            label="Month"
+            labelPlacement="top"
+          />
+      </Item>
       </Grid>
       <Grid item xs={2}>
         <Item
-          style={{minHeight: "2000px", backgroundColor: "red"}}
+          style={{minHeight: "2000px", backgroundColor: "inherit"}}
         >
           Habit Summary
         </Item>
