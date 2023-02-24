@@ -3,7 +3,7 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
-import HabitListItem from './HabitsListItem';
+import HabitList from './HabitList';
 
 
 export default function BasicCard() {
@@ -11,7 +11,7 @@ export default function BasicCard() {
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
         <h3>My Habits</h3>
-       <HabitListItem/>
+       <HabitList/>
       </CardContent>
       <CardActions>
         <Button size="small">Add Habit</Button>
