@@ -16,7 +16,7 @@ export default function UserLandingPage() {
   return (
     <Grid 
       container 
-      rowSpacing={10}
+      rowSpacing={2}
       columnSpacing={3}
       pt={6}
     >
@@ -24,13 +24,26 @@ export default function UserLandingPage() {
         <Item>Current Date</Item>
       </Grid>
       <Grid item xs={2}>
-        <Item>xs=4</Item>
+        <Item>Create!</Item>
       </Grid>
       <Grid item xs={6}>
-        <Item>xs=4</Item>
       </Grid>
       <Grid item xs={2}>
-        <Item>xs=8</Item>
+        <Item>Toggle</Item>
+      </Grid>
+      <Grid item xs={2}>
+        <Item
+          style={{minHeight: "2000px", backgroundColor: "red"}}
+        >
+          Habit Summary
+        </Item>
+      </Grid>
+      <Grid item xs={10}>
+        <Item
+          style={{minHeight: "1000px"}}
+        >
+          Calendar
+        </Item>
       </Grid>
     </Grid>
   );
