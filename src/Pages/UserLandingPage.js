@@ -3,10 +3,8 @@ import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
 import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
+import Button from '@mui/material/Button';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -34,7 +32,7 @@ export default function UserLandingPage() {
         <Item>Current Date</Item>
       </Grid>
       <Grid item xs={2}>
-        <Item>Create!</Item>
+        <Button variant="contained" >Create Habit</Button>
       </Grid>
       <Grid item xs={6}>
       </Grid>
