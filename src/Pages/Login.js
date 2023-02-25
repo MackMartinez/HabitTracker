@@ -19,6 +19,20 @@ export default function Login () {
         <Grid align='center'>
           <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
           <h2>Login</h2>
+          <TextField 
+            id="outlined-basic" 
+            label="Email" 
+            variant="outlined"
+            placeholder="user@email.com" 
+          />
+          <TextField 
+            id="outlined-basic" 
+            label="Password" 
+            variant="outlined"
+            type="password"
+            //Must be 6 characters minimum
+            placeholder="xxxxxx" 
+          />
         </Grid>
       </Paper>
     </Grid>
