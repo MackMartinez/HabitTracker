@@ -8,9 +8,9 @@ import UserLandingPage from './Pages/UserLandingPage';
 function App() {
   return (
     <React.Fragment>
-      {/* <ButtonAppBar /> */}
-      <Login />
-      {/* <UserLandingPage /> */}
+      <ButtonAppBar />
+      {/* <Login /> */}
+      <UserLandingPage />
     </React.Fragment>
   );
 }
