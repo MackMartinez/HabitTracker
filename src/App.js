@@ -5,6 +5,7 @@ import Register from './Pages/Register';
 
 import Login from './Pages/Login';
 import UserLandingPage from './Pages/UserLandingPage';
+import CreateHabit from './Components/CreateHabit';
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       {/* <Login /> */}
       <UserLandingPage />
       <Register />
+      <CreateHabit />
     </React.Fragment>
   );
 }
