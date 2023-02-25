@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Paper, Avatar, TextField, Checkbox, FormGroup, FormControlLabel, Button } from "@mui/material";
+import { Grid, Paper, Avatar, TextField, FormGroup, Button } from "@mui/material";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 export default function Register () {
@@ -14,8 +14,6 @@ export default function Register () {
   const avatarStyle = {backgroundColor: 'blue'}
 
   const textStyle = {margin:'8px 0px'}
-
-
 
   return (
     <Grid>
@@ -66,11 +64,9 @@ export default function Register () {
             <Button type="submit" color="primary" variant="contained">
               Register
             </Button>
-
           </FormGroup>
         </Grid>
       </Paper>
     </Grid>
-
   );
 }
