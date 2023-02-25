@@ -6,11 +6,15 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import { Avatar } from '@mui/material';
 
 export default function ButtonAppBar() {
+
+  const avatarStyle = {margin: "0px 0px 0px 10px"}
+
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar>
           <IconButton
             size="large"
@@ -22,10 +26,11 @@ export default function ButtonAppBar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            My Habits
+          <Button color="inherit">My Habits</Button>
           </Typography>
-          <Button color="inherit">Login</Button>
-          <Button color="inherit">Register</Button>
+          <Button color="inherit">Logout</Button>
+          {/* if signed into an account */}
+          <Button color="inherit">Signed in as Macky Martinez<Avatar style={avatarStyle}></Avatar></Button>
         </Toolbar>
       </AppBar>
     </Box>
