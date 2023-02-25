@@ -8,15 +8,16 @@ import HabitList from './HabitList';
 
 export default function BasicCard() {
   return (
-    <Card sx={{ minWidth: 275 }}>
-      <CardContent>
-        <h3>My Habits</h3>
-       <HabitList/>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Add Habit</Button>
-      </CardActions>
-    </Card>
+    <>
+      <Card sx={{ minWidth: 500 }}>
+        <CardContent>
+         <HabitList/>
+        </CardContent>
+        <CardActions>
+          <Button size="small">Add Habit</Button>
+        </CardActions>
+      </Card>
+    </>
   );
 }
 
