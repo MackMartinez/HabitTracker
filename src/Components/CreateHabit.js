@@ -3,8 +3,11 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
+import { FormGroup, TextField } from "@mui/material";
 
 export default function CreateHabit () {
+
+  const textStyle = {margin:'8px 0px'}
 
   const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -25,21 +28,36 @@ export default function CreateHabit () {
         <Item>Current Date</Item>
       </Grid>
       <Grid container item xs={10} direction="column" alignItems="center">
-        <h1>Create your habit here!</h1>
+        <h1>What habit would you like to track?</h1>
       </Grid>
       <Grid item xs={2}>
         <Item style={{minHeight: "1000px", backgroundColor: "inherit"}}>
           Habit Summary
         </Item>
       </Grid>
-      <Grid item xs={5}>
-        <Item style={{minHeight: "1000px"}}>
-          <h2>Pros</h2>
-        </Item>
-      </Grid>
-      <Grid item xs={5}>
-        <Item style={{minHeight: "1000px"}}>
-          <h2>Cons</h2>
+      <Grid item xs={10} >
+        <Item style={{minHeight: "200px"}} >
+          <FormGroup>
+            <TextField 
+              id="outlined-basic" 
+              label="Habit Name" 
+              variant="outlined"
+              placeholder="Example: Study Javascript" 
+              style={textStyle}
+            />
+            <h2>Why track this habit?</h2>
+            <TextField 
+              id="outlined-basic" 
+              label="List one reason this is important to you!" 
+              variant="outlined"
+              placeholder="Example: I want to be a Javascript Developer" 
+              style={textStyle}
+              type="text"
+            />
+            <Button type="submit" color="primary" variant="contained">
+              + Create Habit
+            </Button>
+          </FormGroup>
         </Item>
       </Grid>
     </Grid>
