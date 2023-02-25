@@ -1,12 +1,25 @@
 import React from "react";
-import { Grid, Paper, Avatar } from "@mui/material";
-import { LockOutlinedIcon } from "@mui/icons-material";
+import { Grid, Paper, Avatar, TextField } from "@mui/material";
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 export default function Login () {
+
+  const paperStyle = {
+    padding: 20,
+    height: '70vh',
+    width: 280,
+    margin: '70px auto'
+  }
+
+  const avatarStyle = {backgroundColor: 'blue'}
+
   return (
     <Grid>
-      <Paper>
-        <h2>Hello</h2>
+      <Paper elevation={10} style={paperStyle}>
+        <Grid align='center'>
+          <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
+          <h2>Login</h2>
+        </Grid>
       </Paper>
     </Grid>
 
