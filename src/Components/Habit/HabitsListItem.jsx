@@ -14,6 +14,10 @@ export default function HabitListItem(props) {
     setSelectedIndex(index);
   };
 
+  const onDelete = () => {
+    console.log("Delete Habit")
+  }
+
   return(
     <ListItem>
       <ListItemButton
@@ -23,8 +27,9 @@ export default function HabitListItem(props) {
         <ListItemText primary ={props.habitListItem}/>
       </ListItemButton>
       
-      <IconButton>
-        <RemoveCircleIcon /> 
+      <IconButton
+        onClick={onDelete}>
+        <RemoveCircleIcon/> 
       </IconButton>
     </ListItem>
   )
