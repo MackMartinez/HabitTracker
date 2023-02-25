@@ -26,9 +26,9 @@ export default function UserLandingPage() {
       container 
       rowSpacing={2}
       columnSpacing={3}
-      pt={6}
+      pt={12}
     >
-      <Grid item xs={2} style={{align: "end"}}>
+      <Grid item xs={2}>
         <Item>Current Date</Item>
       </Grid>
       <Grid item xs={2}>
@@ -74,19 +74,15 @@ export default function UserLandingPage() {
             label="Month"
             labelPlacement="top"
           />
-      </Item>
+        </Item>
       </Grid>
       <Grid item xs={2}>
-        <Item
-          style={{minHeight: "2000px", backgroundColor: "inherit"}}
-        >
+        <Item style={{minHeight: "2000px", backgroundColor: "inherit"}}>
           Habit Summary
         </Item>
       </Grid>
       <Grid item xs={10}>
-        <Item
-          style={{minHeight: "1000px"}}
-        >
+        <Item style={{minHeight: "2000px"}}>
           Calendar
         </Item>
       </Grid>
