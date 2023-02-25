@@ -28,7 +28,7 @@ export default function CreateHabit () {
         <Item>Current Date</Item>
       </Grid>
       <Grid container item xs={10} direction="column" alignItems="center">
-        <h1>What habit would you like to track?</h1>
+        <h2>What habit would you like to track?</h2>
       </Grid>
       <Grid item xs={2}>
         <Item style={{minHeight: "1000px", backgroundColor: "inherit"}}>
