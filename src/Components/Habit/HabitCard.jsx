@@ -9,7 +9,7 @@ import HabitList from './HabitList';
 export default function BasicCard() {
   return (
     <>
-      <Card sx={{ minWidth: 500 }}>
+      <Card>
         <CardContent>
          <HabitList/>
         </CardContent>
