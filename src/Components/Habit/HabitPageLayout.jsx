@@ -11,15 +11,31 @@ export default function HabitPageLayout () {
       <h1>Your Habits</h1>
       
       <Grid container spacing ={2} sx={{ flexGrow: 1 }}>
-        <Grid>
+        <Grid xs={5}>
           <HabitCard/>
         </Grid>
-        <Grid>
+        <Grid xs={7}>
           <h2>Graph showing your weekly progress</h2>
         </Grid>
 
       </Grid>
-
+      <Grid container spacing ={2}>
+        <Grid xs={12}>
+          <h1>Your Stats</h1>
+        </Grid>
+        <Grid xs={3}>
+          <h3>Dashbord 1</h3>
+        </Grid>
+        <Grid xs={3}>
+          <h3> Dashboard 2</h3>
+        </Grid>
+        <Grid xs={3}>
+          <h3>Dashbord 3</h3>
+        </Grid>
+        <Grid xs={3}>
+          <h3> Dashboard 4</h3>
+        </Grid>
+      </Grid>
     </>
   )
 
