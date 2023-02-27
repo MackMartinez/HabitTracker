@@ -3,11 +3,13 @@ import Button from '@mui/material/Button';
 import Add from '@mui/icons-material/Add';
 
 const onClick = () => {
-  console.log("New habit added");
+  console.log("New habit Created");
 }
+// Will need to add logic to show create habit form
 
 export default function AddHabit() {
   return(
-    <Button variant="contained" onClick={onClick}><Add/> New Habit</Button>
+    <Button variant="contained" onClick={onClick}><Add/> Create Habit</Button>
+    
   )
 }
