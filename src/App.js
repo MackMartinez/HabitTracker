@@ -7,8 +7,7 @@ import HabitPageLayout from './Components/Habit';
 function App() {
   return (
     <React.Fragment>
-      <ButtonAppBar />
-      <HabitPageLayout/>
+     
      
     </React.Fragment>
   );
