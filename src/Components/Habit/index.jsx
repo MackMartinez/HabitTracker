@@ -9,6 +9,7 @@ export default function HabitPageLayout () {
   return(
     <>
       <h1>Your Habits</h1>
+      {/*Add in code to show the Week vs Month radio */}
       
       <Grid container spacing ={2} sx={{ flexGrow: 1 }}>
         <Grid xs={5}>
