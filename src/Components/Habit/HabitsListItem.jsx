@@ -4,6 +4,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import IconButton from '@mui/material/IconButton';
+import { red } from '@mui/material/colors';
 
 
 export default function HabitListItem(props) {
@@ -34,7 +35,7 @@ export default function HabitListItem(props) {
       
       <IconButton
         onClick={onDelete}>
-        <RemoveCircleIcon/> 
+        <RemoveCircleIcon sx={{ color: red[500] }}/> 
       </IconButton>
     </ListItem>
   )
