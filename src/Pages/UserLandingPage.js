@@ -5,6 +5,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 import Radio from '@mui/material/Radio';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Button from '@mui/material/Button';
+import ButtonAppBar from '../Components/Appbar';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -22,12 +23,14 @@ export default function UserLandingPage() {
   };
 
   return (
+    <>
+    <ButtonAppBar />
     <Grid 
       container 
       rowSpacing={2}
       columnSpacing={3}
       pt={12}
-    >
+      >
       <Grid item xs={2}>
         <Item>Current Date</Item>
       </Grid>
@@ -51,29 +54,29 @@ export default function UserLandingPage() {
                 '& .MuiSvgIcon-root': {
                   fontSize: 15
                 }}}
+                />
+              }
+              label="Week"
+              labelPlacement="top"
               />
-            }
-            label="Week"
-            labelPlacement="top"
-          />
           <FormControlLabel
             value="start"
             control={
               <Radio
-                checked={selectedValue === 'b'}
-                onChange={handleChange}
-                value="b"
-                name="radio-buttons"
-                inputProps={{ 'aria-label': 'B' }}
-                sx={{
-                  '& .MuiSvgIcon-root': {
-                    fontSize: 15
-                  }}}
+              checked={selectedValue === 'b'}
+              onChange={handleChange}
+              value="b"
+              name="radio-buttons"
+              inputProps={{ 'aria-label': 'B' }}
+              sx={{
+                '& .MuiSvgIcon-root': {
+                  fontSize: 15
+                }}}
+                />
+              }
+              label="Month"
+              labelPlacement="top"
               />
-            }
-            label="Month"
-            labelPlacement="top"
-          />
         </Item>
       </Grid>
       <Grid item xs={2}>
@@ -87,5 +90,6 @@ export default function UserLandingPage() {
         </Item>
       </Grid>
     </Grid>
+              </>
   );
 }
