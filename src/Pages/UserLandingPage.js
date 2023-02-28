@@ -5,6 +5,11 @@ import Grid from '@mui/material/Unstable_Grid2';
 import Radio from '@mui/material/Radio';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Button from '@mui/material/Button';
+import themeTest from '../Styles/Theme';
+
+import { createTheme, ThemeProvider } from "@mui/material"
+
+
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -22,6 +27,7 @@ export default function UserLandingPage() {
   };
 
   return (
+    <ThemeProvider theme={themeTest}>
     <Grid 
       container 
       rowSpacing={2}
@@ -87,5 +93,6 @@ export default function UserLandingPage() {
         </Item>
       </Grid>
     </Grid>
+    </ThemeProvider>
   );
 }

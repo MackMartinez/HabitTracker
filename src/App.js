@@ -11,9 +11,10 @@ import CreateHabit from './Components/CreateHabit';
 function App() {
   return (
     <React.Fragment>
+      <UserLandingPage />
+
       <ButtonAppBar />
       {/* <Login /> */}
-      <UserLandingPage />
       <Register />
       <CreateHabit />
     </React.Fragment>
