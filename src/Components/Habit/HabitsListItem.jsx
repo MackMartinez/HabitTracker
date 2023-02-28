@@ -8,10 +8,15 @@ import IconButton from '@mui/material/IconButton';
 
 export default function HabitListItem(props) {
 
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const [selectedIndex, setSelectedIndex] = React.useState(false);
 
-  const handleListItemClick = (event, index) => {
-    setSelectedIndex(index);
+  const handleListItemClick = () => {
+    if(selectedIndex === false) {
+      setSelectedIndex(true);
+    } else {
+      setSelectedIndex(false);
+    }
+    
   };
 
   const onDelete = () => {
@@ -21,8 +26,8 @@ export default function HabitListItem(props) {
   return(
     <ListItem>
       <ListItemButton
-        selected={selectedIndex === 0}
-        onClick={(event) => handleListItemClick(event, 0)}
+        selected={selectedIndex === true}
+        onClick={handleListItemClick}
       >
         <ListItemText primary ={props.habitListItem}/>
       </ListItemButton>
