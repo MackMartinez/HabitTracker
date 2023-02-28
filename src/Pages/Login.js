@@ -42,8 +42,8 @@ export default function Login () {
             <Button type="submit" color="primary" variant="contained">
               Sign In
             </Button>
-              //forgot passord?
-              //Don't have an account? Register here
+              {/*forgot password?*/}
+              {/*Don't have an account? Register here*/}
 
           </FormGroup>
         </Grid>
