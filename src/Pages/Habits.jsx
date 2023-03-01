@@ -36,47 +36,49 @@ export default function HabitPageLayout () {
          columnSpacing={3}
          pt={12}
         >
-          <Grid xs={10.5}>
+          <Grid xs={10}>
             <h1>Your Habits</h1>
           </Grid>
-          <Item>  
-            <FormControlLabel
-              value="start"
-              control={
-                <Radio
-                checked={selectedValue === 'a'}
-                onChange={handleChange}
-                value="a"
-                name="radio-buttons"
-                inputProps={{ 'aria-label': 'A' }}
-                sx={{
-                  '& .MuiSvgIcon-root': {
-                    fontSize: 15
-                  }}}
+          <Grid xs={2}>
+            <Item>  
+              <FormControlLabel
+                value="start"
+                control={
+                  <Radio
+                  checked={selectedValue === 'a'}
+                  onChange={handleChange}
+                  value="a"
+                  name="radio-buttons"
+                  inputProps={{ 'aria-label': 'A' }}
+                  sx={{
+                    '& .MuiSvgIcon-root': {
+                      fontSize: 15
+                    }}}
+                    />
+                  }
+                  label="Week"
+                  labelPlacement="top"
                   />
-                }
-                label="Week"
-                labelPlacement="top"
-                />
-            <FormControlLabel
-              value="start"
-              control={
-                <Radio
-                checked={selectedValue === 'b'}
-                onChange={handleChange}
-                value="b"
-                name="radio-buttons"
-                inputProps={{ 'aria-label': 'B' }}
-                sx={{
-                  '& .MuiSvgIcon-root': {
-                    fontSize: 15
-                  }}}
+              <FormControlLabel
+                value="start"
+                control={
+                  <Radio
+                  checked={selectedValue === 'b'}
+                  onChange={handleChange}
+                  value="b"
+                  name="radio-buttons"
+                  inputProps={{ 'aria-label': 'B' }}
+                  sx={{
+                    '& .MuiSvgIcon-root': {
+                      fontSize: 15
+                    }}}
+                    />
+                  }
+                  label="Month"
+                  labelPlacement="top"
                   />
-                }
-                label="Month"
-                labelPlacement="top"
-                />
-          </Item>
+            </Item>
+          </Grid>
         </Grid>
 
         <Grid container spacing ={2} sx={{ flexGrow: 1 }}>
