@@ -6,6 +6,7 @@ import Radio from '@mui/material/Radio';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import ButtonAppBar from '../Components/Appbar';
 import AddHabitButton from '../Components/Habit/AddHabitButton';
+import Schedule from '../Components/Calendar/index'
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -85,11 +86,14 @@ export default function UserLandingPage() {
         </Item>
       </Grid>
       <Grid item xs={10}>
-        <Item style={{minHeight: "2000px"}}>
+        <Item>
           Calendar
+          <Grid>
+            <Schedule/>
+          </Grid>
         </Item>
       </Grid>
     </Grid>
-              </>
+  </>
   );
 }
