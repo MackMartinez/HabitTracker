@@ -6,14 +6,16 @@ let users = [
     firstname: "Clark",
     lastname: "Kent",
     email: "clark.kent@metropolis.com",
-    password: "hero1"
+    password: "hero1",
+    avatar: "Placeholder"
   },
   {
     id: 2,
     firstname: "Bruce",
     lastname: "Wayne",
     email: "bruce.wayne@gotham.com",
-    password: "hero2"
+    password: "hero2",
+    avatar: "placeholder"
   }
 ];
 
@@ -46,13 +48,21 @@ let habits = [
       id: 1, // habit id key
       days_id: 1,
       name: "flying",
-      notes: "Practice levatating for 1 hour per day"
+      notes: "Practice levatating for 1 hour per day",
+      start_time: "9am",
+      duration: 60,
+      timestamp: "TBD",
+      completed: false
     },
     {
       id: 2,
       days_id: 2,
       name: "Stength building",
-      notes: "Lift a 2 ton rock for 30 minutes"
+      notes: "Lift a 2 ton rock for 30 minutes",
+      start_time: "10am",
+      duration: 30,
+      timestamp: "TBD",
+      completed: false
     }]
   },
   { "2" : [{
@@ -60,13 +70,21 @@ let habits = [
       id: 3,
       days_id: 5,
       name: "Throwing",
-      notes: "Practice throwing a boomerang 30 minutes per day" // We should probably add time to the table
+      notes: "Practice throwing a boomerang 30 minutes per day", // We should probably add time to the table
+      start_time: "5pm",
+      duration: 30,
+      timestamp: "TBD",
+      completed: false
     },
     {
       id: 4,
       days_id: 1,
       name: "Hiding",
-      notes: "Practice being invisible all day"
+      notes: "Practice being invisible all day",
+      start_time: "12am",
+      duration: 1440,
+      timestamp: "TBD",
+      completed: false
     }]
   },
 
