@@ -7,7 +7,8 @@ import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import ButtonAppBar from '../Components/Appbar';
 
-
+import {CompleteHabitList, IncompleteHabitList} from '../Components/Habit/HabitStatusList';
+import RadialBar from '../Components/Gauge/StrokedGauge';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -93,17 +94,20 @@ export default function HabitPageLayout () {
             <h1>Your Stats</h1>
           </Grid>
           <Grid xs={3}>
-            <h3>Dashbord 1</h3>
+            <h3>Completed Habits</h3>
+              <CompleteHabitList/>
           </Grid>
           <Grid xs={3}>
-            <h3> Dashboard 2</h3>
+            <h3>Incomplete Habits</h3>
+              <IncompleteHabitList/>
           </Grid>
           <Grid xs={3}>
-            <h3>Dashbord 3</h3>
+            <h3>Week Completion</h3>
+              <RadialBar/>
           </Grid>
           <Grid xs={3}>
-            <h3> Dashboard 4</h3>
-          </Grid>
+            <h3>Goals</h3>
+          </Grid>   
         </Grid>
     </>
   ) 
