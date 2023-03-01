@@ -8,6 +8,7 @@ const onClick = () => {
 // Will need to add logic to show create habit form
 
 export default function AddHabit() {
+
   return(
     <Button variant="contained" onClick={onClick}><Add/> Create Habit</Button>
     

@@ -4,6 +4,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import { FormGroup, TextField } from "@mui/material";
+import ButtonAppBar from "./Appbar";
 
 export default function CreateHabit () {
 
@@ -18,6 +19,8 @@ export default function CreateHabit () {
 }));
 
   return (
+    <>
+    <ButtonAppBar />
     <Grid 
       container 
       rowSpacing={2}
@@ -61,5 +64,6 @@ export default function CreateHabit () {
         </Item>
       </Grid>
     </Grid>
+    </>
   )
 }
