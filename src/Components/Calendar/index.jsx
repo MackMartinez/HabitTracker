@@ -3,10 +3,10 @@ import Calendar from '@toast-ui/react-calendar';
 import '@toast-ui/calendar/dist/toastui-calendar.min.css';
 
 
-export default function schedule() {
+export default function schedule(props) {
   return(
     <div>
-      <Calendar view="month"/>
+      <Calendar view={props.view}/>
     </div>
   )
 }
