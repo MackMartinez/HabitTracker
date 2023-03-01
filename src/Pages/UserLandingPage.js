@@ -6,6 +6,7 @@ import Radio from '@mui/material/Radio';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Button from '@mui/material/Button';
 import ButtonAppBar from '../Components/Appbar';
+import { useNavigate } from "react-router-dom"
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -22,6 +23,8 @@ export default function UserLandingPage() {
     setSelectedValue(event.target.value);
   };
 
+  const navigate = useNavigate()
+
   return (
     <>
     <ButtonAppBar />
@@ -35,7 +38,7 @@ export default function UserLandingPage() {
         <Item>Current Date</Item>
       </Grid>
       <Grid item xs={2}>
-        <Button variant="contained" >Create Habit</Button>
+        <Button variant="contained" onClick={() => navigate('create')}>Create Habit</Button>
       </Grid>
       <Grid item xs={6}>
       </Grid>

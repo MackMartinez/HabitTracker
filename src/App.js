@@ -18,7 +18,7 @@ function App() {
       {/* This should be /:user to render specific user logged in  */}
       <Route path="/user" element={<UserLandingPage/>}/>
       <Route path="/habit" element={<HabitPageLayout/>}/>
-      <Route path="/create" element={<CreateHabit/>}/>
+      <Route path="/user/create" element={<CreateHabit/>}/>
     </Routes>
     </BrowserRouter>
   );
