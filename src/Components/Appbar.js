@@ -7,10 +7,17 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Avatar } from '@mui/material';
+import { useNavigate } from 'react-router-dom'
 
 export default function ButtonAppBar() {
 
   const avatarStyle = {margin: "0px 0px 0px 10px"}
+
+  const navigate = useNavigate();
+
+  const navMyHabits = () => {
+    navigate('/user/habit')
+  }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -26,7 +33,7 @@ export default function ButtonAppBar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          <Button color="inherit">My Habits</Button>
+          <Button color="inherit" onClick={navMyHabits}>My Habits</Button>
           </Typography>
           <Button color="inherit">Logout</Button>
           {/* if signed into an account */}

@@ -4,8 +4,8 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
 import Radio from '@mui/material/Radio';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import Button from '@mui/material/Button';
 import ButtonAppBar from '../Components/Appbar';
+import AddHabitButton from '../Components/Habit/AddHabitButton';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -35,7 +35,7 @@ export default function UserLandingPage() {
         <Item>Current Date</Item>
       </Grid>
       <Grid item xs={2}>
-        <Button variant="contained" >Create Habit</Button>
+        <AddHabitButton />
       </Grid>
       <Grid item xs={6}>
       </Grid>

@@ -27,9 +27,7 @@ export default function HabitPageLayout () {
 
   return(
       <>
-
         <ButtonAppBar/>
-
         <Grid  
          container 
          rowSpacing={2}
