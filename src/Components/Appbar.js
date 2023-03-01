@@ -19,6 +19,10 @@ export default function ButtonAppBar() {
     navigate('/user/habit')
   }
 
+  const navMyHome = () => {
+    navigate('/user')
+  }
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">
@@ -33,6 +37,7 @@ export default function ButtonAppBar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Button color="inherit" onClick={navMyHome}>Home</Button>
           <Button color="inherit" onClick={navMyHabits}>My Habits</Button>
           </Typography>
           <Button color="inherit">Logout</Button>

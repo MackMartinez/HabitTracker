@@ -18,6 +18,8 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
+
+
 export default function HabitPageLayout () {
 
   const [selectedValue, setSelectedValue] = React.useState('a');
@@ -86,6 +88,7 @@ export default function HabitPageLayout () {
           </Grid>
           <Grid xs={7}>
             <h2>Graph showing your weekly progress</h2>
+            <div id='chart'></div>
           </Grid>
 
         </Grid>
