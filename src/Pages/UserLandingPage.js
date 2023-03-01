@@ -17,10 +17,10 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function UserLandingPage() {
-  const [selectedValue, setSelectedValue] = React.useState('a');
+  const [calendarView, setCalendarView] = React.useState('week');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedValue(event.target.value);
+    setCalendarView(event.target.value);
   };
 
   return (
@@ -46,9 +46,9 @@ export default function UserLandingPage() {
             value="start"
             control={
               <Radio
-              checked={selectedValue === 'a'}
+              checked={calendarView === 'week'}
               onChange={handleChange}
-              value="a"
+              value="week"
               name="radio-buttons"
               inputProps={{ 'aria-label': 'A' }}
               sx={{
@@ -64,9 +64,9 @@ export default function UserLandingPage() {
             value="start"
             control={
               <Radio
-              checked={selectedValue === 'b'}
+              checked={calendarView === 'month'}
               onChange={handleChange}
-              value="b"
+              value="month"
               name="radio-buttons"
               inputProps={{ 'aria-label': 'B' }}
               sx={{
@@ -89,7 +89,7 @@ export default function UserLandingPage() {
         <Item>
           Calendar
           <Grid>
-            <Schedule/>
+            <Schedule view={calendarView}/>
           </Grid>
         </Item>
       </Grid>
