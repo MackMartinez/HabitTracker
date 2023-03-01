@@ -55,7 +55,7 @@ export default function CreateHabit () {
               type="text"
             />
             <Button type="submit" color="primary" variant="contained">
-              + Create Habit
+              + Save Habit
             </Button>
           </FormGroup>
         </Item>
