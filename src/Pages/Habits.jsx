@@ -6,7 +6,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import ButtonAppBar from '../Components/Appbar';
-
+import '@toast-ui/chart/dist/toastui-chart.min.css';
+import { BarChart, LineChart } from '@toast-ui/react-chart';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -17,6 +18,40 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
+const data = {
+  categories: ['June', 'July', 'Aug', 'Sep', 'Oct', 'Nov'],
+  series: [
+    {
+      name: 'Budget',
+      data: [5000, 3000, 5000, 7000, 6000, 4000],
+    },
+    {
+      name: 'Income',
+      data: [8000, 1000, 7000, 2000, 5000, 3000],
+    },
+  ],
+};
+
+const options = {
+  chart: {
+    width: 1160,
+    height: 650,
+    title: 'Monthly Revenue',
+  },
+  yAxis: {
+    title: 'Month',
+  },
+  xAxis: {
+    title: 'Amount',
+  },
+};
+
+const containerStyle = {
+  width: '600px',
+  height: '600px',
+};
+
+const MyComponent = () => <BarChart data={data} options={options} style={containerStyle} />;
 
 
 export default function HabitPageLayout () {
@@ -87,7 +122,7 @@ export default function HabitPageLayout () {
           </Grid>
           <Grid xs={7}>
             <h2>Graph showing your weekly progress</h2>
-            <div id='chart'></div>
+            <BarChart data={data} options={options} style={containerStyle} />
           </Grid>
 
         </Grid>
