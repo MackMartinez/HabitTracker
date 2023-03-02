@@ -3,15 +3,26 @@ import Calendar from '@toast-ui/react-calendar';
 import '@toast-ui/calendar/dist/toastui-calendar.min.css';
 
 
-const calendars = [{ id: 'cal1', name: 'Personal' }];
-  const initialEvents = [
+
+const calendars = [{ useDetailPopup: true }];
+  
+
+
+
+const initialEvents = [
     {
       id: '1',
       calendarId: 'cal1',
       title: 'Lunch',
+      body: 'Going to eat a cheeseburger',
       category: 'time',
       start: '2023-03-01T12:00:00',
       end: '2023-03-01T13:30:00',
+      state: null,
+      attendees: null,
+      isPrivate: false,
+      backgroundColor: "#1976d2",
+      color: "white"
     },
     {
       id: '2',
@@ -20,12 +31,14 @@ const calendars = [{ id: 'cal1', name: 'Personal' }];
       category: 'time',
       start: '2023-02-28T15:00:00',
       end: '2023-02-28T15:30:00',
+      state: null,
+      attendees: null,
+      isPrivate: false,
+      backgroundColor: "#1976d2",
+      color: "white"
     },
   ];
 
-  const onAfterRenderEvent = (event) => {
-    console.log(event.title);
-  };
 
  export default function schedule(props){
    return (
@@ -39,7 +52,8 @@ const calendars = [{ id: 'cal1', name: 'Personal' }];
         }}
         calendars={calendars}
         events={initialEvents}
-        onAfterRenderEvent={onAfterRenderEvent}
+        useDetailPopup={true}
+        useFormPopup={true}
       />
     </div>
   );
