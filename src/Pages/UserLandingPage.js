@@ -7,6 +7,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import ButtonAppBar from '../Components/Appbar';
 import AddHabitButton from '../Components/Habit/AddHabitButton';
 import Schedule from '../Components/Calendar/index'
+import HabitList from '../Components/Habit/HabitList';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -19,7 +20,7 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function UserLandingPage() {
   const [calendarView, setCalendarView] = React.useState('week');
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event) => {
     setCalendarView(event.target.value);
   };
 
@@ -83,6 +84,7 @@ export default function UserLandingPage() {
       <Grid item xs={2}>
         <Item style={{minHeight: "2000px", backgroundColor: "inherit"}}>
           Habit Summary
+          <HabitList/>
         </Item>
       </Grid>
       <Grid item xs={10}>
