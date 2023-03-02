@@ -6,6 +6,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import ButtonAppBar from '../Components/Appbar';
+import Chart from '@toast-ui/chart';
+import { BarChart } from '@toast-ui/chart';
 
 
 
