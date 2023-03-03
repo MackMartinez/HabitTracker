@@ -117,7 +117,7 @@ export default function HabitPageLayout () {
                     '& .MuiSvgIcon-root': {
                       fontSize: 12
                     }}}
-                    />
+                  />
                   }
                   label="Week"
                   labelPlacement="top"
@@ -135,7 +135,7 @@ export default function HabitPageLayout () {
                     '& .MuiSvgIcon-root': {
                       fontSize: 12
                     }}}
-                    />
+                  />
                   }
                   label="Month"
                   labelPlacement="top"
