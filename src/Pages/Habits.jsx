@@ -22,10 +22,28 @@ const data = {
   categories: ['June', 'July', 'Aug', 'Sep', 'Oct', 'Nov'],
   series: [
     {
+      //Call from API
       name: 'Flying',
       data: [20, 10, 15, 20, 10, 18],
     },
     {
+      //Call from API
+      name: 'Strength building',
+      data: [10, 13, 16, 14, 18, 25],
+    },
+  ],
+};
+
+const dataWeek = {
+  categories: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+  series: [
+    {
+      //Call from API
+      name: 'Flying',
+      data: [20, 10, 15, 20, 10, 18],
+    },
+    {
+      //Call from API
       name: 'Strength building',
       data: [10, 13, 16, 14, 18, 25],
     },
@@ -120,6 +138,7 @@ export default function HabitPageLayout () {
           </Grid>
           <Grid xs={7}>
             <BarChart data={data} options={options} style={containerStyle} />
+            <LineChart data={dataWeek} options={options} style={containerStyle}/>
           </Grid>
 
         </Grid>

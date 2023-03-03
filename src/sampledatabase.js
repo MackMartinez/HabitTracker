@@ -57,7 +57,7 @@ let habits = [
     {
       id: 2,
       days_id: 2,
-      name: "Stength building",
+      name: "Strength building",
       notes: "Lift a 2 ton rock for 30 minutes",
       start_time: "10am",
       duration: 30,
