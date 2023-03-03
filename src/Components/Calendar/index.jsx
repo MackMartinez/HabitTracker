@@ -1,5 +1,5 @@
 /* ES6 module in Node.js environment */
-import React from "react";
+import  React, { useState, useEffect } from "react";
 import Calendar from "@toast-ui/react-calendar";
 import '@toast-ui/calendar/dist/toastui-calendar.min.css';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -42,17 +42,37 @@ import Button from '@mui/material/Button';
    },
  ];
 
+  let months = {
+    0 : "January",
+    1 : "February",
+    2 : "March",
+    3 : "April",
+    4 : "May",
+    5 : "June",
+    6 : "July",
+    7 : "August",
+    8 : "September",
+    9 : "October",
+    10 : "November",
+    11 : "December" 
+  }
+
  export default function HabitCalendar(props){
 
-  const calref = React.useRef(null);  // Allows the us to reference the Calendar class so that we can execute the Toast UI class methods
-
+  const calref = React.useRef();  // Allows the us to reference the Calendar class so that we can execute the Toast UI class methods
+  
   const handleNext = () => {
     const currentCal = calref.current.getInstance(); // We use this so that we get the current model from the DOM since there usually is a lag between what is available and what is displayed
     currentCal.next();
+    let date = currentCal.getDate();
+    setCalendarDate(date.d.getMonth());
+    console.log(date.d);
   }
 
   const handlePrev = () => {
     const currentCal = calref.current.getInstance();
+    let date = currentCal.getDate();
+    setCalendarDate(date.d.getMonth());
     currentCal.prev();
   }
 
@@ -60,11 +80,24 @@ import Button from '@mui/material/Button';
     const currentCal = calref.current.getInstance(); // Repeating this code each time to ensure that the current state is rerendered vs having a stale state from the intial render
     currentCal.today();
   }
+  
+  // const handleDate = () => {
+    //   setCalendarDate(currentCal.getDate());
+    // }
+    
+  const [calendarDate, setCalendarDate] = useState("");
+
 
 
    return ( 
     <Grid >
-      <Grid>
+      <Grid
+        item
+        container
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+      >
         <Grid 
           item
           container
@@ -76,7 +109,7 @@ import Button from '@mui/material/Button';
           <NavigateBeforeIcon onClick={handlePrev}/>
           <NavigateNextIcon onClick={handleNext}/>
         </Grid>
-        
+        <span>{months[calendarDate]}</span>
 
       </Grid>
       <Grid>
