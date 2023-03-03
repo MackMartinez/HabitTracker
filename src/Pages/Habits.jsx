@@ -22,12 +22,12 @@ const data = {
   categories: ['June', 'July', 'Aug', 'Sep', 'Oct', 'Nov'],
   series: [
     {
-      name: 'Budget',
-      data: [5000, 3000, 5000, 7000, 6000, 4000],
+      name: 'Flying',
+      data: [20, 10, 15, 20, 10, 18],
     },
     {
-      name: 'Income',
-      data: [8000, 1000, 7000, 2000, 5000, 3000],
+      name: 'Strength building',
+      data: [10, 13, 16, 14, 18, 25],
     },
   ],
 };
@@ -36,7 +36,7 @@ const options = {
   chart: {
     width: 1160,
     height: 650,
-    title: 'Monthly Revenue',
+    title: '# of times habit completed per month',
   },
   yAxis: {
     title: 'Month',
@@ -50,8 +50,6 @@ const containerStyle = {
   width: '600px',
   height: '600px',
 };
-
-const MyComponent = () => <BarChart data={data} options={options} style={containerStyle} />;
 
 
 export default function HabitPageLayout () {
@@ -121,7 +119,6 @@ export default function HabitPageLayout () {
             <HabitCard/>
           </Grid>
           <Grid xs={7}>
-            <h2>Graph showing your weekly progress</h2>
             <BarChart data={data} options={options} style={containerStyle} />
           </Grid>
 
