@@ -3,6 +3,9 @@ import React from "react";
 import Calendar from "@toast-ui/react-calendar";
 import '@toast-ui/calendar/dist/toastui-calendar.min.css';
 import Grid from '@mui/material/Unstable_Grid2';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
+import Button from '@mui/material/Button';
 
 
  // Sets the details of the calendar
@@ -54,27 +57,34 @@ import Grid from '@mui/material/Unstable_Grid2';
   }
 
 
-   return (
-    <div>
-      
-      <Grid>
-        <button onClick={handleprev}>Prev</button>
-        <button onClick={handlenext}>Next</button>
+   return ( 
+    <Grid >
+      <Grid 
+        item
+        container
+        direction="row"
+        justifyContent="flex-start"
+        alignItems="center"
+      > {/* item flag adds padding to the item*/}
+        <Button variant="outlined">Today</Button>
+        <NavigateBeforeIcon onClick={handleprev}/>
+        <NavigateNextIcon onClick={handlenext}/>
       </Grid>
-
-      <Calendar  // Calendar component from Toast UI which require certain flags to operate
-        ref={calref}
-        height="900px"
-        view={props.view}
-        month={{
-          dayNames: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-          visibleWeeksCount: 3,
-        }}
-        calendars={calendars}
-        events={initialEvents}
-        useDetailPopup={true}
-        useFormPopup={true}
-      />
-    </div>
+      <Grid>
+        <Calendar  // Calendar component from Toast UI which require certain flags to operate
+          ref={calref}
+          height="900px"
+          view={props.view}
+          month={{
+            dayNames: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+            visibleWeeksCount: 3,
+          }}
+          calendars={calendars}
+          events={initialEvents}
+          useDetailPopup={true}
+          useFormPopup={true}
+          />
+      </Grid>
+    </Grid>
   );
 }
