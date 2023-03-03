@@ -46,29 +46,38 @@ import Button from '@mui/material/Button';
 
   const calref = React.useRef(null);  // Allows the us to reference the Calendar class so that we can execute the Toast UI class methods
 
-  const handlenext = () => {
+  const handleNext = () => {
     const currentCal = calref.current.getInstance(); // We use this so that we get the current model from the DOM since there usually is a lag between what is available and what is displayed
     currentCal.next();
   }
 
-  const handleprev = () => {
+  const handlePrev = () => {
     const currentCal = calref.current.getInstance();
     currentCal.prev();
+  }
+
+  const handleToday = () => {
+    const currentCal = calref.current.getInstance(); // Repeating this code each time to ensure that the current state is rerendered vs having a stale state from the intial render
+    currentCal.today();
   }
 
 
    return ( 
     <Grid >
-      <Grid 
-        item
-        container
-        direction="row"
-        justifyContent="flex-start"
-        alignItems="center"
-      > {/* item flag adds padding to the item*/}
-        <Button variant="outlined">Today</Button>
-        <NavigateBeforeIcon onClick={handleprev}/>
-        <NavigateNextIcon onClick={handlenext}/>
+      <Grid>
+        <Grid 
+          item
+          container
+          direction="row"
+          justifyContent="flex-start"
+          alignItems="center"
+        > {/* item flag adds padding to the item*/}
+          <Button variant="outlined" onClick={handleToday}>Today</Button>
+          <NavigateBeforeIcon onClick={handlePrev}/>
+          <NavigateNextIcon onClick={handleNext}/>
+        </Grid>
+        
+
       </Grid>
       <Grid>
         <Calendar  // Calendar component from Toast UI which require certain flags to operate
