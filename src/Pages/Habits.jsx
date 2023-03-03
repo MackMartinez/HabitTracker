@@ -18,6 +18,11 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
+/* 
+  We should have 2 data queries ready for when we select week or month.
+  
+*/
+
 const data = {
   categories: ['June', 'July', 'Aug', 'Sep', 'Oct', 'Nov'],
   series: [
@@ -72,11 +77,18 @@ const containerStyle = {
 
 export default function HabitPageLayout () {
 
-  const [selectedValue, setSelectedValue] = React.useState('a');
+  const [selectedValue, setSelectedValue] = React.useState('week');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedValue(event.target.value);
   };
+
+  const showChartPeriod = () => {
+    if (selectedValue === 'week') {
+      return <LineChart data={dataWeek} options={options} style={containerStyle}/>
+    }
+    return <BarChart data={data} options={options} style={containerStyle} />
+  }
 
   return(
       <>
@@ -96,14 +108,14 @@ export default function HabitPageLayout () {
                 value="start"
                 control={
                   <Radio
-                  checked={selectedValue === 'a'}
+                  checked={selectedValue === 'week'}
                   onChange={handleChange}
-                  value="a"
+                  value="week"
                   name="radio-buttons"
                   inputProps={{ 'aria-label': 'A' }}
                   sx={{
                     '& .MuiSvgIcon-root': {
-                      fontSize: 15
+                      fontSize: 12
                     }}}
                     />
                   }
@@ -121,7 +133,7 @@ export default function HabitPageLayout () {
                   inputProps={{ 'aria-label': 'B' }}
                   sx={{
                     '& .MuiSvgIcon-root': {
-                      fontSize: 15
+                      fontSize: 12
                     }}}
                     />
                   }
@@ -137,8 +149,7 @@ export default function HabitPageLayout () {
             <HabitCard/>
           </Grid>
           <Grid xs={7}>
-            <BarChart data={data} options={options} style={containerStyle} />
-            <LineChart data={dataWeek} options={options} style={containerStyle}/>
+            {showChartPeriod()}
           </Grid>
 
         </Grid>
