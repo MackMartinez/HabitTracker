@@ -4,7 +4,7 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-import { FormGroup, TextField } from "@mui/material";
+import { FormGroup, TextField, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import DaysToggleButtons from "./DaysToggleButton";
@@ -118,18 +118,14 @@ export default function CreateHabit () {
             </Grid>
             <Grid
               item
-              container
+              // container
               direction="column"
               justifyContent="space-between"
               alignItems="center"
               xs={1}
             >
-              <span>Repeat</span>
-             <FormGroup>
-              <FormControlLabel control={<Checkbox />} label="Daily" />
-              <FormControlLabel control={<Checkbox />} label="Weekly" />
-              <FormControlLabel control={<Checkbox />} label="Monthly" />
-            </FormGroup>
+              <Typography>* Habits will repeat weekly until the designated end date</Typography>
+             
             </Grid>
 
 
