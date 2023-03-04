@@ -7,11 +7,8 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import Button from '@mui/material/Button';
 
-
  // Sets the details of the calendar
   
- const calendars = [{ useDetailPopup: true }]; // from the calendar index file
-
  const initialEvents = [
    {
      id: '1',
@@ -87,9 +84,6 @@ import Button from '@mui/material/Button';
 
   const [calendarMonth, setCalendarMonth] = useState(props.initialMonth);
   const [calendarYear, setCalendarYear] = useState(props.initialYear);
-    
-
-
 
    return ( 
     <Grid >
@@ -123,7 +117,6 @@ import Button from '@mui/material/Button';
             dayNames: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
             visibleWeeksCount: 3,
           }}
-          calendars={calendars}
           events={initialEvents}
           useDetailPopup={true}
           useFormPopup={true}
