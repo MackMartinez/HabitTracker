@@ -11,6 +11,8 @@ export default function CreateHabit () {
 
   const textStyle = {margin:'8px 0px'}
 
+  const daysButtonStyle = {maxWidth: '30px', maxHeight: '30px', minWidth: '30px', minHeight: '30px', margin: '20px 20px 20px 20px'}
+
   const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -104,6 +106,35 @@ export default function CreateHabit () {
                   type="time"
                 />
               </Grid>
+            </Grid>
+            <Grid
+              item
+              direction="column"
+              justifyContent="space-between"
+              alignItems="center"
+              xs={1}
+            >
+              <Button type="text" color="primary" variant="contained" style={daysButtonStyle}>
+                S
+              </Button>
+              <Button type="text" color="primary" variant="contained" style={daysButtonStyle}>
+                M
+              </Button>
+              <Button type="text" color="primary" variant="contained" style={daysButtonStyle}>
+                T
+              </Button>
+              <Button type="text" color="primary" variant="contained" style={daysButtonStyle}>
+                W
+              </Button>
+              <Button type="text" color="primary" variant="contained" style={daysButtonStyle}>
+                T
+              </Button>
+              <Button type="text" color="primary" variant="contained" style={daysButtonStyle}>
+                F
+              </Button>
+              <Button type="text" color="primary" variant="contained" style={daysButtonStyle}>
+                S
+              </Button>
             </Grid>
             <Grid
               item
