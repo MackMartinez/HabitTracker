@@ -126,9 +126,9 @@ export default function CreateHabit () {
             >
               <span>Repeat</span>
              <FormGroup>
-              <FormControlLabel control={<Checkbox defaultChecked />} label="Daily" />
-              <FormControlLabel control={<Checkbox defaultChecked />} label="Weekly" />
-              <FormControlLabel control={<Checkbox defaultChecked />} label="Monthly" />
+              <FormControlLabel control={<Checkbox />} label="Daily" />
+              <FormControlLabel control={<Checkbox />} label="Weekly" />
+              <FormControlLabel control={<Checkbox />} label="Monthly" />
             </FormGroup>
             </Grid>
 
