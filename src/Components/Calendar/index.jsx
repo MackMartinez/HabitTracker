@@ -85,8 +85,8 @@ import Button from '@mui/material/Button';
     setCalendarYear(date.d.getFullYear())
   }
 
-  const [calendarMonth, setCalendarMonth] = useState("");
-  const [calendarYear, setCalendarYear] = useState("");
+  const [calendarMonth, setCalendarMonth] = useState(props.initialMonth);
+  const [calendarYear, setCalendarYear] = useState(props.initialYear);
     
 
 
