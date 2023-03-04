@@ -42,7 +42,7 @@ import Button from '@mui/material/Button';
    },
  ];
 
-  let months = {
+  let months = {  // TUI returns digits as months, so this converts to a string
     0 : "January",
     1 : "February",
     2 : "March",
@@ -60,7 +60,7 @@ import Button from '@mui/material/Button';
  export default function HabitCalendar(props){
 
   const calref = React.useRef();  // Allows the us to reference the Calendar class so that we can execute the Toast UI class methods
-  
+
   const handleNext = () => {
     const currentCal = calref.current.getInstance(); // We use this so that we get the current model from the DOM since there usually is a lag between what is available and what is displayed
     currentCal.next();
@@ -79,13 +79,12 @@ import Button from '@mui/material/Button';
   const handleToday = () => {
     const currentCal = calref.current.getInstance(); // Repeating this code each time to ensure that the current state is rerendered vs having a stale state from the intial render
     currentCal.today();
+    let date = currentCal.getDate();
+    setCalendarDate(date.d.getMonth());
   }
-  
-  // const handleDate = () => {
-    //   setCalendarDate(currentCal.getDate());
-    // }
-    
+
   const [calendarDate, setCalendarDate] = useState("");
+    
 
 
 
