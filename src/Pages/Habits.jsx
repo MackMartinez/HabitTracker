@@ -9,6 +9,9 @@ import ButtonAppBar from '../Components/Appbar';
 
 import {CompleteHabitList, IncompleteHabitList} from '../Components/Habit/HabitStatusList';
 import RadialBar from '../Components/Gauge/StrokedGauge';
+import '@toast-ui/chart/dist/toastui-chart.min.css';
+import { BarChart, LineChart } from '@toast-ui/react-chart';
+
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -18,15 +21,77 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
+/* 
+  We should have 2 data queries ready for when we select week or month.
+  
+*/
+
+const data = {
+  categories: ['June', 'July', 'Aug', 'Sep', 'Oct', 'Nov'],
+  series: [
+    {
+      //Call from API
+      name: 'Flying',
+      data: [20, 10, 15, 20, 10, 18],
+    },
+    {
+      //Call from API
+      name: 'Strength building',
+      data: [10, 13, 16, 14, 18, 25],
+    },
+  ],
+};
+
+const dataWeek = {
+  categories: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+  series: [
+    {
+      //Call from API
+      name: 'Flying',
+      data: [20, 10, 15, 20, 10, 18],
+    },
+    {
+      //Call from API
+      name: 'Strength building',
+      data: [10, 13, 16, 14, 18, 25],
+    },
+  ],
+};
+
+const options = {
+  chart: {
+    width: 1000,
+    height: 600,
+    title: '# of times habit completed per month',
+  },
+  yAxis: {
+    title: 'Month',
+  },
+  xAxis: {
+    title: 'Amount',
+  },
+};
+
+const containerStyle = {
+  width: '600px',
+  height: '600px',
+};
 
 
 export default function HabitPageLayout () {
 
-  const [selectedValue, setSelectedValue] = React.useState('a');
+  const [selectedValue, setSelectedValue] = React.useState('week');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedValue(event.target.value);
   };
+
+  const showChartPeriod = () => {
+    if (selectedValue === 'week') {
+      return <LineChart data={dataWeek} options={options} style={containerStyle}/>
+    }
+    return <BarChart data={data} options={options} style={containerStyle} />
+  }
 
   return(
       <>
@@ -46,16 +111,16 @@ export default function HabitPageLayout () {
                 value="start"
                 control={
                   <Radio
-                  checked={selectedValue === 'a'}
+                  checked={selectedValue === 'week'}
                   onChange={handleChange}
-                  value="a"
+                  value="week"
                   name="radio-buttons"
                   inputProps={{ 'aria-label': 'A' }}
                   sx={{
                     '& .MuiSvgIcon-root': {
-                      fontSize: 15
+                      fontSize: 12
                     }}}
-                    />
+                  />
                   }
                   label="Week"
                   labelPlacement="top"
@@ -71,9 +136,9 @@ export default function HabitPageLayout () {
                   inputProps={{ 'aria-label': 'B' }}
                   sx={{
                     '& .MuiSvgIcon-root': {
-                      fontSize: 15
+                      fontSize: 12
                     }}}
-                    />
+                  />
                   }
                   label="Month"
                   labelPlacement="top"
@@ -87,8 +152,7 @@ export default function HabitPageLayout () {
             <HabitCard/>
           </Grid>
           <Grid xs={7}>
-            <h2>Graph showing your weekly progress</h2>
-            <div id='chart'></div>
+            {showChartPeriod()}
           </Grid>
 
         </Grid>
