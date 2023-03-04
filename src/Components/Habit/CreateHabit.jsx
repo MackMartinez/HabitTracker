@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
 import { styled } from '@mui/material/styles';
@@ -6,13 +7,19 @@ import Button from '@mui/material/Button';
 import { FormGroup, TextField } from "@mui/material";
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import '../../App.css';
+import DaysToggleButton from "./DaysToggleButton";
 
 export default function CreateHabit () {
 
   const textStyle = {margin:'8px 0px'}
 
   const daysButtonStyle = {maxWidth: '30px', maxHeight: '30px', minWidth: '30px', minHeight: '30px', margin: '20px 20px 20px 20px'}
+
+  const [formats, setFormats] = useState(() => []);
+
+  const handleFormatChange = (e, newValue) =>{
+    setFormats(newValue);
+  };
 
   const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -115,7 +122,8 @@ export default function CreateHabit () {
               alignItems="center"
               xs={1}
             >
-              <Button type="text" color="primary" variant="contained" style={daysButtonStyle}>
+              <DaysToggleButton/>
+              <Button value={formats} onChange={handleFormatChange} type="text" color="primary" variant="contained" style={daysButtonStyle}>
                 S
               </Button>
               <Button type="text" color="primary" variant="contained" style={daysButtonStyle}>
