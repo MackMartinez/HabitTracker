@@ -4,7 +4,8 @@ import Grid from '@mui/material/Unstable_Grid2';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import { FormGroup, TextField } from "@mui/material";
-import ButtonAppBar from "../Appbar";
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 
 export default function CreateHabit () {
 
@@ -27,21 +28,116 @@ export default function CreateHabit () {
               id="outlined-basic" 
               label="Habit Name" 
               variant="outlined"
-              placeholder="Example: Study Javascript" 
+              placeholder="Enter the name of your habit" 
               style={textStyle}
             />
-            <h2>Why track this habit?</h2>
             <TextField 
               id="outlined-basic" 
-              label="List one reason this is important to you!" 
+              label="Habit Details" 
               variant="outlined"
-              placeholder="Example: I want to be a Javascript Developer" 
+              placeholder="Add a description of you habit" 
               style={textStyle}
               type="text"
+              multiline
+              maxRows={4}
             />
+            <Grid
+             item
+             container
+             direction="row"
+             justifyContent="space-between"
+             alignItems="center"
+              xs={5.5}
+            >
+              <Grid
+              item
+              container
+              direction="column"
+              alignItems="center"
+              >
+                <span>Start Date</span>
+                <TextField 
+                  id="outlined-basic" 
+                  variant="outlined"
+                  style={textStyle}
+                  type="date"
+                />
+              </Grid>
+              <Grid
+              item
+              container
+              direction="column"
+              alignItems="center"
+              >
+                <span>End Date</span>
+                <TextField 
+                  id="outlined-basic" 
+                  variant="outlined"
+                  style={textStyle}
+                  type="date"
+                />
+              </Grid>
+              <Grid
+              item
+              container
+              direction="column"
+              alignItems="center"
+              >
+                <span>Start Time</span>
+                <TextField 
+                  id="outlined-basic" 
+                  variant="outlined"
+                  style={textStyle}
+                  type="time"
+                />
+              </Grid>
+              <Grid
+              item
+              container
+              direction="column"
+              alignItems="center"
+              >
+                <span>End Time</span>
+                <TextField 
+                  id="outlined-basic" 
+                  variant="outlined"
+                  style={textStyle}
+                  type="time"
+                />
+              </Grid>
+            </Grid>
+            <Grid
+              item
+              container
+              direction="column"
+              justifyContent="space-between"
+              alignItems="center"
+              xs={1}
+            >
+              <span>Repeat</span>
+             <FormGroup>
+              <FormControlLabel control={<Checkbox defaultChecked />} label="Daily" />
+              <FormControlLabel control={<Checkbox defaultChecked />} label="Weekly" />
+              <FormControlLabel control={<Checkbox defaultChecked />} label="Monthly" />
+            </FormGroup>
+            </Grid>
+
+
+            <Grid
+              item
+              container
+              direction="row"
+              justifyContent="space-between"
+              alignItems="center"
+            >
             <Button type="submit" color="primary" variant="contained">
-              + Save Habit
+              Cancel
             </Button>
+            <Button type="submit" color="primary" variant="contained">
+              Save
+            </Button>
+
+            </Grid>
           </FormGroup>
         </Item>
       </Grid>
