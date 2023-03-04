@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import { FormGroup, TextField } from "@mui/material";
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import '../../App.css';
 
 export default function CreateHabit () {
 

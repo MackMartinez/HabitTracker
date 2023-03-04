@@ -76,10 +76,9 @@ export default function CreateHabit () {
               />
               <h2>What days of the week do you want to perform this habit?</h2>
               <div>
-
-                <ToggleButton type="text" color="primary" variant="contained" style={daysButtonStyle}>
+                <Button type="text" className="Button" color="primary" variant="contained" style={daysButtonStyle}>
                   S
-                </ToggleButton>
+                </Button>
                 <Button type="text" color="primary" variant="contained" style={daysButtonStyle}>
                   M
                 </Button>
