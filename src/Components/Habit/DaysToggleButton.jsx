@@ -7,6 +7,8 @@ import { Typography } from '@mui/material';
 export default function DaysToggleButtons() {
   const [daySelected, setDaySelected] = useState([]);
 
+  const daysButtonStyle = {maxWidth: '30px', maxHeight: '30px', minWidth: '30px', minHeight: '30px', margin: '20px 20px 20px 20px'}
+
   const daysArray = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 
   const handleChange = (event,day) => {
