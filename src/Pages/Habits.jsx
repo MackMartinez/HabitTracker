@@ -57,8 +57,8 @@ const dataWeek = {
 
 const options = {
   chart: {
-    width: 1160,
-    height: 650,
+    width: 1000,
+    height: 600,
     title: '# of times habit completed per month',
   },
   yAxis: {
