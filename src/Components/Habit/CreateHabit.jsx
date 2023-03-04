@@ -25,6 +25,7 @@ export default function CreateHabit () {
     <>
       <Grid item xs={10} >
         <Item style={{minHeight: "200px", maxWidth: "800px"}} >
+          <Typography variant="h3"> Create your Habit</Typography>
           <FormGroup>
             <TextField 
               id="outlined-basic" 
