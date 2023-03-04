@@ -1,20 +1,38 @@
 import * as React from 'react';
-import CheckIcon from '@mui/icons-material/Check';
 import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { useState } from 'react';
+import { Typography } from '@mui/material';
 
-export default function DaysToggleButton() {
-  const [selected, setSelected] = useState(false);
+export default function DaysToggleButtons() {
+  const [daySelected, setDaySelected] = useState([]);
 
+  const daysArray = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+
+  const handleChange = (event,day) => {
+    setDaySelected(day);
+  };
+
+  const eachDayButton = daysArray.map(day => {
+    return(
+      <ToggleButton
+        value={day}
+      >
+        <Typography> {day} </Typography>
+      </ToggleButton>
+    ) 
+  })
+  
   return (
-    <ToggleButton
-      value="day"
-      selected={selected}
-      onChange={() => {
-        setSelected(!selected);
-      }}
-    >
-      <CheckIcon />
-    </ToggleButton>
-  );
+    <div id="togglebutton">
+      <ToggleButtonGroup
+        color="primary"
+        value={daySelected}
+        onChange={handleChange}
+        aria-label="Platform"
+      >
+        {eachDayButton}
+      </ToggleButtonGroup>
+    </div>
+  )
 }

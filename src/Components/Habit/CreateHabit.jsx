@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import { FormGroup, TextField } from "@mui/material";
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import DaysToggleButton from "./DaysToggleButton";
+import DaysToggleButtons from "./DaysToggleButton";
 
 export default function CreateHabit () {
 
@@ -45,7 +45,7 @@ export default function CreateHabit () {
               id="outlined-basic" 
               label="Habit Details" 
               variant="outlined"
-              placeholder="Add a description of you habit" 
+              placeholder="Add a description of your habit" 
               style={textStyle}
               type="text"
               multiline
@@ -122,28 +122,7 @@ export default function CreateHabit () {
               alignItems="center"
               xs={1}
             >
-              <DaysToggleButton/>
-              <Button value={formats} onChange={handleFormatChange} type="text" color="primary" variant="contained" style={daysButtonStyle}>
-                S
-              </Button>
-              <Button type="text" color="primary" variant="contained" style={daysButtonStyle}>
-                M
-              </Button>
-              <Button type="text" color="primary" variant="contained" style={daysButtonStyle}>
-                T
-              </Button>
-              <Button type="text" color="primary" variant="contained" style={daysButtonStyle}>
-                W
-              </Button>
-              <Button type="text" color="primary" variant="contained" style={daysButtonStyle}>
-                T
-              </Button>
-              <Button type="text" color="primary" variant="contained" style={daysButtonStyle}>
-                F
-              </Button>
-              <Button type="text" color="primary" variant="contained" style={daysButtonStyle}>
-                S
-              </Button>
+              <DaysToggleButtons/>
             </Grid>
             <Grid
               item
