@@ -89,3 +89,5 @@ let habits = [
   },
 
 ]
+
+module.exports = { users, habits, days }
