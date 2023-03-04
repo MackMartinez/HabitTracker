@@ -22,7 +22,7 @@ export default function CreateHabit () {
   return (
     <>
       <Grid item xs={10} >
-        <Item style={{minHeight: "200px"}} >
+        <Item style={{minHeight: "200px", maxWidth: "800px"}} >
           <FormGroup>
             <TextField 
               id="outlined-basic" 
@@ -47,7 +47,6 @@ export default function CreateHabit () {
              direction="row"
              justifyContent="space-between"
              alignItems="center"
-              xs={5.5}
             >
               <Grid
               item
