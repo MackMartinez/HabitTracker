@@ -20,24 +20,6 @@ export default function CreateHabit () {
 
   return (
     <>
-    <ButtonAppBar />
-    <Grid 
-      container 
-      rowSpacing={2}
-      columnSpacing={3}
-      pt={12}
-    >
-      <Grid item xs={2}>
-        <Item>Current Date</Item>
-      </Grid>
-      <Grid container item xs={10} direction="column" alignItems="center">
-        <h2>What habit would you like to track?</h2>
-      </Grid>
-      <Grid item xs={2}>
-        <Item style={{minHeight: "1000px", backgroundColor: "inherit"}}>
-          Habit Summary
-        </Item>
-      </Grid>
       <Grid item xs={10} >
         <Item style={{minHeight: "200px"}} >
           <FormGroup>
@@ -63,7 +45,7 @@ export default function CreateHabit () {
           </FormGroup>
         </Item>
       </Grid>
-    </Grid>
+
     </>
   )
 }
