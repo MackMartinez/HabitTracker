@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -25,6 +25,13 @@ export default function UserLandingPage() {
     setCalendarView(event.target.value);
   };
 
+  let [date, setDate] = useState(new Date());
+
+  useEffect(() => {
+    setDate(new Date())
+  },[])
+
+  let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }; // To format the date being passes
 
   return (
     <>
@@ -36,7 +43,7 @@ export default function UserLandingPage() {
       pt={12}
       >
       <Grid item xs={2}>
-        <Item>Current Date</Item>
+        <Item>{date.toLocaleDateString("en-US", options)}</Item>
       </Grid>
       <Grid item xs={2}>
         <AddHabitButton />
@@ -91,7 +98,11 @@ export default function UserLandingPage() {
       </Grid>
       <Grid item xs={10}>
         <Item>
-          <HabitCalendar view={calendarView}/>
+          <HabitCalendar 
+            view={calendarView}
+            initialMonth={date.getMonth()}
+            initialYear={date.getFullYear()}
+          />
         </Item>
       </Grid>
     </Grid>
