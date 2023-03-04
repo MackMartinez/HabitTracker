@@ -65,14 +65,15 @@ import Button from '@mui/material/Button';
     const currentCal = calref.current.getInstance(); // We use this so that we get the current model from the DOM since there usually is a lag between what is available and what is displayed
     currentCal.next();
     let date = currentCal.getDate();
-    setCalendarDate(date.d.getMonth());
-    console.log(date.d);
+    setCalendarMonth(date.d.getMonth());
+    setCalendarYear(date.d.getFullYear())
   }
 
   const handlePrev = () => {
     const currentCal = calref.current.getInstance();
     let date = currentCal.getDate();
-    setCalendarDate(date.d.getMonth());
+    setCalendarMonth(date.d.getMonth());
+    setCalendarYear(date.d.getFullYear())
     currentCal.prev();
   }
 
@@ -80,10 +81,12 @@ import Button from '@mui/material/Button';
     const currentCal = calref.current.getInstance(); // Repeating this code each time to ensure that the current state is rerendered vs having a stale state from the intial render
     currentCal.today();
     let date = currentCal.getDate();
-    setCalendarDate(date.d.getMonth());
+    setCalendarMonth(date.d.getMonth());
+    setCalendarYear(date.d.getFullYear())
   }
 
-  const [calendarDate, setCalendarDate] = useState("");
+  const [calendarMonth, setCalendarMonth] = useState("");
+  const [calendarYear, setCalendarYear] = useState("");
     
 
 
@@ -108,7 +111,7 @@ import Button from '@mui/material/Button';
           <NavigateBeforeIcon onClick={handlePrev}/>
           <NavigateNextIcon onClick={handleNext}/>
         </Grid>
-        <span>{months[calendarDate]}</span>
+        <span>{months[calendarMonth]} {calendarYear}</span>
 
       </Grid>
       <Grid>
