@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from "react"
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -6,8 +6,9 @@ import Radio from '@mui/material/Radio';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import ButtonAppBar from '../Components/Appbar';
 import AddHabitButton from '../Components/Habit/AddHabitButton';
-import Schedule from '../Components/Calendar/index'
 import HabitList from '../Components/Habit/HabitList';
+import HabitCalendar from "../Components/Calendar";
+
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -24,6 +25,14 @@ export default function UserLandingPage() {
     setCalendarView(event.target.value);
   };
 
+  let [date, setDate] = useState(new Date());
+
+  useEffect(() => {
+    setDate(new Date())
+  },[])
+
+  let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }; // To format the date being passes
+
   return (
     <>
     <ButtonAppBar />
@@ -34,7 +43,7 @@ export default function UserLandingPage() {
       pt={12}
       >
       <Grid item xs={2}>
-        <Item>Current Date</Item>
+        <Item>{date.toLocaleDateString("en-US", options)}</Item>
       </Grid>
       <Grid item xs={2}>
         <AddHabitButton />
@@ -89,10 +98,11 @@ export default function UserLandingPage() {
       </Grid>
       <Grid item xs={10}>
         <Item>
-          Calendar
-          <Grid>
-            <Schedule view={calendarView}/>
-          </Grid>
+          <HabitCalendar 
+            view={calendarView}
+            initialMonth={date.getMonth()}
+            initialYear={date.getFullYear()}
+          />
         </Item>
       </Grid>
     </Grid>
