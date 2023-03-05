@@ -8,6 +8,7 @@ import ButtonAppBar from '../Components/Appbar';
 import AddHabitButton from '../Components/Habit/AddHabitButton';
 import HabitList from '../Components/Habit/HabitList';
 import HabitCalendar from "../Components/Calendar";
+import CreateHabit from "../Components/Habit/CreateHabit";
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -33,6 +34,11 @@ export default function UserLandingPage() {
 
   let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }; // To format the date being passes
 
+  const [mode, setMode] = useState("SHOWING");
+
+  const CREATING = "CREATING";
+  const SHOWING = "SHOWING";
+
   return (
     <>
     <ButtonAppBar />
@@ -46,7 +52,9 @@ export default function UserLandingPage() {
         <Item>{date.toLocaleDateString("en-US", options)}</Item>
       </Grid>
       <Grid item xs={2}>
-        <AddHabitButton />
+        <AddHabitButton 
+          setMode={setMode}
+        />
       </Grid>
       <Grid item xs={6}>
       </Grid>
@@ -98,11 +106,12 @@ export default function UserLandingPage() {
       </Grid>
       <Grid item xs={10}>
         <Item>
-          <HabitCalendar 
+         { mode === SHOWING && <HabitCalendar 
             view={calendarView}
             initialMonth={date.getMonth()}
             initialYear={date.getFullYear()}
-          />
+          />}
+         {mode === CREATING && <CreateHabit/> }
         </Item>
       </Grid>
     </Grid>
