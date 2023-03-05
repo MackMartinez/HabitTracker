@@ -1,18 +1,17 @@
 import React from "react";
+import { useState } from "react";
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-import { FormGroup, TextField } from "@mui/material";
+import { FormGroup, TextField, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import '../../App.css';
+import DaysToggleButtons from "./DaysToggleButton";
 
 export default function CreateHabit () {
 
   const textStyle = {margin:'8px 0px'}
-
-  const daysButtonStyle = {maxWidth: '30px', maxHeight: '30px', minWidth: '30px', minHeight: '30px', margin: '20px 20px 20px 20px'}
 
   const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -26,6 +25,7 @@ export default function CreateHabit () {
     <>
       <Grid item xs={10} >
         <Item style={{minHeight: "200px", maxWidth: "800px"}} >
+          <Typography variant="h3"> Create your Habit</Typography>
           <FormGroup>
             <TextField 
               id="outlined-basic" 
@@ -38,7 +38,7 @@ export default function CreateHabit () {
               id="outlined-basic" 
               label="Habit Details" 
               variant="outlined"
-              placeholder="Add a description of you habit" 
+              placeholder="Add a description of your habit" 
               style={textStyle}
               type="text"
               multiline
@@ -115,42 +115,18 @@ export default function CreateHabit () {
               alignItems="center"
               xs={1}
             >
-              <Button type="text" color="primary" variant="contained" style={daysButtonStyle}>
-                S
-              </Button>
-              <Button type="text" color="primary" variant="contained" style={daysButtonStyle}>
-                M
-              </Button>
-              <Button type="text" color="primary" variant="contained" style={daysButtonStyle}>
-                T
-              </Button>
-              <Button type="text" color="primary" variant="contained" style={daysButtonStyle}>
-                W
-              </Button>
-              <Button type="text" color="primary" variant="contained" style={daysButtonStyle}>
-                T
-              </Button>
-              <Button type="text" color="primary" variant="contained" style={daysButtonStyle}>
-                F
-              </Button>
-              <Button type="text" color="primary" variant="contained" style={daysButtonStyle}>
-                S
-              </Button>
+              <DaysToggleButtons/>
             </Grid>
             <Grid
               item
-              container
+              // container
               direction="column"
               justifyContent="space-between"
               alignItems="center"
               xs={1}
             >
-              <span>Repeat</span>
-             <FormGroup>
-              <FormControlLabel control={<Checkbox defaultChecked />} label="Daily" />
-              <FormControlLabel control={<Checkbox defaultChecked />} label="Weekly" />
-              <FormControlLabel control={<Checkbox defaultChecked />} label="Monthly" />
-            </FormGroup>
+              <Typography>* Habits will repeat weekly until the designated end date</Typography>
+             
             </Grid>
 
 
