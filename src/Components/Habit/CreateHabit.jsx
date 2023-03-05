@@ -3,10 +3,10 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-import { FormGroup, TextField, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
+import { FormGroup, TextField, Typography } from "@mui/material";
 import DaysToggleButtons from "./DaysToggleButton";
 
-export default function CreateHabit () {
+export default function CreateHabit (props) {
 
   const textStyle = {margin:'8px 0px'}
 
@@ -17,6 +17,10 @@ export default function CreateHabit () {
   textAlign: 'center',
   color: theme.palette.text.secondary,
 }));
+
+const handleClick = () => {
+  props.setMode("SHOWING");
+}
 
   return (
     <>
@@ -134,7 +138,7 @@ export default function CreateHabit () {
               justifyContent="space-between"
               alignItems="center"
             >
-            <Button type="submit" color="primary" variant="contained">
+            <Button onClick={handleClick} color="primary" variant="contained">
               Cancel
             </Button>
             <Button type="submit" color="primary" variant="contained">
