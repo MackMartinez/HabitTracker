@@ -111,7 +111,7 @@ export default function UserLandingPage() {
             initialMonth={date.getMonth()}
             initialYear={date.getFullYear()}
           />}
-         {mode === CREATING && <CreateHabit/> }
+         {mode === CREATING && <CreateHabit setMode={setMode}/> }
         </Item>
       </Grid>
     </Grid>
