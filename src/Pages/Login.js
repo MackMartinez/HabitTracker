@@ -14,7 +14,7 @@ import { useRef, useState, useEffect, useContext } from "react";
 import AuthContext from "../Context/AuthProvider";
 import axios from '../api/axios'
 
-const LOGIN_URL = '/auth'; //will need to be handled in the backend
+const LOGIN_URL = '/login'; //will need to be handled in the backend
 
 export default function Login() {
   const { setAuth } = useContext(AuthContext);
@@ -43,7 +43,7 @@ export default function Login() {
         JSON.stringify({user, pwd}),
         {
           headers: {'Content-Type': 'application/json'},
-          withCredentials: true
+          credentials: true // originally withCredentials
         }
       );
     console.log(JSON.stringify(response?.data))
@@ -107,9 +107,9 @@ export default function Login() {
               <FormGroup onSubmit={handleSubmit}>
                 <TextField
                   id="username"
-                  label="Email"
+                  label="Username"
                   variant="outlined"
-                  placeholder="user@email.com"
+                  placeholder="Username"
                   style={textStyle}
                   ref={userRef}
                   onChange={(e) => setUser(e.target.value)}
