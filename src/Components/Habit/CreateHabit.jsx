@@ -70,7 +70,7 @@ setHabit({...habit, [event.target.name]: value})
           alignItems="center"
         >
           <DaysToggleButtons
-            handleOnChange={handleOnChange}
+            setHabit={setHabit}
           />
 
         </Grid>
