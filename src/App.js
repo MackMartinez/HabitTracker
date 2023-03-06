@@ -5,6 +5,7 @@ import Login from './Pages/Login';
 import UserLandingPage from './Pages/UserLandingPage';
 import HabitPageLayout from './Pages/Habits';
 import CreateHabit from './Components/Habit/CreateHabit';
+import HomeLandingPage from './Pages/HomeLandingPage';
 
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
@@ -13,6 +14,7 @@ function App() {
   return (
     <BrowserRouter>
     <Routes>
+      <Route path="/" element={<HomeLandingPage/>}/>
       <Route path="/login" element={<Login/>}/>
       <Route path="/register" element={<Register/>}/>
       {/* This should be /:user to render specific user logged in  */}
