@@ -11,13 +11,19 @@ import {
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { useRef, useState, useEffect, useContext } from "react";
-import AuthContext from "../Context/AuthProvider";
+import useAuth from "../hooks/useAuth";
 import axios from '../api/axios'
+import { useLocation, useNavigate } from "react-router-dom";
 
 const LOGIN_URL = '/login'; //will need to be handled in the backend
 
 export default function Login() {
-  const { setAuth } = useContext(AuthContext);
+  const { setAuth } = useAuth();
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/user";
+
   const userRef = useRef();
   const errRef = useRef();
 
@@ -43,7 +49,7 @@ export default function Login() {
         JSON.stringify({user, pwd}),
         {
           headers: {'Content-Type': 'application/json'},
-          credentials: true // originally withCredentials
+          withCredentials: true 
         }
       );
     console.log(JSON.stringify(response?.data))
@@ -51,7 +57,7 @@ export default function Login() {
     setAuth({ user, pwd, accessToken });
     setUser("");
     setPwd("");
-    setSuccess(true); //remove once backend is working
+    navigate(from, { replace: true });
     } catch (err) {
       if(!err?.response) {
         setErrMsg('No Server Response')

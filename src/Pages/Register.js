@@ -90,7 +90,7 @@ export default function Register() {
         JSON.stringify({firstName, lastName, user, email, pwd }),
         {
           headers: { "Content-Type": "application/json"},
-          credentials: true //This was changed from withCredentials to work
+          withCredentials: true //This was changed from withCredentials to work
         }
       );
       console.log(response?.data);
