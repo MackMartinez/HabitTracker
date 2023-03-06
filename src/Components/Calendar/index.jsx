@@ -11,8 +11,6 @@ import Button from '@mui/material/Button';
   
  const initialEvents = [
    {
-     id: '1',
-     calendarId: 'cal1',
      title: 'Lunch',
      body: 'Going to eat a cheeseburger',
      category: 'time',                       // Determines where in the calendar the habit is displayed (Time, allday or milestone)
@@ -25,8 +23,6 @@ import Button from '@mui/material/Button';
      color: "white",
    },
    {
-     id: '2',
-     calendarId: 'cal1',
      title: 'Coffee Break',
      category: 'time',
      start: '2023-02-28T15:00:00',
