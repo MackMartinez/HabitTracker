@@ -11,7 +11,7 @@ export default function DaysToggleButtons(props) {
 
   const daysArray = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 
-  const handleChange = ( day) => {
+  const handleChange = (event, day) => {
     setDaySelected(day); // This passes a stale array, so the value is always missing the last day selected
     props.setHabit(prev => ({...prev, days: day})); // Added to ensure that the habit state is updated for the days selected
   };
