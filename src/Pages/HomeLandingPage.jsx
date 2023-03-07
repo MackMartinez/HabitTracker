@@ -2,15 +2,56 @@ import React from "react"
 import ButtonAppBar from "../Components/Appbar";
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
-import { styled } from '@mui/material/styles';
+import HabitBG from '../Images/HabitBG.jpg';
+import Box from '@mui/material/Box';
+import CssBaseline from '@mui/material/CssBaseline';
+import Typography from '@mui/material/Typography';
+import { createTheme, ThemeProvider } from '@mui/material'
+import GetStartedButton from "../Components/GetStartedButton";
 
+const theme = createTheme({
+  components: {
+    MuiTypography: {
+      variants: [
+        {
+          props: {
+            variant: "h2",
+          },
+          style: {
+            fontSize: "3.2rem",
+            fontWeight: "700",
+            // paddingBottom: "300px",
+          }
+        }
+      ]
+    },
+  }
+})
 
 export default function HomeLandingPage () {
+
+    
   return (
     <>
-    <ButtonAppBar />
-    <img width="100%" src="https://balance.media/wp-content/uploads/2021/06/shutterstock_1240035982.jpg"></img>
-    <h1>Welcome to HabTrack</h1>
+      <ThemeProvider theme={theme}>
+        <CssBaseline/>
+        <Box
+          sx={{
+          backgroundImage: `url(${HabitBG})`,
+          backgroundSize: "cover",
+          height: "100vh",
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center'
+          }}
+        >
+          {/* <ButtonAppBar /> */}
+          <Box>
+            <Typography variant="h2">Unlock your Potential, Build Long Lasting Habits </Typography>
+            <GetStartedButton/>
+          </Box>
+        </Box>
+      </ThemeProvider>
     {/* Here are some of the key features of our habit tracker:
 
 Customizable habit tracking: You can create your own habits or choose from a pre-existing list of habits to track, set reminders for yourself, and track your progress over time.
