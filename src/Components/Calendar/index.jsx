@@ -7,37 +7,6 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import Button from '@mui/material/Button';
 
- // Sets the details of the calendar
-  
- const initialEvents = [
-   {
-     id: '1',
-     calendarId: 'cal1',
-     title: 'Lunch',
-     body: 'Going to eat a cheeseburger',
-     category: 'time',                       // Determines where in the calendar the habit is displayed (Time, allday or milestone)
-     start: '2023-03-01T12:00:00',
-     end: '2023-03-01T13:30:00',
-     state: null,                            //Removes the 'busy' tag from the popout menu
-     attendees: null,                        //Removes the person icon from the popout menu
-     isPrivate: false,
-     backgroundColor: "#1976d2",
-     color: "white",
-   },
-   {
-     id: '2',
-     calendarId: 'cal1',
-     title: 'Coffee Break',
-     category: 'time',
-     start: '2023-02-28T15:00:00',
-     end: '2023-02-28T15:30:00',
-     state: null,
-     attendees: null,
-     isPrivate: false,
-     backgroundColor: "#1976d2",
-     color: "white"
-   },
- ];
 
   let months = {  // TUI returns digits as months, so this converts to a string
     0 : "January",
@@ -117,7 +86,7 @@ import Button from '@mui/material/Button';
             dayNames: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
             visibleWeeksCount: 3,
           }}
-          events={initialEvents}
+          events={props.events}
           useDetailPopup={false}
           useFormPopup={false}
           />

@@ -1,7 +1,5 @@
 import React, {useState} from "react";
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
-import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import { FormGroup, TextField, Typography } from "@mui/material";
 import DaysToggleButtons from "./DaysToggleButton";
@@ -27,7 +25,26 @@ const [habit, setHabit] = useState({
 
 
 const saveHabit = () => {
-  console.log(habit);
+  // Convert Habit into standard event
+  let event = {
+    title: habit.title,
+    body: habit.details,
+    category: "time",
+    start: `${habit.startDate}T${habit.startTime}:00`,
+    end: `${habit.startDate}T${habit.startTime}:00`,
+    state: null,
+    attendees: null,
+    isPrivate: false,
+    backgroundColor: "#1976d2",
+    color: "white",
+  }
+  // Add to the state passed down by the calendar component
+  props.setEvents(prev => ([...prev, event]));
+
+  // Return to Calendar 
+  props.setMode("SHOWING");
+
+  // Clear the habit state?
 }
 
 const handleOnChange = (event) => {
