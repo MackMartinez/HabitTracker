@@ -8,16 +8,14 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Avatar } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import AuthContext from "../Context/AuthProvider";
-import { useContext } from "react";
+import useLogout from '../hooks/useLogout';
 
 export default function ButtonAppBar(props) {
 
   const avatarStyle = {margin: "0px 0px 0px 10px"}
 
-  const { setAuth } = useContext(AuthContext);
-
   const navigate = useNavigate();
+  const logout = useLogout();
 
   const navMyHabits = () => {
     navigate('/user/habit')
@@ -27,16 +25,10 @@ export default function ButtonAppBar(props) {
     navigate('/user')
   }
 
-  const logout = async () => {
-    // if used in more components, this should be in context 
-    // axios to /logout endpoint 
-    setAuth({});
+  const signOut = async () => {
+    await logout();
     navigate('/login');
-}
-console.log(AuthContext);
-  // const { auth } = props
-
-  // const user = `Signed in as ${ auth.username }`
+  }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -55,7 +47,7 @@ console.log(AuthContext);
           <Button color="inherit" onClick={navMyHome}>Home</Button>
           <Button color="inherit" onClick={navMyHabits}>My Habits</Button>
           </Typography>
-          <Button color="inherit" onClick={logout}>Logout</Button>
+          <Button color="inherit" onClick={signOut}>Logout</Button>
           {/* if signed into an account */}
           <Button color="inherit"><Avatar style={avatarStyle}></Avatar></Button>
         </Toolbar>

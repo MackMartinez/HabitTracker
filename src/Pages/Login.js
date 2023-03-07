@@ -15,10 +15,10 @@ import useAuth from "../hooks/useAuth";
 import axios from '../api/axios'
 import { useLocation, useNavigate } from "react-router-dom";
 
-const LOGIN_URL = '/login'; //will need to be handled in the backend
+const LOGIN_URL = '/login'; 
 
 export default function Login() {
-  const { setAuth } = useAuth();
+  const { setAuth, persist, setPersist } = useAuth();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -72,6 +72,14 @@ export default function Login() {
     }
      
   };
+
+  const togglePersist = () => {
+    setPersist(prev => !prev);
+  }
+
+  useEffect(() => {
+    localStorage.setItem("persist", persist);
+  }, [persist])
 
   const paperStyle = {
     padding: 20,
@@ -132,7 +140,7 @@ export default function Login() {
                   onChange={(e) => setPwd(e.target.value)}
                   value={pwd}
                 />
-                <FormControlLabel control={<Checkbox />} label="Remember Me" />{" "} {/*Lookup how to use*/}
+                <FormControlLabel id="persist" control={<Checkbox />} label="Remember Me" onChange={togglePersist} checked={persist}/>{" "} {/*Lookup how to use*/}
                 <Button type="submit" onClick={handleSubmit} color="primary" variant="contained">
                   Sign In
                 </Button>
