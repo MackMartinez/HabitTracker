@@ -31,7 +31,7 @@ const handleClick = () => {
   // Convert Habit into standard event
   let eventsList = generateEvents(habit, "sunday")
   // Add to the state passed down by the calendar component
-  props.setEvents(prev => ([...prev, eventsList]));
+  props.setEvents(prev => ([...prev, ...eventsList]));
 
   // Return to Calendar 
   props.setMode("SHOWING");
