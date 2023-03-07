@@ -118,8 +118,8 @@ import Button from '@mui/material/Button';
             visibleWeeksCount: 3,
           }}
           events={initialEvents}
-          useDetailPopup={true}
-          useFormPopup={true}
+          useDetailPopup={false}
+          useFormPopup={false}
           />
       </Grid>
     </Grid>

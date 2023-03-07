@@ -1,19 +1,17 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Add from '@mui/icons-material/Add';
-import { useNavigate } from "react-router-dom"
 
 
-export default function AddHabitButton() {
-  const navigate = useNavigate()
-  const navCreateHabit = () => {
+export default function AddHabitButton(props) {
   
-    navigate('/user/habit/create', { replace: true});
-    
+  
+  const handleClick = () => {
+    props.setMode("CREATING")
   }
 
   return(
-    <Button variant="contained" onClick={navCreateHabit}><Add/> Create Habit</Button>
+    <Button variant="contained" onClick={handleClick}><Add/> Create Habit</Button>
     
   )
 }
