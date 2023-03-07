@@ -20,7 +20,15 @@ const theme = createTheme({
           style: {
             fontSize: "3.2rem",
             fontWeight: "700",
-            // paddingBottom: "300px",
+          }
+        },
+        {
+          props: {
+            variant: "h4",
+          },
+          style: {
+            fontSize: "2.0rem",
+            marginBottom: "20px"
           }
         }
       ]
@@ -37,18 +45,26 @@ export default function HomeLandingPage () {
         <CssBaseline/>
         <Box
           sx={{
-          backgroundImage: `url(${HabitBG})`,
-          backgroundSize: "cover",
-          height: "100vh",
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center'
+            backgroundImage: `url(${HabitBG})`,
+            backgroundSize: "cover",
+            height: "100vh",
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
           }}
         >
           {/* <ButtonAppBar /> */}
-          <Box>
+          <Box 
+            sx={{
+              mb: "300px",
+              display: 'flex',
+              flexDirection: "column",
+              alignItems: 'center',
+            }}
+          >
             <Typography variant="h2">Unlock your Potential, Build Long Lasting Habits </Typography>
-            <GetStartedButton/>
+            <Typography variant="h4">Build the best version of yourself by mastering your habits </Typography>
+            <GetStartedButton />
           </Box>
         </Box>
       </ThemeProvider>
