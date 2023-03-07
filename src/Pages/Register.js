@@ -93,9 +93,6 @@ export default function Register() {
           withCredentials: true //This was changed from withCredentials to work
         }
       );
-      console.log(response?.data);
-      console.log(response?.accessToken);
-      console.log(JSON.stringify(response));
       setSuccess(true); // for testing, remove when implemented
       //clear state and controlled inputs
       //need value attrib on inputs for this

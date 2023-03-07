@@ -52,7 +52,6 @@ export default function Login() {
           withCredentials: true 
         }
       );
-    console.log(JSON.stringify(response?.data))
     const accessToken = response?.data?.accessToken;
     setAuth({ user, pwd, accessToken });
     setUser("");

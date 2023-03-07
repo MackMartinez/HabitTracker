@@ -29,10 +29,12 @@ const PersistLogin = () => {
     }
   }, [])
 
-  useEffect(() => {
-    console.log(`isLoading: ${isLoading}`);
-    console.log(`aT: ${JSON.stringify(auth?.accessToken)}`);
-  }, [isLoading])
+
+  // For testing JWT
+  // useEffect(() => {
+  //   console.log(`isLoading: ${isLoading}`);
+  //   console.log(`aT: ${JSON.stringify(auth?.accessToken)}`);
+  // }, [isLoading])
 
   return (
     <>

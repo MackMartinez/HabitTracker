@@ -9,6 +9,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Avatar } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import useLogout from '../hooks/useLogout';
+import useAuth from '../hooks/useAuth';
 
 export default function ButtonAppBar(props) {
 
@@ -30,6 +31,10 @@ export default function ButtonAppBar(props) {
     navigate('/login');
   }
 
+  const { auth } = useAuth();
+
+  const user = auth.user;
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">
@@ -49,7 +54,7 @@ export default function ButtonAppBar(props) {
           </Typography>
           <Button color="inherit" onClick={signOut}>Logout</Button>
           {/* if signed into an account */}
-          <Button color="inherit"><Avatar style={avatarStyle}></Avatar></Button>
+          <Button color="inherit">{user}<Avatar style={avatarStyle}></Avatar></Button>
         </Toolbar>
       </AppBar>
     </Box>
