@@ -3,6 +3,9 @@ import Grid from '@mui/material/Unstable_Grid2';
 import Button from '@mui/material/Button';
 import { FormGroup, TextField, Typography } from "@mui/material";
 import DaysToggleButtons from "./DaysToggleButton";
+import { generateEvents } from "../../helpers/events";
+
+
 
 export default function CreateHabit (props) {
 
@@ -13,33 +16,22 @@ const handleClick = () => {
   props.setMode("SHOWING");
 }
 
-const [habit, setHabit] = useState({
-  title:"",
-  details:"",
-  startDate:"",
-  endDate:"",
-  startTime: "",
-  endTime:"",
-  days:""
-});
+  const [habit, setHabit] = useState({
+    title:"",
+    details:"",
+    startDate:"",
+    endDate:"",
+    startTime: "",
+    endTime:"",
+    days:""
+  });
 
 
-const saveHabit = () => {
+  const saveHabit = () => {
   // Convert Habit into standard event
-  let event = {
-    title: habit.title,
-    body: habit.details,
-    category: "time",
-    start: `${habit.startDate}T${habit.startTime}:00`,
-    end: `${habit.startDate}T${habit.startTime}:00`,
-    state: null,
-    attendees: null,
-    isPrivate: false,
-    backgroundColor: "#1976d2",
-    color: "white",
-  }
+  let eventsList = generateEvents(habit, "sunday")
   // Add to the state passed down by the calendar component
-  props.setEvents(prev => ([...prev, event]));
+  props.setEvents(prev => ([...prev, eventsList]));
 
   // Return to Calendar 
   props.setMode("SHOWING");
