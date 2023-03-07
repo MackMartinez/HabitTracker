@@ -1,10 +1,9 @@
 import React, {useState} from "react";
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
-import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import { FormGroup, TextField, Typography } from "@mui/material";
 import DaysToggleButtons from "./DaysToggleButton";
+import {events} from "../Calendar/index";
 
 export default function CreateHabit (props) {
 
@@ -27,7 +26,25 @@ const [habit, setHabit] = useState({
 
 
 const saveHabit = () => {
-  console.log(habit);
+  // Convert Habit into standard event
+  let event = {
+    title: habit.title,
+    body: habit.details,
+    category: "time",
+    start: `${habit.startDate}T${habit.startTime}`,
+    end: `${habit.startDate}T${habit.startTime}`,
+    state: null,
+    attendees: null,
+    isPrivate: false,
+    backgroundColor: "#1976d2",
+    color: "white",
+  }
+  // Add to the state passed down by the calendar component
+  // Clear the habit state
+  // Change mode to show Calendar
+  console.log("habit", habit);
+  console.log("event", event);
+  console.log("events from calendar", events);
 }
 
 const handleOnChange = (event) => {
