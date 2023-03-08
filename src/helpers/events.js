@@ -11,7 +11,7 @@ let weekObject = {
 }
 
 
-const addDays = (startDate, num) => {
+const addDays = (startDate, num) => { // Adds days to the date passed in
   let someDate = new Date(startDate)
   console.log("someDate", someDate)
   let numberOfDaysToAdd = num;
@@ -21,9 +21,17 @@ const addDays = (startDate, num) => {
   return output;
 }
 
+const calculateDuration = (start, end) => {
+  let startDate = new Date(start);
+  let endDate = new Date(end);
+  let weeks = 4
+  return weeks;
+}
 
-const generateEvents = (habit) => { // Use sunday as the reference point to change the day
 
+const generateEvents = (habit, sunday) => { // Use sunday as the reference point to change the day
+
+  let sundayConverted = `${sunday.d.getFullYear()}-0${sunday.d.getMonth() + 1}-0${sunday.d.getDate()}`;  // Moment JS could probably format better
   // Template event object to be created
   let event = {
     title: habit.title,
@@ -41,6 +49,8 @@ const generateEvents = (habit) => { // Use sunday as the reference point to chan
   
   let eventsGenerated = [];
 
+  // let duration = calculateDuration(habit.start, habit.Date)
+
   habit.days.forEach(day =>
     {
      
@@ -51,6 +61,7 @@ const generateEvents = (habit) => { // Use sunday as the reference point to chan
     });
 
     console.log(eventsGenerated);
+    console.log("Sunday", sundayConverted)
   return eventsGenerated;
 
 }
