@@ -19,8 +19,6 @@ const addDays = (startDate, endDate, num) => { // Adds days to the date passed i
   let eventEnd = moment(endDate);
   let eventEndResult = eventEnd.add(num, "days");
 
-  console.log("date", eventEnd.format());
- 
   return [eventStartResult.format(), eventEndResult.format()];
 }
 
@@ -56,22 +54,23 @@ const generateEvents = (habit, sunday) => { // Use sunday as the reference point
   // let duration = calculateDuration(habit.start, habit.Date)
   
   // let startDate = rangeStart;  // The day starting the range for the repeat
+  let loopStartDate = SundayEventStart;
+  let loopEndDate = SundayEventEnd;
 
-  // for (let i = 0; i < duration; i ++ ) {
+  for (let i = 0; i < 4; i ++ ) {
     
     habit.days.forEach(day => {
-      let [newStartDay, newEndDay] = addDays(SundayEventStart, SundayEventEnd, weekObject[day])
+      let [newStartDay, newEndDay] = addDays(loopStartDate, loopEndDate, weekObject[day])
       
       let updatedEvent = {...event, start: newStartDay, end: newEndDay}
 
-      // startDate = addDays(startDate, 7)
       eventsGenerated.push(updatedEvent);
     });
-  // }
 
+      loopStartDate = moment(loopStartDate).add(1, "week"); // Update the starting point for each week
+      loopEndDate = moment(loopEndDate).add(1,"week");
+  }
 
-    console.log(eventsGenerated);
-    // console.log("Sunday", rangeStart)
   return eventsGenerated;
 
 }
