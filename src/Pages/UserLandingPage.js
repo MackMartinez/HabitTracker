@@ -56,6 +56,7 @@ export default function UserLandingPage() {
   };
 
   let [date, setDate] = useState(new Date());
+  let [startOfRange, setStartOfRange] = useState("");
 
   useEffect(() => {
     setDate(new Date())
@@ -67,6 +68,8 @@ export default function UserLandingPage() {
 
   const CREATING = "CREATING";
   const SHOWING = "SHOWING";
+  console.log("Sunday user landing", startOfRange)
+
 
   return (
     <>
@@ -140,8 +143,9 @@ export default function UserLandingPage() {
             initialMonth={date.getMonth()}
             initialYear={date.getFullYear()}
             events={events}
+            setStartOfRange={setStartOfRange}
           />}
-         {mode === CREATING && <CreateHabit setMode={setMode} setEvents={setEvents} events={events}/> }
+         {mode === CREATING && <CreateHabit setMode={setMode} setEvents={setEvents} events={events} sunday={startOfRange}/> }
         </Item>
       </Grid>
     </Grid>
