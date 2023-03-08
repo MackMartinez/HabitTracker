@@ -29,17 +29,21 @@ const generateEvents = (habit, sunday) => { // Use sunday as the reference point
   let SundayEventEnd = `${sunday.d.getFullYear()}-0${sunday.d.getMonth() + 1}-0${sunday.d.getDate()}T${habit.endTime}:00`;  // Moment JS could probably format better
   // Template event object to be created
   let event = {
-    title: habit.title,
-    body: habit.details,
+    habit_id: "",   // DB
+    unique_event_id: "", // DB
+    title: habit.title,  // DB
+    body: habit.details, // DB
     category: "time",
-    start: habit.startDate,
-    end: habit.startDate,
+    start: habit.startDate, // DB
+    end: habit.startDate, // DB
     state: null,
     attendees: null,
     isPrivate: false,
     backgroundColor: "#1976d2",
     color: "white",
-    daysSelected: habit.days
+    daysSelected: habit.days,
+    completed: false, // DB
+    user_id: ""
   }
   
   let eventsGenerated = [];
