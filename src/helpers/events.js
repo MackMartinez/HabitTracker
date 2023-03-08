@@ -22,13 +22,6 @@ const addDays = (startDate, endDate, num) => { // Adds days to the date passed i
   return [eventStartResult.format(), eventEndResult.format()];
 }
 
-// const calculateDuration = (start, end) => {
-//   let startDate = new Date(start);
-//   let endDate = new Date(end);
-//   let weeks = 4
-//   return weeks;
-// }
-
 
 const generateEvents = (habit, sunday) => { // Use sunday as the reference point to change the day
 
