@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 
-const useApplicationdata = () => {
+const useApplicationData = () => {
+
+  
+  const habits = ['Piano', 'Swimming', 'Jogging'];
+
   const [ state, setState ] = useState({
     title:"",
     details:"",
@@ -10,10 +14,19 @@ const useApplicationdata = () => {
     endTime:"",
     days:""
   });
+  
+   useEffect(() => {
+    setState(prev =>({
+      ...prev, title: habits[0]
+     }))
+   },[]) 
+
+
 
   return {
+    // console.log(state)
     state
   };
 };
 
-export default useApplicationdata;
+export default useApplicationData;
