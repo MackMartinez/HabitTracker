@@ -1,7 +1,8 @@
 import React, {useState} from "react";
+import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
 import Button from '@mui/material/Button';
-import { FormGroup, TextField, Typography } from "@mui/material";
+import { FormGroup, TextField, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
 import DaysToggleButtons from "./DaysToggleButton";
 
 export default function CreateHabit (props) {
