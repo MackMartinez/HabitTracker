@@ -68,8 +68,6 @@ export default function UserLandingPage() {
 
   const CREATING = "CREATING";
   const SHOWING = "SHOWING";
-  console.log("Sunday user landing", startOfRange)
-
 
   return (
     <>
