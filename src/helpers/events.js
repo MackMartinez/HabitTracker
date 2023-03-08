@@ -51,13 +51,13 @@ const generateEvents = (habit, sunday) => { // Use sunday as the reference point
   
   let eventsGenerated = [];
 
-  // let duration = calculateDuration(habit.start, habit.Date)
-  
-  // let startDate = rangeStart;  // The day starting the range for the repeat
   let loopStartDate = SundayEventStart;
   let loopEndDate = SundayEventEnd;
 
-  for (let i = 0; i < 4; i ++ ) {
+  let duration = moment(habit.endDate).diff(moment(habit.startDate), 'weeks');
+  console.log("duration", duration)
+
+  for (let i = 0; i < duration; i ++ ) { // Weekly loop
     
     habit.days.forEach(day => {
       let [newStartDay, newEndDay] = addDays(loopStartDate, loopEndDate, weekObject[day])
@@ -67,8 +67,8 @@ const generateEvents = (habit, sunday) => { // Use sunday as the reference point
       eventsGenerated.push(updatedEvent);
     });
 
-      loopStartDate = moment(loopStartDate).add(1, "week"); // Update the starting point for each week
-      loopEndDate = moment(loopEndDate).add(1,"week");
+    loopStartDate = moment(loopStartDate).add(1, "week"); // Update the starting point for each week
+    loopEndDate = moment(loopEndDate).add(1,"week");
   }
 
   return eventsGenerated;
