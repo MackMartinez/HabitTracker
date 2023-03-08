@@ -55,7 +55,6 @@ const generateEvents = (habit, sunday) => { // Use sunday as the reference point
   let loopEndDate = SundayEventEnd;
 
   let duration = moment(habit.endDate).diff(moment(habit.startDate), 'weeks');
-  console.log("duration", duration)
 
   for (let i = 0; i < duration; i ++ ) { // Weekly loop
     
