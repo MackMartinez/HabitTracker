@@ -71,7 +71,7 @@ const generateEvents = (habit, sunday) => { // Use sunday as the reference point
     loopEndDate = moment(loopEndDate).add(1,"week");
   }
 
-  return eventsGenerated;
+  return eventsGenerated.filter((item) => (item.start >= habit.startDate && item.end <= habit.endDate)); // Filter to ensure only dates within the limits are added
 
 }
 
