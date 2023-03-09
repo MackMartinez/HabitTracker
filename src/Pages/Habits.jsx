@@ -11,6 +11,8 @@ import {CompleteHabitList, IncompleteHabitList} from '../Components/Habit/HabitS
 import RadialBar from '../Components/Gauge/StrokedGauge';
 import '@toast-ui/chart/dist/toastui-chart.min.css';
 import { BarChart, LineChart } from '@toast-ui/react-chart';
+import Typography from '@mui/material/Typography';
+import { createTheme, ThemeProvider } from '@mui/material'
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -58,29 +60,29 @@ const dataWeek = {
   ],
 };
 
-const options = {
-  chart: {
-    width: 800,
-    height: 500,
-    title: '# of times habit completed per month',
-  },
-  yAxis: {
-    title: 'Month',
-  },
-  xAxis: {
-    title: 'Amount',
-  },
-};
-
-const containerStyle = {
-  width: '600px',
-  height: '600px',
-};
-
-
 export default function HabitPageLayout () {
 
   const [selectedValue, setSelectedValue] = React.useState('week');
+
+  const options = {
+    chart: {
+      width: 800,
+      height: 500,
+      title: selectedValue === "week" ? '# of times habit completed per week': '# of times habit completed per month' ,
+    },
+    yAxis: {
+      title: selectedValue === "week" ? 'Hours':'Month',
+    },
+    xAxis: {
+      title: "week" ? 'Day':'Amount',
+    },
+  };
+  
+  const containerStyle = {
+    width: '600px',
+    height: '600px',
+  };
+
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
@@ -103,7 +105,7 @@ export default function HabitPageLayout () {
          pt={12}
         >
           <Grid xs={10}>
-            <h1>Your Habits</h1>
+          <Typography variant="h4">Your Habits</Typography>
           </Grid>
           <Grid xs={2}>
             <Item>  
@@ -160,7 +162,7 @@ export default function HabitPageLayout () {
         </Grid>
         <Grid container spacing ={2}>
           <Grid xs={12}>
-            <h1>Your Stats</h1>
+          <Typography variant="h4" style={{backgroundColor:"#1976d2", color:"#fff"}}>Your Stats</Typography>
           </Grid>
           <Grid xs={3}>
             <Item style={{minHeight: "250px", minWidth: "200px" , backgroundColor: "inherit"}}>
