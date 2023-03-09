@@ -30,7 +30,7 @@ export default function useApplicationData() {
         "end_time": "22:00",
         "days": "Monday,Tuesday",
         "user_id": 1,
-        "completed": false
+        "completed": true
       },
       {
         "id": 4,
