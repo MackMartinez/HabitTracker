@@ -1,6 +1,6 @@
 import React from "react";
 import HabitListItem from "./HabitsListItem";
-import useApplicationdata from "../../hooks/useApplicationData";
+import useApplicationData from "../../hooks/useApplicationData";
 
 //Initial code to map over data
 // let habitsList = state.map((habit, index) => {
@@ -11,12 +11,19 @@ import useApplicationdata from "../../hooks/useApplicationData";
   
 export default function HabitList() {
 
-  const {state} = useApplicationdata()
+  const {
+    state
+  } = useApplicationData();
+
+  let habits = state.habits.map((habit, index) => {
+    return(
+      <HabitListItem key={index} habitListItem={habit.title}/>
+    )
+  });
 
   return(
     <div>
-      {/* {habitList} */}
-      <HabitListItem key ="1" habitListItem={state.title}/>
+      {habits}
     </div>
   )
 }
