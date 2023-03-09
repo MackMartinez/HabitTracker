@@ -10,14 +10,14 @@ class RadialBar extends Component {
       series: [66],
       options: {
         chart: {
-          height: 350,
+          height: 220,
           type: 'radialBar',
           offsetY: 0
         },
         plotOptions: {
           radialBar: {
-            startAngle: -90,
-            endAngle: 90,
+            startAngle: 0,
+            endAngle: 360,
             dataLabels: {
               name: {
                 show: false
@@ -55,7 +55,7 @@ class RadialBar extends Component {
   render() {
     return (
       <div className="RadialBar">
-        <Chart options={this.state.options} series={this.state.series} type="radialBar" height={350} />
+        <Chart options={this.state.options} series={this.state.series} type="radialBar" height={200} />
       </div>
      );
     }
