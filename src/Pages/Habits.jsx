@@ -82,7 +82,7 @@ export default function HabitPageLayout () {
 
   const [selectedValue, setSelectedValue] = React.useState('week');
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event) => {
     setSelectedValue(event.target.value);
   };
 

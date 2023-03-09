@@ -1,35 +1,35 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import { Avatar } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import useLogout from '../hooks/useLogout';
-import useAuth from '../hooks/useAuth';
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import { Avatar } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import useLogout from "../hooks/useLogout";
+import useAuth from "../hooks/useAuth";
+import AppBarMenuButton from "./AppBarMenu";
 
 export default function ButtonAppBar(props) {
-
-  const avatarStyle = {margin: "0px 0px 0px 10px"}
+  const avatarStyle = { margin: "0px 0px 0px 10px" };
 
   const navigate = useNavigate();
   const logout = useLogout();
 
   const navMyHabits = () => {
-    navigate('/user/habit')
-  }
+    navigate("/user/habit");
+  };
 
   const navMyHome = () => {
-    navigate('/user')
-  }
+    navigate("/user");
+  };
 
   const signOut = async () => {
     await logout();
-    navigate('/login');
-  }
+    navigate("/login");
+  };
 
   const { auth } = useAuth();
 
@@ -39,22 +39,23 @@ export default function ButtonAppBar(props) {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
+          <AppBarMenuButton />
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          <Button color="inherit" onClick={navMyHome}>Home</Button>
-          <Button color="inherit" onClick={navMyHabits}>My Habits</Button>
+            <Button color="inherit" onClick={navMyHome}>
+              Home
+            </Button>
+            <Button color="inherit" onClick={navMyHabits}>
+              My Habits
+            </Button>
           </Typography>
-          <Button color="inherit" onClick={signOut}>Logout</Button>
+          <Button color="inherit" onClick={signOut}>
+            Logout
+          </Button>
           {/* if signed into an account */}
-          <Button color="inherit">{user}<Avatar style={avatarStyle}></Avatar></Button>
+          <Button color="inherit">
+            {user}
+            <Avatar style={avatarStyle}></Avatar>
+          </Button>
         </Toolbar>
       </AppBar>
     </Box>
