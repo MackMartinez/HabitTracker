@@ -60,8 +60,8 @@ const dataWeek = {
 
 const options = {
   chart: {
-    width: 1000,
-    height: 600,
+    width: 800,
+    height: 500,
     title: '# of times habit completed per month',
   },
   yAxis: {
@@ -82,13 +82,13 @@ export default function HabitPageLayout () {
 
   const [selectedValue, setSelectedValue] = React.useState('week');
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event) => {
     setSelectedValue(event.target.value);
   };
 
   const showChartPeriod = () => {
     if (selectedValue === 'week') {
-      return <LineChart data={dataWeek} options={options} style={containerStyle}/>
+      return <LineChart data={dataWeek} options={options} style={containerStyle}/> // What is the style tag doing?
     }
     return <BarChart data={data} options={options} style={containerStyle} />
   }
@@ -148,11 +148,13 @@ export default function HabitPageLayout () {
         </Grid>
 
         <Grid container spacing ={2} sx={{ flexGrow: 1 }}>
-          <Grid xs={5}>
+          <Grid xs={6}>
             <HabitCard/>
           </Grid>
-          <Grid xs={7}>
-            {showChartPeriod()}
+          <Grid xs={6}>
+            <Item style={{maxHeight: "500px", maxWidth: "800px" , backgroundColor: "inherit"}}>
+              {showChartPeriod()}
+            </Item>
           </Grid>
 
         </Grid>
