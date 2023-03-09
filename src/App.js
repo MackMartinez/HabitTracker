@@ -12,6 +12,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 
 function App() {
+
+  React.useEffect(() => {
+    fetch("http://localhost:8080/habit")
+      .then(res => {
+        console.log(res)
+      })
+  },[])
+
   return (
     <BrowserRouter>
     <Routes>
