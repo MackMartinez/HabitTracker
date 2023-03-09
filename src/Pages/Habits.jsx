@@ -161,19 +161,28 @@ export default function HabitPageLayout () {
             <h1>Your Stats</h1>
           </Grid>
           <Grid xs={3}>
-            <h3>Completed Habits</h3>
+            <Item style={{minHeight: "250px", minWidth: "200px" , backgroundColor: "inherit"}}>
+              <h3>Completed Habits</h3>
               <CompleteHabitList/>
+            </Item>
           </Grid>
           <Grid xs={3}>
-            <h3>Incomplete Habits</h3>
+            <Item style={{minHeight: "250px", minWidth: "200px" , backgroundColor: "inherit"}}>
+              <h3>Incomplete Habits</h3>
               <IncompleteHabitList/>
+            </Item>
           </Grid>
           <Grid xs={3}>
-            <h3>Week Completion</h3>
+            <Item style={{minHeight: "250px", minWidth: "200px" , backgroundColor: "inherit"}}>
+              <h3>Week Completion</h3>
               <RadialBar/>
+
+            </Item>
           </Grid>
           <Grid xs={3}>
-            <h3>Goals</h3>
+            <Item style={{minHeight: "250px", minWidth: "200px" , backgroundColor: "inherit"}}>
+              <h3>Goals</h3>
+            </Item>
           </Grid>   
         </Grid>
     </>
