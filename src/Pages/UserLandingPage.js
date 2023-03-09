@@ -140,10 +140,10 @@ export default function UserLandingPage() {
             view={calendarView}
             initialMonth={date.getMonth()}
             initialYear={date.getFullYear()}
-            events={events}
             setStartOfRange={setStartOfRange}
+            sunday={startOfRange}
           />}
-         {mode === CREATING && <CreateHabit setMode={setMode} setEvents={setEvents} events={events} sunday={startOfRange}/> }
+         {mode === CREATING && <CreateHabit setMode={setMode} setEvents={setEvents} sunday={startOfRange}/> }
         </Item>
       </Grid>
     </Grid>
