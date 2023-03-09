@@ -12,21 +12,19 @@ class RadialBar extends Component {
         chart: {
           height: 350,
           type: 'radialBar',
-          offsetY: -10
+          offsetY: 0
         },
         plotOptions: {
           radialBar: {
-            startAngle: -135,
-            endAngle: 135,
+            startAngle: -90,
+            endAngle: 90,
             dataLabels: {
               name: {
-                fontSize: '16px',
-                color: undefined,
-                offsetY: 120
+                show: false
               },
               value: {
-                offsetY: 76,
-                fontSize: '22px',
+                offsetY: 0,
+                fontSize: '16px',
                 color: undefined,
                 formatter: function (val) {
                   return val + "%";
@@ -47,7 +45,7 @@ class RadialBar extends Component {
           },
         },
         stroke: {
-          dashArray: 4
+          dashArray: 0
         },
         labels: ['Progress'],
       },
