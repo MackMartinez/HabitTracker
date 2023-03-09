@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import { FormGroup, TextField, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
 import DaysToggleButtons from "./DaysToggleButton";
 import { generateEvents } from "../../helpers/events";
+import Axios from "axios";
 
 
 
@@ -28,7 +29,7 @@ const handleClick = () => {
   });
 
 
-  const saveHabit = () => {
+  const saveHabit = (event) => {
   // Convert Habit into standard event
   let eventsList = generateEvents(habit, props.sunday)
   // Add to the state passed down by the calendar component
@@ -37,6 +38,27 @@ const handleClick = () => {
   // Return to Calendar 
   props.setMode("SHOWING");
   // Clear the habit state?
+
+  event.preventDefault();
+  
+ //using back end column names.
+  const url = "http://localhost:8080/habit"
+
+  Axios.post(url,{
+    title: habit.title,
+    body: habit.title,
+    start_date:habit.title,
+    end_date: habit.title,
+    start_time: habit.title,
+    end_time:habit.title,
+    days: habit.title,
+    user_id: 2, //not sure yet
+    completed: false 
+  })
+  .then(res => {
+    console.log(res.data)
+  })
+
 }
 
 const handleOnChange = (event) => {
