@@ -10,6 +10,7 @@ import AboutUsPage from './Pages/AboutUs';
 import PersistLogin from './Components/PersistLogin';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
+import HomeLandingPage from './Pages/HomeLandingPage';
 
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
@@ -24,6 +25,12 @@ function App() {
       setLoading(false)
     }, 2000)
   }, []) //Create hook for this to us with onClicks
+  React.useEffect(() => {
+    fetch("http://localhost:8080/habit")
+      .then(res => {
+        console.log(res)
+      })
+  },[])
 
   return (
     <div height={500}>
@@ -34,6 +41,7 @@ function App() {
     ) || (
      <BrowserRouter>
     <Routes>
+      <Route path="/" element={<HomeLandingPage/>}/>
       <Route path="/login" element={<Login/>}/>
       <Route path="/register" element={<Register/>}/>
       {/* This should be /:user to render specific user logged in  */}

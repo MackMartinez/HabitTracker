@@ -1,5 +1,5 @@
 /* ES6 module in Node.js environment */
-import  React, { useState } from "react";
+import  React, { useState, useEffect } from "react";
 import Calendar from "@toast-ui/react-calendar";
 import '@toast-ui/calendar/dist/toastui-calendar.min.css';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -27,20 +27,28 @@ import Button from '@mui/material/Button';
 
   const calref = React.useRef();  // Allows the us to reference the Calendar class so that we can execute the Toast UI class methods
 
+  const rangeStart = () => {  // Allows us to get the start of the date range - Sunday
+    const currentCal = calref.current.getInstance();
+    props.setStartOfRange(currentCal.getDateRangeStart());
+  }
+
+
   const handleNext = () => {
     const currentCal = calref.current.getInstance(); // We use this so that we get the current model from the DOM since there usually is a lag between what is available and what is displayed
     currentCal.next();
     let date = currentCal.getDate();
     setCalendarMonth(date.d.getMonth());
-    setCalendarYear(date.d.getFullYear())
+    setCalendarYear(date.d.getFullYear());
+    rangeStart(); // Need to update each time we move to a new week
   }
 
   const handlePrev = () => {
     const currentCal = calref.current.getInstance();
     let date = currentCal.getDate();
     setCalendarMonth(date.d.getMonth());
-    setCalendarYear(date.d.getFullYear())
+    setCalendarYear(date.d.getFullYear());
     currentCal.prev();
+    rangeStart(); 
   }
 
   const handleToday = () => {
@@ -48,11 +56,16 @@ import Button from '@mui/material/Button';
     currentCal.today();
     let date = currentCal.getDate();
     setCalendarMonth(date.d.getMonth());
-    setCalendarYear(date.d.getFullYear())
+    setCalendarYear(date.d.getFullYear());
+    rangeStart();
   }
 
   const [calendarMonth, setCalendarMonth] = useState(props.initialMonth);
   const [calendarYear, setCalendarYear] = useState(props.initialYear);
+
+  useEffect(() => { // Need to use useEffect to get the date on load
+    rangeStart();
+  },[])
 
    return ( 
     <Grid >

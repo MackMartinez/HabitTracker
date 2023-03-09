@@ -1,20 +1,22 @@
 import React from "react";
 import HabitListItem from "./HabitsListItem";
+import useApplicationdata from "../../hooks/useApplicationData";
 
-const habits = ['Piano', 'Swimming', 'Jogging'];
-
-let habitsList = habits.map((habit, index) => {
+//Initial code to map over data
+// let habitsList = state.map((habit, index) => {
+//   return(
+//     <HabitListItem key ={index} habitListItem={state.title}/>
+//     )
+//   });
   
-  return(
-    <HabitListItem key ={index} habitListItem={habit}/>
-  )
-});
-
 export default function HabitList() {
+
+  const {state} = useApplicationdata()
 
   return(
     <div>
-      {habitsList}
+      {/* {habitList} */}
+      <HabitListItem key ="1" habitListItem={state.title}/>
     </div>
   )
 }
