@@ -9,6 +9,7 @@ import AddHabitButton from '../Components/Habit/AddHabitButton';
 import HabitList from '../Components/Habit/HabitList';
 import HabitCalendar from "../Components/Calendar";
 import CreateHabit from "../Components/Habit/CreateHabit";
+import { Typography } from "@mui/material";
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -103,8 +104,12 @@ export default function UserLandingPage() {
         </Item>
       </Grid>
       <Grid item xs={2}>
-        <Item style={{minHeight: "2000px", backgroundColor: "inherit"}}>
-          Habit Summary
+        <Item style={{maxheight: "450px", backgroundColor: "inherit"}}>
+         <Typography>Upcoming Habits</Typography>
+          <HabitList/>
+        </Item>
+        <Item style={{maxheight: "450px", backgroundColor: "inherit"}}>
+         <Typography>Past Habits</Typography>
           <HabitList/>
         </Item>
       </Grid>
