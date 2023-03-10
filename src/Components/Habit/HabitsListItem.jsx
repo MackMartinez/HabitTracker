@@ -25,7 +25,7 @@ export default function HabitListItem(props) {
     console.log("Delete Habit")
   }
 
-  let eventDetails = moment(`${props.habit.start_date}T${props.habit.start_time}`).format('MMMM Do, h:mm a');
+  let eventDetails = props.upcoming ? `Started on ${moment(`${props.habit.start_date}T${props.habit.start_time}`).format('MMMM Do')}`: `Ended on ${moment(`${props.habit.end_date}T${props.habit.end_time}`).format('MMMM Do')}` ;
 
 
   return(
