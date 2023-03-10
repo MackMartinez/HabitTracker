@@ -57,7 +57,11 @@ const generateEvents = (habit, sunday) => { // Use sunday as the reference point
     habit.days.split(",").forEach(day => {
       let [newStartDay, newEndDay] = addDays(loopStartDate, loopEndDate, weekObject[day])
       
-      let updatedEvent = {...event, start: newStartDay, end: newEndDay}
+      const randomEventId = () => {
+        return Math.floor(Math.random() * 10000)
+      }
+
+      let updatedEvent = {...event, unique_event_id: randomEventId(), start: newStartDay, end: newEndDay}
 
       eventsGenerated.push(updatedEvent);
     });
@@ -66,7 +70,9 @@ const generateEvents = (habit, sunday) => { // Use sunday as the reference point
     loopEndDate = moment(loopEndDate,'YYYY-MM-DDTHH:mm:ss').add(1,"week");
   }
 
-  return eventsGenerated.filter((item) => (item.start >= habit.start_date && item.end <= habit.end_date)); // Filter to ensure only dates within the limits are added
+  const filteredEventsGenerated = eventsGenerated.filter((item) => (item.start >= habit.start_date && item.end <= habit.end_date)); // Filter to ensure only dates within the limits are added
+  console.log(filteredEventsGenerated)
+  return filteredEventsGenerated
 
 }
 
