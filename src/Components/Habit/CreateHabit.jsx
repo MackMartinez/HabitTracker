@@ -45,18 +45,20 @@ const handleClick = () => {
   const url = "http://localhost:8080/habit"
 
   Axios.post(url,{
+    id: 10,
+    unique_event_id: "test123",
     title: habit.title,
-    body: habit.title,
-    start_date:habit.title,
-    end_date: habit.title,
-    start_time: habit.title,
-    end_time:habit.title,
-    days: habit.title,
+    body: habit.details,
+    start_date:habit.startDate,
+    end_date: habit.endDate,
+    start_time: habit.startTime,
+    end_time:habit.endTime,
+    days: habit.days,
     user_id: 2, //not sure yet
     completed: false 
   })
   .then(res => {
-    console.log(res.data)
+    console.log(res.config.data)
   })
 
 }
