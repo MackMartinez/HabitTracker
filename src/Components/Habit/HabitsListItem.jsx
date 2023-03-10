@@ -37,10 +37,10 @@ export default function HabitListItem(props) {
         <ListItemText primary ={props.habit.title} secondary ={eventDetails}/>
       </ListItemButton>
       
-      <IconButton
+     {props.upcoming && <IconButton
         onClick={onDelete}>
         <RemoveCircleIcon sx={{ color: red[500] }}/> 
-      </IconButton>
+      </IconButton>}
     </ListItem>
   )
 }
