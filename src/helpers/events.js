@@ -35,9 +35,9 @@ const generateEvents = (habit, sunday) => { // Use sunday as the reference point
     category: "time",
     start: habit.start_date, // DB
     end: habit.start_date, // DB
-    state: null,
-    attendees: null,
-    isPrivate: false,
+    // state: null,
+    // attendees: null,
+    // isPrivate: false,
     backgroundColor: "#1976d2",
     color: "white",
     daysSelected: habit.days,
