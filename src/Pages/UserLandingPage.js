@@ -21,35 +21,9 @@ const Item = styled(Paper)(({ theme }) => ({
 
  // Sets the details of the calendar
   
- const initialEvents = [
-  {
-    title: 'Lunch',
-    body: 'Going to eat a cheeseburger',
-    category: 'time',                       // Determines where in the calendar the habit is displayed (Time, allday or milestone)
-    start: '2023-03-01T12:00:00',
-    end: '2023-03-01T13:30:00',
-    state: null,                            //Removes the 'busy' tag from the popout menu
-    attendees: null,                        //Removes the person icon from the popout menu
-    isPrivate: false,
-    backgroundColor: "#1976d2",
-    color: "white",
-  },
-  {
-    title: 'Coffee Break',
-    category: 'time',
-    start: '2023-02-28T15:00:00',
-    end: '2023-02-28T15:30:00',
-    state: null,
-    attendees: null,
-    isPrivate: false,
-    backgroundColor: "#1976d2",
-    color: "white"
-  },
-];
 
 export default function UserLandingPage() {
   const [calendarView, setCalendarView] = React.useState('week');
-  const [events, setEvents] = useState(initialEvents);
 
   const handleChange = (event) => {
     setCalendarView(event.target.value);
@@ -143,7 +117,7 @@ export default function UserLandingPage() {
             setStartOfRange={setStartOfRange}
             sunday={startOfRange}
           />}
-         {mode === CREATING && <CreateHabit setMode={setMode} setEvents={setEvents} sunday={startOfRange}/> }
+         {mode === CREATING && <CreateHabit setMode={setMode} sunday={startOfRange}/> }
         </Item>
       </Grid>
     </Grid>
