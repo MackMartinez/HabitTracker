@@ -17,7 +17,7 @@ export default function HabitList() {
 
   let habits = state.habits.map((habit, index) => {
     return(
-      <HabitListItem key={index} habitListItem={habit.title}/>
+      <HabitListItem key={index} habit={habit}/>
     )
   });
 
