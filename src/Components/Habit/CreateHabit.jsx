@@ -1,11 +1,10 @@
 import React, {useState} from "react";
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
 import Button from '@mui/material/Button';
 import { FormGroup, TextField, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
 import DaysToggleButtons from "./DaysToggleButton";
 import { generateEvents } from "../../helpers/events";
-
+import Axios from "axios";
 
 
 export default function CreateHabit (props) {
@@ -28,7 +27,7 @@ const handleClick = () => {
   });
 
 
-  const saveHabit = () => {
+  const saveHabit = (event) => {
   // Convert Habit into standard event
   let eventsList = generateEvents(habit, props.sunday)
   // Add to the state passed down by the calendar component
@@ -37,6 +36,28 @@ const handleClick = () => {
   // Return to Calendar 
   props.setMode("SHOWING");
   // Clear the habit state?
+
+  event.preventDefault();
+
+  //using back end column names.
+   const url = "http://localhost:8080/habit"
+ 
+   Axios.post(url,{
+     id: 10,
+     unique_event_id: "test123",
+     title: habit.title,
+     body: habit.body,
+     start_date:habit.start_date,
+     end_date: habit.end_date,
+     start_time: habit.start_time,
+     end_time:habit.end_time,
+     days: habit.days,
+     user_id: 2, //not sure yet
+     completed: false 
+   })
+   .then(res => {
+     console.log(res.config.data)
+   })
 }
 
 const handleOnChange = (event) => {
@@ -102,7 +123,7 @@ setHabit({...habit, [event.target.name]: value})
               variant="outlined"
               style={textStyle}
               type="date"
-              name="startDate"
+              name="start_date"
               value={habit.start_date}
               onChange={(event) => handleOnChange(event)}
             />
@@ -118,7 +139,7 @@ setHabit({...habit, [event.target.name]: value})
               variant="outlined"
               style={textStyle}
               type="date"
-              name="endDate"
+              name="end_date"
               value={habit.end_date}
               onChange={(event) => handleOnChange(event)}
 
@@ -135,7 +156,7 @@ setHabit({...habit, [event.target.name]: value})
               variant="outlined"
               style={textStyle}
               type="time"
-              name="startTime"
+              name="start_time"
               value={habit.start_time}
               onChange={(event) => handleOnChange(event)}
             />
@@ -151,7 +172,7 @@ setHabit({...habit, [event.target.name]: value})
               variant="outlined"
               style={textStyle}
               type="time"
-              name="endTime"
+              name="end_time"
               value={habit.end_time}
               onChange={(event) => handleOnChange(event)}
             />
