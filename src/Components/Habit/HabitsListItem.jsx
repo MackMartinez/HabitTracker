@@ -5,6 +5,7 @@ import ListItemText from '@mui/material/ListItemText';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import IconButton from '@mui/material/IconButton';
 import { red } from '@mui/material/colors';
+import moment from 'moment';
 
 
 export default function HabitListItem(props) {
@@ -24,13 +25,16 @@ export default function HabitListItem(props) {
     console.log("Delete Habit")
   }
 
+  let eventDetails = moment(`${props.habit.start_date}T${props.habit.start_time}`).format('MMMM Do, h:mm a');
+
+
   return(
     <ListItem>
       <ListItemButton
         selected={selectedIndex === true}
         onClick={handleListItemClick}
       >
-        <ListItemText primary ={props.habitListItem}/>
+        <ListItemText primary ={props.habit.title} secondary ={eventDetails}/>
       </ListItemButton>
       
       <IconButton
