@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Grid from '@mui/material/Unstable_Grid2';
 import Button from '@mui/material/Button';
 import { FormGroup, TextField, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
@@ -12,13 +12,23 @@ export default function CreateHabit (props) {
   const textStyle = {margin:'8px 0px'}
 
 
-const handleClick = () => {
-  props.setMode("SHOWING");
-}
+  const handleClick = () => {
+    props.setMode("SHOWING");
+  }
+
+  // const [habitId, setHabitId] = useState(0)
+
+  // const incrementHabitId = () => {
+  //   setHabitId(prev => prev + 1)
+  // }
+
+  // useEffect(() => {
+
+  //   incrementHabitId()
+  // },[])
 
   const [habit, setHabit] = useState({
-    id: 10,
-    unique_event_id: "test123",
+    id: props.habitId,
     title:"",
     body:"",
     start_date:"",
@@ -29,51 +39,48 @@ const handleClick = () => {
     user_id: 2, //not sure yet
     completed: false 
   });
-
-
+  
   const saveHabit = (event) => {
-  // Convert Habit into standard event
-  let eventsList = generateEvents(habit, props.sunday)
-  console.log("events list:",eventsList)
-  const url = "http://localhost:8080/habit"
-
-  event.preventDefault();
-
-  //loop through events generated and post request to db
-  // x is undefined for loop?
-
-  for(let x = 0; x < eventsList.length; x++){
-    let habitEvent = eventsList[x]
-    console.log(habitEvent)
-    Axios.post(url,habitEvent)
+    // props.setHabitId(props.habitId + 1)
+    // Convert Habit into standard event
+    const habiturl = "http://localhost:8080/habit"
+    const eventurl = "http://localhost:8080/habit/events"
+    
+    event.preventDefault();
+    
+    //loop through events generated and post request to db
+    
+    
+    Axios.post(habiturl,{
+      title: habit.title,
+      body: habit.body,
+      start_date:habit.start_date,
+      end_date: habit.end_date,
+      start_time: habit.start_time,
+      end_time:habit.end_time,
+      days: habit.days,
+      user_id: 2, //not sure yet
+      completed: false 
+    })
     .then(res => {
-      console.log(res.config.data)
-  })}
-  // }
-
-  //  Axios.post(url,{
-  //    id: 10,
-  //    unique_event_id: "test123",
-  //    title: habit.title,
-  //    body: habit.body,
-  //    start_date:habit.start_date,
-  //    end_date: habit.end_date,
-  //    start_time: habit.start_time,
-  //    end_time:habit.end_time,
-  //    days: habit.days,
-  //    user_id: 2, //not sure yet
-  //    completed: false 
-  //  })
-  //  .then(res => {
-  //    console.log(res.config.data)
-  //  })
-  // Return to Calendar 
-  props.setMode("SHOWING");
-  // Clear the habit state?
-
-}
-
-const handleOnChange = (event) => {
+      let eventsList = generateEvents(res.data[0], props.sunday)
+      // console.log(res.data)
+      for(let x = 0; x < eventsList.length; x++){
+        let uniqueEvent = eventsList[x].unique_event_id
+        // console.log(eventsList)
+        Axios.post(eventurl,{unique_event_id:uniqueEvent, habit_id: res.data[0].id})
+        .then(res => {
+          console.log(res.data)
+        })
+      }
+    })
+    // Return to Calendar 
+    props.setMode("SHOWING");
+    // Clear the habit state?
+    
+  }
+  
+  const handleOnChange = (event) => {
 const value = event.target.value;
 setHabit({...habit, [event.target.name]: value})
 }
@@ -101,9 +108,10 @@ setHabit({...habit, [event.target.name]: value})
           placeholder="Add a description of your habit" 
           style={textStyle}
           type="text"
+          value={habit.body}
           multiline
           rows={4}
-          name="details"
+          name="body"
           onChange={(event)=> handleOnChange(event)}
         />
 
