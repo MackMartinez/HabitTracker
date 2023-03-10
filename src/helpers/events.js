@@ -13,9 +13,7 @@ let weekObject = {
 
 const addDays = (start_date, end_date, num) => { // Adds days to the date passed in
   // Event Start
-  console.log("Start_date", start_date);
   let eventStart = moment(start_date, 'YYYY-MM-DDTHH:mm:ss');
-  console.log("Event_Start", eventStart,);
   let eventStartResult = eventStart.add(num, "days");
   // Event End
   let eventEnd = moment(end_date, 'YYYY-MM-DDTHH:mm:ss');
@@ -68,7 +66,6 @@ const generateEvents = (habit, sunday) => { // Use sunday as the reference point
     loopEndDate = moment(loopEndDate,'YYYY-MM-DDTHH:mm:ss').add(1,"week");
   }
 
-  // console.log("new events generated", eventsGenerated)
   return eventsGenerated.filter((item) => (item.start >= habit.start_date && item.end <= habit.end_date)); // Filter to ensure only dates within the limits are added
 
 }
