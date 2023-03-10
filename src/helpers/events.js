@@ -13,15 +13,13 @@ let weekObject = {
 
 const addDays = (start_date, end_date, num) => { // Adds days to the date passed in
   // Event Start
-  let eventStart = moment(start_date);
-  console.log("event start before add days", eventStart)
+  console.log("Start_date", start_date);
+  let eventStart = moment(start_date, 'YYYY-MM-DDTHH:mm:ss');
+  console.log("Event_Start", eventStart,);
   let eventStartResult = eventStart.add(num, "days");
   // Event End
-  let eventEnd = moment(end_date);
+  let eventEnd = moment(end_date, 'YYYY-MM-DDTHH:mm:ss');
   let eventEndResult = eventEnd.add(num, "days");
-
-  console.log("new date", eventStartResult.format('YYYY-MM-DDTHH:mm:ss'))
-
   return [eventStartResult.format('YYYY-MM-DDTHH:mm:ss'), eventEndResult.format('YYYY-MM-DDTHH:mm:ss')];
 }
 
@@ -31,7 +29,6 @@ const generateEvents = (habit, sunday) => { // Use sunday as the reference point
   let SundayEventStart = `${sunday.d.getFullYear()}-0${sunday.d.getMonth() + 1}-0${sunday.d.getDate()}T${habit.start_time}:00`;  // Moment JS could probably format better
   let SundayEventEnd = `${sunday.d.getFullYear()}-0${sunday.d.getMonth() + 1}-0${sunday.d.getDate()}T${habit.end_time}:00`;  // Moment JS could probably format better
   // Template event object to be created
-
   let event = {
     habit_id: habit.id,   // DB
     unique_event_id: habit.unique_event_id, // DB
@@ -55,7 +52,7 @@ const generateEvents = (habit, sunday) => { // Use sunday as the reference point
   let loopStartDate = SundayEventStart;
   let loopEndDate = SundayEventEnd;
 
-  let duration = moment(habit.end_date).diff(moment(habit.start_date), 'weeks');
+  let duration = moment(habit.end_date,'YYYY-MM-DDTHH:mm:ss').diff(moment(habit.start_date,'YYYY-MM-DDTHH:mm:ss'), 'weeks');
 
   for (let i = 0; i < duration; i ++ ) { // Weekly loop
     
@@ -67,11 +64,11 @@ const generateEvents = (habit, sunday) => { // Use sunday as the reference point
       eventsGenerated.push(updatedEvent);
     });
 
-    loopStartDate = moment(loopStartDate).add(1, "week"); // Update the starting point for each week
-    loopEndDate = moment(loopEndDate).add(1,"week");
+    loopStartDate = moment(loopStartDate,'YYYY-MM-DDTHH:mm:ss').add(1, "week"); // Update the starting point for each week
+    loopEndDate = moment(loopEndDate,'YYYY-MM-DDTHH:mm:ss').add(1,"week");
   }
 
-  console.log("new events generated", eventsGenerated)
+  // console.log("new events generated", eventsGenerated)
   return eventsGenerated.filter((item) => (item.start >= habit.start_date && item.end <= habit.end_date)); // Filter to ensure only dates within the limits are added
 
 }
