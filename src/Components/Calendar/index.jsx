@@ -69,32 +69,18 @@ import { generateEvents } from "../../helpers/events";
     rangeStart();
   },[])
   
-  const { state, setState } = useApplicationData();
+  const { state } = useApplicationData();
   let habits = state.habits
   let eventsArray = []
   
-  // console.log( generateEvents(habit, date))
-  // if (props.sunday) {
-  //   habits.forEach((habit) => {
-  //     eventsArray.push(generateEvents(habit, props.sunday));
-    
-  //   });
-
-  let events = "";
-
-  useEffect(()=>{
-
-   if(props.sunday) {
+  if (props.sunday) {
     habits.forEach((habit) => {
       eventsArray.push(generateEvents(habit, props.sunday));
-    
     });
-    events = eventsArray.flat();
-    setState(prev => ({...prev, events}));
-    console.log("events", events);
-  } 
-  }, [props.sunday]) // Waits for Calendar component to be ready before setting the events
-  
+  }
+
+  let events = eventsArray.flat();
+
   return ( 
     <Grid >
       <Grid
@@ -129,7 +115,7 @@ import { generateEvents } from "../../helpers/events";
           }}
           useDetailPopup={false}
           useFormPopup={false}
-          events={state.events}
+          events={events}
           />
       </Grid>
     </Grid>
