@@ -19,11 +19,11 @@ const handleClick = () => {
 
   const [habit, setHabit] = useState({
     title:"",
-    details:"",
-    startDate:"",
-    endDate:"",
-    startTime: "",
-    endTime:"",
+    body:"",
+    start_date:"",
+    end_date:"",
+    start_time: "",
+    end_time:"",
     days:""
   });
 
@@ -32,7 +32,7 @@ const handleClick = () => {
   // Convert Habit into standard event
   let eventsList = generateEvents(habit, props.sunday)
   // Add to the state passed down by the calendar component
-  props.setEvents(prev => ([...prev, ...eventsList]));
+  props.setEvents(prev => ([...prev, ...eventsList])); // replace with axios post
 
   // Return to Calendar 
   props.setMode("SHOWING");
@@ -103,7 +103,7 @@ setHabit({...habit, [event.target.name]: value})
               style={textStyle}
               type="date"
               name="startDate"
-              value={habit.startDate}
+              value={habit.start_date}
               onChange={(event) => handleOnChange(event)}
             />
           </Grid>
@@ -119,7 +119,7 @@ setHabit({...habit, [event.target.name]: value})
               style={textStyle}
               type="date"
               name="endDate"
-              value={habit.endDate}
+              value={habit.end_date}
               onChange={(event) => handleOnChange(event)}
 
             />
@@ -136,7 +136,7 @@ setHabit({...habit, [event.target.name]: value})
               style={textStyle}
               type="time"
               name="startTime"
-              value={habit.startTime}
+              value={habit.start_time}
               onChange={(event) => handleOnChange(event)}
             />
           </Grid>
@@ -152,7 +152,7 @@ setHabit({...habit, [event.target.name]: value})
               style={textStyle}
               type="time"
               name="endTime"
-              value={habit.endTime}
+              value={habit.end_time}
               onChange={(event) => handleOnChange(event)}
             />
           </Grid>
