@@ -106,11 +106,11 @@ export default function UserLandingPage() {
       <Grid item xs={2}>
         <Item style={{maxheight: "450px", backgroundColor: "inherit"}}>
          <Typography>Upcoming Habits</Typography>
-          <HabitList/>
+          <HabitList date={date} upcoming={true}/>
         </Item>
         <Item style={{maxheight: "450px", backgroundColor: "inherit"}}>
          <Typography>Past Habits</Typography>
-          <HabitList/>
+          <HabitList date={date} upcoming={false}/>
         </Item>
       </Grid>
       <Grid item xs={10}>
