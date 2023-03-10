@@ -58,7 +58,8 @@ export default function useApplicationData() {
         "user_id": 3,
         "completed": false
       }
-    ]
+    ],
+    events : []
   });
   
 
@@ -82,6 +83,6 @@ export default function useApplicationData() {
 
   return {
     // console.log(state)
-    state
+    state, setState
   };
 };
