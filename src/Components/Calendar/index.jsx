@@ -84,7 +84,7 @@ import { generateEvents } from "../../helpers/events";
   
   let events = eventsArray.flat();
 
-   return ( 
+  return ( 
     <Grid >
       <Grid
         item
