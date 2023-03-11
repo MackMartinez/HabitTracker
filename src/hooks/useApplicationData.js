@@ -35,12 +35,12 @@ export default function useApplicationData() {
       {
         "id": 4,
         "unique_event_id": "coding20230319",
-        "title": "Coding",
+        "title": "CodingTest",
         "body": " Practicing everyday to be a great developer",
         "start_date": "2023-03-09",
         "end_date": "2023-03-28",
-        "start_time": "23:00",
-        "end_time": "24:00",
+        "start_time": "11:00",
+        "end_time": "12:00",
         "days": "Thursday,Friday",
         "user_id": 3,
         "completed": false

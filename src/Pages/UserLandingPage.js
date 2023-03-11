@@ -25,6 +25,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function UserLandingPage() {
   const [calendarView, setCalendarView] = React.useState('week');
+  const [habitId, setHabitId] = useState(0)
 
   const handleChange = (event) => {
     setCalendarView(event.target.value);
@@ -122,7 +123,7 @@ export default function UserLandingPage() {
             setStartOfRange={setStartOfRange}
             sunday={startOfRange}
           />}
-         {mode === CREATING && <CreateHabit setMode={setMode} sunday={startOfRange}/> }
+         {mode === CREATING && <CreateHabit setMode={setMode} sunday={startOfRange} habitId={habitId} setHabitId={setHabitId}/> }
         </Item>
       </Grid>
     </Grid>
