@@ -35,6 +35,8 @@ export default function ButtonAppBar(props) {
 
   const user = auth.user;
 
+  const avatar = auth.avatar;
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">
@@ -54,7 +56,7 @@ export default function ButtonAppBar(props) {
           {/* if signed into an account */}
           <Button color="inherit">
             {user}
-            <Avatar style={avatarStyle}></Avatar>
+            <Avatar style={avatarStyle} src={avatar}></Avatar>
           </Button>
         </Toolbar>
       </AppBar>
