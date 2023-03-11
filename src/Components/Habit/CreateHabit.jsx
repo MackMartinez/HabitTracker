@@ -7,7 +7,6 @@ import { generateEvents } from "../../helpers/events";
 import Axios from "axios";
 import useAuth from "../../hooks/useAuth";
 
-// testing
 export default function CreateHabit (props) {
 
   //gets user id object
@@ -35,12 +34,8 @@ export default function CreateHabit (props) {
     user_id: userId,
     completed: false 
   });
-  
-  
 
   const saveHabit = (event) => {
-    // props.setHabitId(props.habitId + 1)
-    // Convert Habit into standard event
     const habiturl = "http://localhost:8080/habit"
     const eventurl = "http://localhost:8080/habit/events"
     
@@ -56,16 +51,15 @@ export default function CreateHabit (props) {
       start_time: habit.start_time,
       end_time:habit.end_time,
       days: habit.days,
-      user_id: userId, //not sure yet
+      user_id: userId,
       completed: false 
     })
     .then(res => {
       let eventsList = generateEvents(res.data[0], props.sunday)
-      // console.log(res.data)
       for(let x = 0; x < eventsList.length; x++){
         let uniqueEvent = eventsList[x].unique_event_id
-        // console.log(eventsList)
-        Axios.post(eventurl,{unique_event_id:uniqueEvent, user_id:userId, habit_id: res.data[0].id})
+        let completedBoolean = eventsList[x].completed
+        Axios.post(eventurl,{unique_event_id:uniqueEvent, user_id:userId, habit_id: res.data[0].id, completed: completedBoolean})
         .then(res => {
           console.log(res.data)
         })
@@ -73,8 +67,6 @@ export default function CreateHabit (props) {
     })
     // Return to Calendar 
     props.setMode("SHOWING");
-    // Clear the habit state?
-    
   }
   
   const handleOnChange = (event) => {
