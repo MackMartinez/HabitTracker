@@ -111,7 +111,7 @@ import { generateEvents } from "../../helpers/events";
           view={props.view}
           month={{
             dayNames: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-            visibleWeeksCount: 3,
+            visibleWeeksCount: 4,
           }}
           useDetailPopup={false}
           useFormPopup={false}

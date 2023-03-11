@@ -21,10 +21,16 @@ export default function HabitList(props) {
       <HabitListItem key={index} habit={habit} upcoming={props.upcoming}/>
     )
   });
+  let allHabits = state.habits.map((habit, index) => {
+    return(
+      <HabitListItem key={index} habit={habit} upcoming={props.upcoming}/>
+    )
+  });
 
   return(
     <div>
       {props.upcoming ? futureHabits : pastHabits}
+      {props.allHabits ? allHabits : null}
     </div>
   )
 }
