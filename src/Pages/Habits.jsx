@@ -11,6 +11,9 @@ import {CompleteHabitList, IncompleteHabitList} from '../Components/Habit/HabitS
 import RadialBar from '../Components/Gauge/StrokedGauge';
 import '@toast-ui/chart/dist/toastui-chart.min.css';
 import { BarChart, LineChart } from '@toast-ui/react-chart';
+import Typography from '@mui/material/Typography';
+import { createTheme, ThemeProvider } from '@mui/material';
+import useApplicationData from '../hooks/useApplicationData';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -58,29 +61,33 @@ const dataWeek = {
   ],
 };
 
-const options = {
-  chart: {
-    width: 1000,
-    height: 600,
-    title: '# of times habit completed per month',
-  },
-  yAxis: {
-    title: 'Month',
-  },
-  xAxis: {
-    title: 'Amount',
-  },
-};
-
-const containerStyle = {
-  width: '600px',
-  height: '600px',
-};
-
-
 export default function HabitPageLayout () {
 
+  const {
+    state
+  } = useApplicationData();
+
   const [selectedValue, setSelectedValue] = React.useState('week');
+
+  const options = {
+    chart: {
+      width: 800,
+      height: 500,
+      title: selectedValue === "week" ? '# of times habit completed per week': '# of times habit completed per month' ,
+    },
+    yAxis: {
+      title: selectedValue === "week" ? 'Hours':'Month',
+    },
+    xAxis: {
+      title: "week" ? 'Day':'Amount',
+    },
+  };
+  
+  const containerStyle = {
+    width: '600px',
+    height: '600px',
+  };
+
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
@@ -88,7 +95,7 @@ export default function HabitPageLayout () {
 
   const showChartPeriod = () => {
     if (selectedValue === 'week') {
-      return <LineChart data={dataWeek} options={options} style={containerStyle}/>
+      return <LineChart data={dataWeek} options={options} style={containerStyle}/> // What is the style tag doing?
     }
     return <BarChart data={data} options={options} style={containerStyle} />
   }
@@ -103,7 +110,7 @@ export default function HabitPageLayout () {
          pt={12}
         >
           <Grid xs={10}>
-            <h1>Your Habits</h1>
+          <Typography variant="h4">Your Habits</Typography>
           </Grid>
           <Grid xs={2}>
             <Item>  
@@ -148,32 +155,43 @@ export default function HabitPageLayout () {
         </Grid>
 
         <Grid container spacing ={2} sx={{ flexGrow: 1 }}>
-          <Grid xs={5}>
+          <Grid xs={6}>
             <HabitCard/>
           </Grid>
-          <Grid xs={7}>
-            {showChartPeriod()}
+          <Grid xs={6}>
+            <Item style={{maxHeight: "500px", maxWidth: "800px" , backgroundColor: "inherit"}}>
+              {showChartPeriod()}
+            </Item>
           </Grid>
 
         </Grid>
         <Grid container spacing ={2}>
           <Grid xs={12}>
-            <h1>Your Stats</h1>
+          <Typography variant="h4" style={{backgroundColor:"#1976d2", color:"#fff"}}>Your Stats</Typography>
           </Grid>
           <Grid xs={3}>
-            <h3>Completed Habits</h3>
-              <CompleteHabitList/>
+            <Item style={{minHeight: "250px", minWidth: "200px" , backgroundColor: "inherit"}}>
+              <h3>Completed Habits</h3>
+              <CompleteHabitList habits={state.habits}/>
+            </Item>
           </Grid>
           <Grid xs={3}>
-            <h3>Incomplete Habits</h3>
-              <IncompleteHabitList/>
+            <Item style={{minHeight: "250px", minWidth: "200px" , backgroundColor: "inherit"}}>
+              <h3>Incomplete Habits</h3>
+              <IncompleteHabitList habits={state.habits}/>
+            </Item>
           </Grid>
           <Grid xs={3}>
-            <h3>Week Completion</h3>
+            <Item style={{minHeight: "250px", minWidth: "200px" , backgroundColor: "inherit"}}>
+              <h3>Week Completion</h3>
               <RadialBar/>
+
+            </Item>
           </Grid>
           <Grid xs={3}>
-            <h3>Goals</h3>
+            <Item style={{minHeight: "250px", minWidth: "200px" , backgroundColor: "inherit"}}>
+              <h3>Goals</h3>
+            </Item>
           </Grid>   
         </Grid>
     </>

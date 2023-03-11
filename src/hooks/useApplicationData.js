@@ -1,32 +1,32 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 
-const useApplicationData = () => {
+export default function useApplicationData() {
 
   
-  const habits = ['Piano', 'Swimming', 'Jogging'];
-
   const [ state, setState ] = useState({
-    title:"",
-    details:"",
-    startDate:"",
-    endDate:"",
-    startTime: "",
-    endTime:"",
-    days:""
+    habits: []
   });
   
+
+
+   // Use effect to make axios call and get habit data
    useEffect(() => {
-    setState(prev =>({
-      ...prev, title: habits[0]
-     }))
-   },[]) 
+    const routes = {
+      getHabits: "http://localhost:8080/habit"
+    }
 
+    Promise.all([
+      axios.get(routes.getHabits)
+    ]).then((all) => {
+      setState(prev => ({...prev, habits: all[0].data}))
+      // console.log(all[0].data)
+    });
 
+  },[])
 
   return {
     // console.log(state)
-    state
+    state, setState
   };
 };
-
-export default useApplicationData;

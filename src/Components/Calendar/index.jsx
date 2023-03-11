@@ -6,6 +6,8 @@ import Grid from '@mui/material/Unstable_Grid2';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import Button from '@mui/material/Button';
+import useApplicationData from "../../hooks/useApplicationData";
+import { generateEvents } from "../../helpers/events";
 
 
   let months = {  // TUI returns digits as months, so this converts to a string
@@ -66,8 +68,20 @@ import Button from '@mui/material/Button';
   useEffect(() => { // Need to use useEffect to get the date on load
     rangeStart();
   },[])
+  
+  const { state } = useApplicationData();
+  let habits = state.habits
+  let eventsArray = []
+  
+  if (props.sunday) {
+    habits.forEach((habit) => {
+      eventsArray.push(generateEvents(habit, props.sunday));
+    });
+  }
 
-   return ( 
+  let events = eventsArray.flat();
+
+  return ( 
     <Grid >
       <Grid
         item
@@ -99,9 +113,9 @@ import Button from '@mui/material/Button';
             dayNames: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
             visibleWeeksCount: 3,
           }}
-          events={props.events}
           useDetailPopup={false}
           useFormPopup={false}
+          events={events}
           />
       </Grid>
     </Grid>

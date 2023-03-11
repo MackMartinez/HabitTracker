@@ -1,45 +1,83 @@
-import React, {useState} from "react";
-import Paper from '@mui/material/Paper';
+import React, {useState, useEffect} from "react";
 import Grid from '@mui/material/Unstable_Grid2';
 import Button from '@mui/material/Button';
 import { FormGroup, TextField, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
 import DaysToggleButtons from "./DaysToggleButton";
 import { generateEvents } from "../../helpers/events";
+import Axios from "axios";
+import useAuth from "../../hooks/useAuth";
 
-
-
+// testing
 export default function CreateHabit (props) {
+
+  //gets user id object
+  const { auth } = useAuth();
+
+  const userId = auth.userId;
+
 
   const textStyle = {margin:'8px 0px'}
 
 
-const handleClick = () => {
-  props.setMode("SHOWING");
-}
+  const handleClick = () => {
+    props.setMode("SHOWING");
+  }
 
   const [habit, setHabit] = useState({
+    id: props.habitId,
     title:"",
-    details:"",
-    startDate:"",
-    endDate:"",
-    startTime: "",
-    endTime:"",
-    days:""
+    body:"",
+    start_date:"",
+    end_date:"",
+    start_time: "",
+    end_time:"",
+    days:"",
+    user_id: userId,
+    completed: false 
   });
+  
+  
 
-
-  const saveHabit = () => {
-  // Convert Habit into standard event
-  let eventsList = generateEvents(habit, props.sunday)
-  // Add to the state passed down by the calendar component
-  props.setEvents(prev => ([...prev, ...eventsList]));
-
-  // Return to Calendar 
-  props.setMode("SHOWING");
-  // Clear the habit state?
-}
-
-const handleOnChange = (event) => {
+  const saveHabit = (event) => {
+    // props.setHabitId(props.habitId + 1)
+    // Convert Habit into standard event
+    const habiturl = "http://localhost:8080/habit"
+    const eventurl = "http://localhost:8080/habit/events"
+    
+    event.preventDefault();
+    
+    //loop through events generated and post request to db
+    
+    Axios.post(habiturl,{
+      title: habit.title,
+      body: habit.body,
+      start_date:habit.start_date,
+      end_date: habit.end_date,
+      start_time: habit.start_time,
+      end_time:habit.end_time,
+      days: habit.days,
+      user_id: userId, //not sure yet
+      completed: false 
+    })
+    .then(res => {
+      let eventsList = generateEvents(res.data[0], props.sunday)
+      // console.log(res.data)
+      for(let x = 0; x < eventsList.length; x++){
+        let uniqueEvent = eventsList[x].unique_event_id
+        // console.log(eventsList)
+        Axios.post(eventurl,{unique_event_id:uniqueEvent, user_id:userId, habit_id: res.data[0].id})
+        .then(res => {
+          console.log(res.data)
+        })
+      }
+    })
+    // Return to Calendar 
+    props.setMode("SHOWING");
+    // Clear the habit state?
+    
+  }
+  
+  const handleOnChange = (event) => {
 const value = event.target.value;
 setHabit({...habit, [event.target.name]: value})
 }
@@ -67,9 +105,10 @@ setHabit({...habit, [event.target.name]: value})
           placeholder="Add a description of your habit" 
           style={textStyle}
           type="text"
+          value={habit.body}
           multiline
           rows={4}
-          name="details"
+          name="body"
           onChange={(event)=> handleOnChange(event)}
         />
 
@@ -102,8 +141,8 @@ setHabit({...habit, [event.target.name]: value})
               variant="outlined"
               style={textStyle}
               type="date"
-              name="startDate"
-              value={habit.startDate}
+              name="start_date"
+              value={habit.start_date}
               onChange={(event) => handleOnChange(event)}
             />
           </Grid>
@@ -118,8 +157,8 @@ setHabit({...habit, [event.target.name]: value})
               variant="outlined"
               style={textStyle}
               type="date"
-              name="endDate"
-              value={habit.endDate}
+              name="end_date"
+              value={habit.end_date}
               onChange={(event) => handleOnChange(event)}
 
             />
@@ -135,8 +174,8 @@ setHabit({...habit, [event.target.name]: value})
               variant="outlined"
               style={textStyle}
               type="time"
-              name="startTime"
-              value={habit.startTime}
+              name="start_time"
+              value={habit.start_time}
               onChange={(event) => handleOnChange(event)}
             />
           </Grid>
@@ -151,8 +190,8 @@ setHabit({...habit, [event.target.name]: value})
               variant="outlined"
               style={textStyle}
               type="time"
-              name="endTime"
-              value={habit.endTime}
+              name="end_time"
+              value={habit.end_time}
               onChange={(event) => handleOnChange(event)}
             />
           </Grid>
