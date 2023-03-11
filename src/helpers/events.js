@@ -25,8 +25,7 @@ const addDays = (start_date, end_date, num) => { // Adds days to the date passed
 const generateEvents = (habit, sunday) => { // Use sunday as the reference point to change the day
 
   let SundayEventStart = `${sunday.d.getFullYear()}-0${sunday.d.getMonth() + 1}-0${sunday.d.getDate()}T${habit.start_time}:00`;  // Moment JS could probably format better
-  let SundayEventEnd = `${habit.end_date}T${habit.end_time}:00`;  // Moment JS could probably format better
-  console.log(SundayEventEnd);
+  let SundayEventEnd = `${sunday.d.getFullYear()}-0${sunday.d.getMonth() + 1}-0${sunday.d.getDate()}T${habit.end_time}:00`;  // Moment JS could probably format better
   // Template event object to be created
   let event = {
     habit_id: habit.id,   // DB
@@ -43,7 +42,7 @@ const generateEvents = (habit, sunday) => { // Use sunday as the reference point
     color: "white",
     daysSelected: habit.days,
     completed: false, // DB
-    user_id: ""
+    user_id: habit.user_id
   }
   
   let eventsGenerated = [];
@@ -71,11 +70,8 @@ const generateEvents = (habit, sunday) => { // Use sunday as the reference point
     loopEndDate = moment(loopEndDate,'YYYY-MM-DDTHH:mm:ss').add(1,"week");
   }
 
-  console.log("LOOP START DATE:", loopStartDate);
-  console.log("LOOP END DATE:", loopEndDate);
   const filteredEventsGenerated = eventsGenerated.filter((item) => (item.start >= habit.start_date && item.end <= habit.end_date)); // Filter to ensure only dates within the limits are added
-  console.log("***EVENTS GENERATED", eventsGenerated)
-  console.log("FILTERED EVENTS:", filteredEventsGenerated)
+  
   return filteredEventsGenerated
 
 }

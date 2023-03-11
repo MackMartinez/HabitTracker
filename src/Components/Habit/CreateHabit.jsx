@@ -11,17 +11,15 @@ export default function CreateHabit (props) {
 
   //gets user id object
   const { auth } = useAuth();
-
-  const userId = auth.userId;
-
-
+  
+  const userid = auth.userId;
+  
   const textStyle = {margin:'8px 0px'}
-
-
+  
   const handleClick = () => {
     props.setMode("SHOWING");
   }
-
+  
   const [habit, setHabit] = useState({
     id: props.habitId,
     title:"",
@@ -31,18 +29,15 @@ export default function CreateHabit (props) {
     start_time: "",
     end_time:"",
     days:"",
-    user_id: userId,
+    user_id: userid,
     completed: false 
   });
-
+  
   const saveHabit = (event) => {
     const habiturl = "http://localhost:8080/habit"
     const eventurl = "http://localhost:8080/habit/events"
     
     event.preventDefault();
-    
-    
-    //loop through events generated and post request to db
     
     Axios.post(habiturl,{
       title: habit.title,
@@ -52,15 +47,17 @@ export default function CreateHabit (props) {
       start_time: habit.start_time,
       end_time:habit.end_time,
       days: habit.days,
-      user_id: userId,
+      user_id: userid,
       completed: false 
     })
     .then(res => {
       let eventsList = generateEvents(res.data[0], props.sunday)
+      console.log("***EventsList:", eventsList)
+      //loop through events generated and post each event to db
       for(let x = 0; x < eventsList.length; x++){
         let uniqueEvent = eventsList[x].unique_event_id
         let completedBoolean = eventsList[x].completed
-        Axios.post(eventurl,{unique_event_id:uniqueEvent, user_id:userId, habit_id: res.data[0].id, completed: completedBoolean})
+        Axios.post(eventurl,{unique_event_id:uniqueEvent, habit_id: res.data[0].id, user_id: userid, completed: completedBoolean})
         .then(res => {
           console.log(res.data)
         })
