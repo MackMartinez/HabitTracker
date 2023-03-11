@@ -11,7 +11,7 @@ import Box from '@mui/material/Box';
 
 const LOGIN_URL = '/login'; 
 
-export default function Login() {
+export default function Login(props) {
   const { setAuth, persist, setPersist } = useAuth();
 
   const navigate = useNavigate();
