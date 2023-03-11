@@ -71,7 +71,7 @@ const generateEvents = (habit, sunday) => { // Use sunday as the reference point
   }
 
   const filteredEventsGenerated = eventsGenerated.filter((item) => (item.start >= habit.start_date && item.end <= habit.end_date)); // Filter to ensure only dates within the limits are added
-  console.log(filteredEventsGenerated)
+
   return filteredEventsGenerated
 
 }

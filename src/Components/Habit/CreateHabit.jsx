@@ -16,17 +16,6 @@ export default function CreateHabit (props) {
     props.setMode("SHOWING");
   }
 
-  // const [habitId, setHabitId] = useState(0)
-
-  // const incrementHabitId = () => {
-  //   setHabitId(prev => prev + 1)
-  // }
-
-  // useEffect(() => {
-
-  //   incrementHabitId()
-  // },[])
-
   const [habit, setHabit] = useState({
     id: props.habitId,
     title:"",
@@ -49,7 +38,6 @@ export default function CreateHabit (props) {
     event.preventDefault();
     
     //loop through events generated and post request to db
-    
     
     Axios.post(habiturl,{
       title: habit.title,

@@ -19,19 +19,19 @@ export default function useApplicationData() {
         "user_id": 2,
         "completed": false
       },
-      // {
-      //   "id": 3,
-      //   "unique_event_id": "coding20230309",
-      //   "title": "Coding",
-      //   "body": " Practicing everyday to be a great developer",
-      //   "start_date": "2023-03-09",
-      //   "end_date": "2023-04-28",
-      //   "start_time": "18:00",
-      //   "end_time": "22:00",
-      //   "days": "MondayTuesday",
-      //   "user_id": 1,
-      //   "completed": true
-      // },
+      {
+        "id": 3,
+        "unique_event_id": "coding20230309",
+        "title": "Coding",
+        "body": " Practicing everyday to be a great developer",
+        "start_date": "2023-03-09",
+        "end_date": "2023-04-28",
+        "start_time": "18:00",
+        "end_time": "22:00",
+        "days": "MondayTuesday",
+        "user_id": 1,
+        "completed": true
+      },
       {
         "id": 4,
         "unique_event_id": "coding20230319",
