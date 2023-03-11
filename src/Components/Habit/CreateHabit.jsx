@@ -5,6 +5,7 @@ import { FormGroup, TextField, ToggleButton, ToggleButtonGroup, Typography } fro
 import DaysToggleButtons from "./DaysToggleButton";
 import { generateEvents } from "../../helpers/events";
 import Axios from "axios";
+import useAuth from "../../hooks/useAuth";
 
 
 export default function CreateHabit (props) {
