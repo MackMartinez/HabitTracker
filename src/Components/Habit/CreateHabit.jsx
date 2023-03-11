@@ -7,7 +7,7 @@ import { generateEvents } from "../../helpers/events";
 import Axios from "axios";
 import useAuth from "../../hooks/useAuth";
 
-// test
+// testing
 export default function CreateHabit (props) {
 
   //gets user id object
