@@ -25,7 +25,8 @@ const addDays = (start_date, end_date, num) => { // Adds days to the date passed
 const generateEvents = (habit, sunday) => { // Use sunday as the reference point to change the day
 
   let SundayEventStart = `${sunday.d.getFullYear()}-0${sunday.d.getMonth() + 1}-0${sunday.d.getDate()}T${habit.start_time}:00`;  // Moment JS could probably format better
-  let SundayEventEnd = `${sunday.d.getFullYear()}-0${sunday.d.getMonth() + 1}-0${sunday.d.getDate()}T${habit.end_time}:00`;  // Moment JS could probably format better
+  let SundayEventEnd = `${habit.end_date}T${habit.end_time}:00`;  // Moment JS could probably format better
+  console.log(SundayEventEnd);
   // Template event object to be created
   let event = {
     habit_id: habit.id,   // DB
