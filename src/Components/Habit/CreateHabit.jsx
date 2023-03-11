@@ -210,7 +210,7 @@ setHabit({...habit, [event.target.name]: value})
           justifyContent="space-between"
           alignItems="center"
         >
-        <Button onClick={handleClick} color="primary" variant="contained">
+        <Button onClick={handleClick} color="error" variant="contained">
           Cancel
         </Button>
         <Button onClick={saveHabit} type="submit" color="primary" variant="contained">
