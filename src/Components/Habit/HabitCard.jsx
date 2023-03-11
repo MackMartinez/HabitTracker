@@ -6,6 +6,7 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import useApplicationData from '../../hooks/useApplicationData';
+import HabitTabPanel from './Habittab';
 
 
 
@@ -52,13 +53,13 @@ export default function VerticalTabs() {
   };
 
   let tabs = state.habits.map((habit, index) => {
-    return (<Tab label={habit.title} {...a11yProps(index)}/>)
+    return (<Tab key={index} label={habit.title} {...a11yProps(index)}/>)
   })
   let tabpanels = state.habits.map((habit, index) => {
     return (
     
-    <TabPanel value={value} index={index}>
-      {`Details: ${habit.body}`}
+    <TabPanel key={index} value={value} index={index}>
+      <HabitTabPanel habit={habit}/>
     </TabPanel>
     )
   })
