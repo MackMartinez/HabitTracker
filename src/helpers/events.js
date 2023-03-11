@@ -70,8 +70,11 @@ const generateEvents = (habit, sunday) => { // Use sunday as the reference point
     loopEndDate = moment(loopEndDate,'YYYY-MM-DDTHH:mm:ss').add(1,"week");
   }
 
+  console.log("LOOP START DATE:", loopStartDate);
+  console.log("LOOP END DATE:", loopEndDate);
   const filteredEventsGenerated = eventsGenerated.filter((item) => (item.start >= habit.start_date && item.end <= habit.end_date)); // Filter to ensure only dates within the limits are added
-
+  console.log("***EVENTS GENERATED", eventsGenerated)
+  console.log("FILTERED EVENTS:", filteredEventsGenerated)
   return filteredEventsGenerated
 
 }

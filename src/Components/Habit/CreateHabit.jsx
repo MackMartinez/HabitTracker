@@ -41,6 +41,7 @@ export default function CreateHabit (props) {
     
     event.preventDefault();
     
+    
     //loop through events generated and post request to db
     
     Axios.post(habiturl,{
