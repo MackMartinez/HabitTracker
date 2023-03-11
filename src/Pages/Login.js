@@ -53,7 +53,9 @@ export default function Login() {
         }
       );
     const accessToken = response?.data?.accessToken;
-    setAuth({ user, pwd, accessToken });
+    const userId = response.data.id;
+    const avatar = response.data.avatar;
+    setAuth({ user, accessToken, userId, avatar});
     setUser("");
     setPwd("");
     navigate(from, { replace: true });
@@ -79,6 +81,7 @@ export default function Login() {
   useEffect(() => {
     localStorage.setItem("persist", persist);
   }, [persist])
+
 
   const paperStyle = {
     padding: 20,
