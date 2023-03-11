@@ -9,6 +9,12 @@ import Axios from "axios";
 
 export default function CreateHabit (props) {
 
+  //gets user id object
+  const { auth } = useAuth();
+
+  const userId = auth.userId;
+
+
   const textStyle = {margin:'8px 0px'}
 
 
@@ -25,10 +31,12 @@ export default function CreateHabit (props) {
     start_time: "",
     end_time:"",
     days:"",
-    user_id: 2, //not sure yet
+    user_id: userId,
     completed: false 
   });
   
+  
+
   const saveHabit = (event) => {
     // props.setHabitId(props.habitId + 1)
     // Convert Habit into standard event
@@ -47,7 +55,7 @@ export default function CreateHabit (props) {
       start_time: habit.start_time,
       end_time:habit.end_time,
       days: habit.days,
-      user_id: 2, //not sure yet
+      user_id: userId, //not sure yet
       completed: false 
     })
     .then(res => {
@@ -56,7 +64,7 @@ export default function CreateHabit (props) {
       for(let x = 0; x < eventsList.length; x++){
         let uniqueEvent = eventsList[x].unique_event_id
         // console.log(eventsList)
-        Axios.post(eventurl,{unique_event_id:uniqueEvent, habit_id: res.data[0].id})
+        Axios.post(eventurl,{unique_event_id:uniqueEvent, user_id:userId, habit_id: res.data[0].id})
         .then(res => {
           console.log(res.data)
         })
