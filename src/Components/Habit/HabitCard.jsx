@@ -12,7 +12,7 @@ export default function BasicCard() {
     <>
       <Card>
         <CardContent>
-         <HabitList/>
+         <HabitList allHabits={true}/>
         </CardContent>
         <CardActions>
           <AddHabitButton/>
