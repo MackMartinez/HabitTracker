@@ -2,11 +2,32 @@ import React from "react";
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import { Typography } from "@mui/material";
+import axios from "axios";
+import { render } from "react-dom";
 
 export default function HabitTabPanel (props) {
   
+  const editHabit = () =>
+  {
+    console.log("edit");
+  }
+
+  const deleteHabit = () =>
+  {
+    const habiturl = `http://localhost:8080/habit/${props.habit.id}`
+   
+
+    axios.delete(habiturl)
+    .then((res)=> console.log("Deleted"))
+  }
+
+
   return(
     <Grid style={{width:"500px", height: "500px"}}>
+      <Grid>
+        <Typography>Habit id</Typography>
+        {props.habit.id}
+      </Grid>
       <Grid>
         <Typography>Habit Notes</Typography>
         {props.habit.body}
@@ -20,10 +41,10 @@ export default function HabitTabPanel (props) {
         {`Start: ${props.habit.start_time} End: ${props.habit.end_time}`}
       </Grid>
       <Grid >
-      <Button onClick={()=> console.log("edit")} type="submit" color="primary" variant="contained">
+      <Button onClick={editHabit} type="submit" color="primary" variant="contained">
             Edit
       </Button>
-      <Button onClick={()=> console.log("delete")} color="error" variant="contained">
+      <Button onClick={deleteHabit} color="error" variant="contained">
             Delete
       </Button>
       </Grid>
