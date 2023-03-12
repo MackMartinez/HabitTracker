@@ -12,6 +12,8 @@ import RadialBar from '../Components/Gauge/StrokedGauge';
 import '@toast-ui/chart/dist/toastui-chart.min.css';
 import { BarChart, LineChart } from '@toast-ui/react-chart';
 import Typography from '@mui/material/Typography';
+import FormLabel from '@mui/material/FormLabel';
+
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -32,8 +34,6 @@ export default function HabitPageLayout (props) {
   let exerciseCompletedEvents = Number(props.state.eventsCount.filter((event) => event.completed)[1].event_count)
   let shootingCompletedEvents = Number(props.state.eventsCount.filter((event) => event.completed)[2].event_count)
   
-  console.log("***Completed events:", shootingCompletedEvents)
-
   const dataBarChart = {
     categories: ['January', 'Februay', 'March'],
     series: [
@@ -77,7 +77,7 @@ export default function HabitPageLayout (props) {
     chart: {
       width: 800,
       height: 500,
-      title: selectedValue === "Line" ? '# of times habit completed per month': '# of times habit completed per month' ,
+      title: selectedValue === "Line" ? 'Amount of Habits Completed per Month': 'Amount of Habits Completed per Month' ,
     },
     yAxis: {
       title: selectedValue === "Line" ? 'Amount':'Month',
@@ -117,7 +117,8 @@ export default function HabitPageLayout (props) {
           <Typography variant="h4">Your Habits</Typography>
           </Grid>
           <Grid xs={2}>
-            <Item>  
+            <Item>
+            <FormLabel id="demo-row-radio-buttons-group-label">Select Chart Type</FormLabel>  
               <FormControlLabel
                 value="start"
                 control={
