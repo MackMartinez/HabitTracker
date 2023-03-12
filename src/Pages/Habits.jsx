@@ -12,7 +12,6 @@ import RadialBar from '../Components/Gauge/StrokedGauge';
 import '@toast-ui/chart/dist/toastui-chart.min.css';
 import { BarChart, LineChart } from '@toast-ui/react-chart';
 import Typography from '@mui/material/Typography';
-import useApplicationData from '../hooks/useApplicationData';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -21,6 +20,14 @@ const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
   textAlign: 'center',
   color: theme.palette.text.secondary,
+}));
+const Dashboard = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+  height: '350px'
 }));
 
 /* 
@@ -165,30 +172,24 @@ export default function HabitPageLayout (props) {
           <Grid xs={12}>
           <Typography variant="h4" style={{backgroundColor:"#1976d2", color:"#fff"}}>Your Stats</Typography>
           </Grid>
-          <Grid xs={3}>
-            <Item style={{minHeight: "250px", minWidth: "200px" , backgroundColor: "inherit"}}>
+          <Grid xs={4}>
+            <Dashboard>
               <h3>Completed Habits</h3>
               <CompleteHabitList habits={props.state.habits}/>
-            </Item>
+            </Dashboard>
           </Grid>
-          <Grid xs={3}>
-            <Item style={{minHeight: "250px", minWidth: "200px" , backgroundColor: "inherit"}}>
+          <Grid xs={4}>
+            <Dashboard>
               <h3>Incomplete Habits</h3>
               <IncompleteHabitList habits={props.state.habits}/>
-            </Item>
+            </Dashboard>
           </Grid>
-          <Grid xs={3}>
-            <Item style={{minHeight: "250px", minWidth: "200px" , backgroundColor: "inherit"}}>
-              <h3>Week Completion</h3>
+          <Grid xs={4}>
+            <Dashboard>
+              <h3>Habit Progress</h3>
               <RadialBar/>
-
-            </Item>
-          </Grid>
-          <Grid xs={3}>
-            <Item style={{minHeight: "250px", minWidth: "200px" , backgroundColor: "inherit"}}>
-              <h3>Goals</h3>
-            </Item>
-          </Grid>   
+            </Dashboard>
+          </Grid>  
         </Grid>
     </>
   ) 
