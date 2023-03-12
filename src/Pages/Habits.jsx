@@ -71,19 +71,19 @@ export default function HabitPageLayout (props) {
   };
 
 
-  const [selectedValue, setSelectedValue] = React.useState('week');
+  const [selectedValue, setSelectedValue] = React.useState('Line');
 
   const options = {
     chart: {
       width: 800,
       height: 500,
-      title: selectedValue === "week" ? '# of times habit completed per week': '# of times habit completed per month' ,
+      title: selectedValue === "Line" ? '# of times habit completed per month': '# of times habit completed per month' ,
     },
     yAxis: {
-      title: selectedValue === "week" ? 'Hours':'Month',
+      title: selectedValue === "Line" ? 'Amount':'Month',
     },
     xAxis: {
-      title: "week" ? 'Day':'Amount',
+      title: selectedValue === "Line" ? 'Month':'Amount',
     },
   };
   
@@ -98,7 +98,7 @@ export default function HabitPageLayout (props) {
   };
 
   const showChartPeriod = () => {
-    if (selectedValue === 'week') {
+    if (selectedValue === 'Line') {
       return <LineChart data={dataLineChart} options={options} style={containerStyle}/> // What is the style tag doing?
     }
     return <BarChart data={dataBarChart} options={options} style={containerStyle} />
@@ -122,9 +122,9 @@ export default function HabitPageLayout (props) {
                 value="start"
                 control={
                   <Radio
-                  checked={selectedValue === 'week'}
+                  checked={selectedValue === 'Line'}
                   onChange={handleChange}
-                  value="week"
+                  value="Line"
                   name="radio-buttons"
                   inputProps={{ 'aria-label': 'A' }}
                   sx={{
@@ -133,7 +133,7 @@ export default function HabitPageLayout (props) {
                     }}}
                   />
                   }
-                  label="Week"
+                  label="Line"
                   labelPlacement="top"
                   />
               <FormControlLabel
@@ -151,7 +151,7 @@ export default function HabitPageLayout (props) {
                     }}}
                   />
                   }
-                  label="Month"
+                  label="Bar"
                   labelPlacement="top"
                   />
             </Item>
