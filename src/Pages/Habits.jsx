@@ -13,7 +13,6 @@ import '@toast-ui/chart/dist/toastui-chart.min.css';
 import { BarChart, LineChart } from '@toast-ui/react-chart';
 import Typography from '@mui/material/Typography';
 
-
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -35,33 +34,33 @@ const Dashboard = styled(Paper)(({ theme }) => ({
   
 */
 
-const data = {
-  categories: ['June', 'July', 'Aug', 'Sep', 'Oct', 'Nov'],
-  series: [
-    {
-      //Call from API
-      name: 'Flying',
-      data: [20, 10, 15, 20, 10, 18],
-    },
-    {
-      //Call from API
-      name: 'Strength building',
-      data: [10, 13, 16, 14, 18, 25],
-    },
-  ],
-};
-
-const dataWeek = {
+const dataBarChart = {
   categories: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
   series: [
     {
       //Call from API
-      name: 'Flying',
+      name: 'Coding',
+      data: [1, 0, 1, 1, 1, 0, 1],
+    },
+    {
+      //Call from API
+      name: 'Shooting',
+      data: [1, 0, 1, 1, 1, 0, 1],
+    },
+  ],
+};
+
+const dataLineChart = {
+  categories: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+  series: [
+    {
+      //Call from API
+      name: 'Coding',
       data: [20, 10, 15, 20, 10, 18],
     },
     {
       //Call from API
-      name: 'Strength building',
+      name: 'Shooting',
       data: [10, 13, 16, 14, 18, 25],
     },
   ],
@@ -98,9 +97,9 @@ export default function HabitPageLayout (props) {
 
   const showChartPeriod = () => {
     if (selectedValue === 'week') {
-      return <LineChart data={dataWeek} options={options} style={containerStyle}/> // What is the style tag doing?
+      return <LineChart data={dataLineChart} options={options} style={containerStyle}/> // What is the style tag doing?
     }
-    return <BarChart data={data} options={options} style={containerStyle} />
+    return <BarChart data={dataBarChart} options={options} style={containerStyle} />
   }
 
   return(
@@ -174,14 +173,14 @@ export default function HabitPageLayout (props) {
           </Grid>
           <Grid xs={4}>
             <Dashboard>
-              <h3>Completed Habits</h3>
-              <CompleteHabitList habits={props.state.habits}/>
+              <h3>Amount of Completed Habit Events</h3>
+              <CompleteHabitList eventsCount={props.state.eventsCount}/>
             </Dashboard>
           </Grid>
           <Grid xs={4}>
             <Dashboard>
-              <h3>Incomplete Habits</h3>
-              <IncompleteHabitList habits={props.state.habits}/>
+              <h3>Amount of Incompleted Habit Events</h3>
+              <IncompleteHabitList eventsCount={props.state.eventsCount}/>
             </Dashboard>
           </Grid>
           <Grid xs={4}>
