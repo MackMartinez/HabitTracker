@@ -60,11 +60,8 @@ const dataWeek = {
   ],
 };
 
-export default function HabitPageLayout () {
+export default function HabitPageLayout (props) {
 
-  const {
-    state
-  } = useApplicationData();
 
   const [selectedValue, setSelectedValue] = React.useState('week');
 
@@ -155,7 +152,7 @@ export default function HabitPageLayout () {
 
         <Grid container spacing ={2} sx={{ flexGrow: 1 }}>
           <Grid xs={6}>
-            <HabitCard/>
+            <HabitCard state={props.state} setState={props.setState}/>
           </Grid>
           <Grid xs={6}>
             <Item style={{maxHeight: "500px", maxWidth: "800px" , backgroundColor: "inherit"}}>
@@ -171,13 +168,13 @@ export default function HabitPageLayout () {
           <Grid xs={3}>
             <Item style={{minHeight: "250px", minWidth: "200px" , backgroundColor: "inherit"}}>
               <h3>Completed Habits</h3>
-              <CompleteHabitList habits={state.habits}/>
+              <CompleteHabitList habits={props.state.habits}/>
             </Item>
           </Grid>
           <Grid xs={3}>
             <Item style={{minHeight: "250px", minWidth: "200px" , backgroundColor: "inherit"}}>
               <h3>Incomplete Habits</h3>
-              <IncompleteHabitList habits={state.habits}/>
+              <IncompleteHabitList habits={props.state.habits}/>
             </Item>
           </Grid>
           <Grid xs={3}>
