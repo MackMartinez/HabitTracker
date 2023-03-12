@@ -24,11 +24,11 @@ const Item = styled(Paper)(({ theme }) => ({
   
 
 export default function UserLandingPage(props) {
-  const [calendarView, setCalendarView] = React.useState('week');
+  // const [calendarView, setCalendarView] = React.useState('week');
   const [habitId, setHabitId] = useState(0)
 
   const handleChange = (event) => {
-    setCalendarView(event.target.value);
+    props.setState(prev => ({...prev, view: event.target.value }));
   };
 
   let [date, setDate] = useState(new Date());
@@ -70,7 +70,7 @@ export default function UserLandingPage(props) {
             value="start"
             control={
               <Radio
-              checked={calendarView === 'week'}
+              checked={props.state.view === 'week'}
               onChange={handleChange}
               value="week"
               name="radio-buttons"
@@ -88,7 +88,7 @@ export default function UserLandingPage(props) {
             value="start"
             control={
               <Radio
-              checked={calendarView === 'month'}
+              checked={props.state.view === 'month'}
               onChange={handleChange}
               value="month"
               name="radio-buttons"
@@ -117,7 +117,6 @@ export default function UserLandingPage(props) {
       <Grid item xs={10}>
         <Item>
          { mode === SHOWING && <HabitCalendar 
-            view={calendarView}
             initialMonth={date.getMonth()}
             initialYear={date.getFullYear()}
             setStartOfRange={setStartOfRange}

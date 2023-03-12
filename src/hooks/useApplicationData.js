@@ -7,7 +7,8 @@ export default function useApplicationData() {
   const [ state, setState ] = useState({
     habits: [],
     events: [],
-    eventsCount:[]
+    eventsCount:[],
+    view: "month"
   });
   
    // Use effect to make axios call and get habit data
@@ -31,6 +32,8 @@ export default function useApplicationData() {
     ]).then((all) => {
       setState(prev => ({...prev, habits: all[0].data, events: all[1].data, eventsCount: all[2].data}))
       console.log(all[2].data)
+      console.log(all[1].data)
+      console.log(all[0].data)
     });
   },[])
 

@@ -6,7 +6,6 @@ import Grid from '@mui/material/Unstable_Grid2';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import Button from '@mui/material/Button';
-import useApplicationData from "../../hooks/useApplicationData";
 import { generateEvents } from "../../helpers/events";
 
 
@@ -73,13 +72,19 @@ import { generateEvents } from "../../helpers/events";
   let habits = props.state.habits
   let eventsArray = []
   
-  if (props.sunday) {
-    habits.forEach((habit) => {
-      eventsArray.push(generateEvents(habit, props.sunday));
-    });
-  }
+  useEffect(()=> {
 
-  let events = eventsArray.flat();
+    if (props.sunday) {
+      habits.forEach((habit) => {
+        eventsArray.push(generateEvents(habit, props.sunday));
+      });
+      let events = eventsArray.flat();
+      console.log("state", props.state);
+      props.setState(prev => ({ ...prev, events : events}));
+    }
+
+    },[])
+
 
   return ( 
     <Grid >
@@ -105,17 +110,17 @@ import { generateEvents } from "../../helpers/events";
 
       </Grid>
       <Grid>
-        <Calendar  // Calendar component from Toast UI which require certain flags to operate
+       {} <Calendar  // Calendar component from Toast UI which require certain flags to operate
           ref={calref}
           height="900px"
-          view={props.view}
+          view={props.state.view}
           month={{
             dayNames: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
             visibleWeeksCount: 4,
           }}
           useDetailPopup={false}
           useFormPopup={false}
-          events={events}
+          events={props.state.events}
           />
       </Grid>
     </Grid>

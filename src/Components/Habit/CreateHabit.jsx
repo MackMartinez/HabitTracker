@@ -59,8 +59,10 @@ export default function CreateHabit (props) {
         for (let x = 0; x < eventsList.length; x++) {
           let uniqueEvent = eventsList[x].unique_event_id
           let completedBoolean = eventsList[x].completed
-          Axios.post(eventurl, { unique_event_id: uniqueEvent, habit_id: res.data[0].id, user_id: userid, completed: completedBoolean })
+          let event = { unique_event_id: uniqueEvent, habit_id: res.data[0].id, user_id: userid, completed: completedBoolean }; 
+          Axios.post(eventurl, event)
             .then(response => {
+              props.setState(prev => ({...prev, events : [...prev.events, event]}));
               console.log(response.data)
             })
             .catch(error => {
