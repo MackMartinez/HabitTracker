@@ -12,8 +12,6 @@ import RadialBar from '../Components/Gauge/StrokedGauge';
 import '@toast-ui/chart/dist/toastui-chart.min.css';
 import { BarChart, LineChart } from '@toast-ui/react-chart';
 import Typography from '@mui/material/Typography';
-import useApplicationData from '../hooks/useApplicationData';
-
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -168,13 +166,13 @@ export default function HabitPageLayout (props) {
           <Grid xs={3}>
             <Item style={{minHeight: "250px", minWidth: "200px" , backgroundColor: "inherit"}}>
               <h3>Completed Habits</h3>
-              <CompleteHabitList habits={props.state.habits}/>
+              <CompleteHabitList events={props.state.events}/>
             </Item>
           </Grid>
           <Grid xs={3}>
             <Item style={{minHeight: "250px", minWidth: "200px" , backgroundColor: "inherit"}}>
               <h3>Incomplete Habits</h3>
-              <IncompleteHabitList habits={props.state.habits}/>
+              <IncompleteHabitList events={props.state.events}/>
             </Item>
           </Grid>
           <Grid xs={3}>
