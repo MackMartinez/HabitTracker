@@ -61,7 +61,7 @@ export default function HabitTabPanel (props) {
   return (
     <Grid container direction="column" style={rootStyles}>
       <Grid item>
-        <Typography variant="h3">{props.habit.title}</Typography>
+        <Typography variant="h4">{props.habit.title}</Typography>
       </Grid>
       <Grid item>
         <Typography variant="h5">Notes</Typography>
