@@ -44,22 +44,21 @@ function a11yProps(index) {
   };
 }
 
-export default function VerticalTabs() {
+export default function VerticalTabs(props) {
   const [value, setValue] = React.useState(0);
-  const { state } = useApplicationData()
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  let tabs = state.habits.map((habit, index) => {
+  let tabs = props.state.habits.map((habit, index) => {
     return (<Tab key={index} label={habit.title} {...a11yProps(index)}/>)
   })
-  let tabpanels = state.habits.map((habit, index) => {
+  let tabpanels = props.state.habits.map((habit, index) => {
     return (
     
     <TabPanel key={index} value={value} index={index}>
-      <HabitTabPanel habit={habit}/>
+      <HabitTabPanel habit={habit} state={props.state} setState={props.setState}/>
     </TabPanel>
     )
   })
