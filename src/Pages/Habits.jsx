@@ -12,7 +12,6 @@ import RadialBar from '../Components/Gauge/StrokedGauge';
 import '@toast-ui/chart/dist/toastui-chart.min.css';
 import { BarChart, LineChart } from '@toast-ui/react-chart';
 import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider } from '@mui/material';
 import useApplicationData from '../hooks/useApplicationData';
 
 
