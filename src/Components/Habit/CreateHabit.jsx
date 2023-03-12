@@ -36,36 +36,44 @@ export default function CreateHabit (props) {
   const saveHabit = (event) => {
     const habiturl = "http://localhost:8080/habit"
     const eventurl = "http://localhost:8080/habit/events"
-    
+  
     event.preventDefault();
-    
-    Axios.post(habiturl,{
+  
+    Axios.post(habiturl, {
       title: habit.title,
       body: habit.body,
-      start_date:habit.start_date,
+      start_date: habit.start_date,
       end_date: habit.end_date,
       start_time: habit.start_time,
-      end_time:habit.end_time,
+      end_time: habit.end_time,
       days: habit.days,
       user_id: userid,
-      completed: false 
+      completed: false
     })
-    .then(res => {
-      let eventsList = generateEvents(res.data[0], props.sunday)
-      console.log("***EventsList:", eventsList)
-      //loop through events generated and post each event to db
-      for(let x = 0; x < eventsList.length; x++){
-        let uniqueEvent = eventsList[x].unique_event_id
-        let completedBoolean = eventsList[x].completed
-        Axios.post(eventurl,{unique_event_id:uniqueEvent, habit_id: res.data[0].id, user_id: userid, completed: completedBoolean})
-        .then(res => {
-          console.log(res.data)
-        })
-      }
-    })
-    // Return to Calendar 
-    props.setMode("SHOWING");
-  }
+      .then(res => {
+        let eventsList = generateEvents(res.data[0], props.sunday)
+        console.log("***EventsList:", eventsList)
+        // loop through events generated and post each event to db
+        for (let x = 0; x < eventsList.length; x++) {
+          let uniqueEvent = eventsList[x].unique_event_id
+          let completedBoolean = eventsList[x].completed
+          Axios.post(eventurl, { unique_event_id: uniqueEvent, habit_id: res.data[0].id, user_id: userid, completed: completedBoolean })
+            .then(response => {
+              console.log(response.data)
+            })
+            .catch(error => {
+              console.error(error)
+              throw new Error("Failed to save event")
+            })
+        }
+        // Return to Calendar 
+        props.setMode("SHOWING");
+      })
+      .catch(error => {
+        console.error(error)
+        throw new Error("Failed to save habit")
+      })
+  };
   
   const handleOnChange = (event) => {
 const value = event.target.value;
