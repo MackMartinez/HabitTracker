@@ -32,8 +32,8 @@ function App() {
   return (
     <div height={500}>
     { loading && (
-      <Box sx={{ display: 'flex', alignItems: "center", justifyContent: "center", flexDirection: "column", alignContent: 'center'}}>
-    <CircularProgress size={100} />
+      <Box mt={50} sx={{ display: 'flex', alignItems: "center", justifyContent: "center", flexDirection: "column", alignContent: 'center'}}>
+    <CircularProgress size={120} />
       </Box>
     ) || (
      <BrowserRouter>

@@ -1,21 +1,15 @@
-import React from "react";
-import {
-  Grid,
-  Paper,
-  Avatar,
-  TextField,
-  FormGroup,
-  Button,
-} from "@mui/material";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import {
-  faCheck,
-  faTimes,
-  faInfoCircle,
-} from "@fortawesome/free-solid-svg-icons";
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { Grid, Paper, Avatar, TextField, FormGroup, Button } from "@mui/material";
+import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useRef, useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "../api/axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -26,6 +20,10 @@ export default function Register() {
   const userRef = useRef();
   const emailRef = useRef();
   const errRef = useRef();
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/login";
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState(""); 
@@ -48,6 +46,17 @@ export default function Register() {
 
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
+
+  const [isRedirecting, setIsRedirecting] = useState(true);
+
+  toast.configure();
+  const handleSuccess = useCallback(() => {
+    toast.success("Successful Registration!", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: true,
+      pauseOnFocusLoss: false
+    });
+  }, []);
 
   useEffect(() => {
     userRef.current.focus();
@@ -90,12 +99,15 @@ export default function Register() {
         JSON.stringify({firstName, lastName, user, email, pwd }),
         {
           headers: { "Content-Type": "application/json"},
-          withCredentials: true //This was changed from withCredentials to work
+          withCredentials: true 
         }
       );
-      setSuccess(true); // for testing, remove when implemented
-      //clear state and controlled inputs
-      //need value attrib on inputs for this
+      setSuccess(true);
+      handleSuccess();
+      setTimeout(() => {
+        setIsRedirecting(false);
+        navigate(from, { replace: true });
+      }, 1000);
       setFirstName("");
       setLastName("");
       setEmail("");
@@ -126,14 +138,12 @@ export default function Register() {
   const textStyle = { margin: "8px 0px" };
 
   return (
+    
     <>
       {success ? (
-        <section>
-          <h1>Success!</h1>
-          <p>
-            <a href="/login">Sign In</a> {/*should automatically reroute*/}
-          </p>
-        </section>
+        <Box mt={50} sx={{ display: 'flex', alignItems: "center", justifyContent: "center", flexDirection: "column", alignContent: 'center'}}>
+        <CircularProgress size={120}/>
+          </Box>
       ) : (
         <Grid>
           <Paper elevation={10} style={paperStyle}>

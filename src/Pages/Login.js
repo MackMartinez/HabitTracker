@@ -1,19 +1,13 @@
-import React from "react";
-import {
-  Grid,
-  Paper,
-  Avatar,
-  TextField,
-  Checkbox,
-  FormGroup,
-  FormControlLabel,
-  Button,
-} from "@mui/material";
+import React, { useRef, useState, useEffect, useCallback } from "react";
+import { Grid, Paper, Avatar, TextField, Checkbox, FormGroup, FormControlLabel, Button } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { useRef, useState, useEffect, useContext } from "react";
 import useAuth from "../hooks/useAuth";
-import axios from '../api/axios'
+import axios from "../api/axios";
 import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 const LOGIN_URL = '/login'; 
 
@@ -30,7 +24,18 @@ export default function Login() {
   const [user, setUser] = useState("");
   const [pwd, setPwd] = useState("");
   const [errMsg, setErrMsg] = useState("");
-  const [success, setSuccess] = useState(false); //use this to route to /user upon successful submission
+  const [success, setSuccess] = useState(false); 
+
+  const [isRedirecting, setIsRedirecting] = useState(true);
+
+  toast.configure();
+  const handleSuccess = useCallback(() => {
+    toast.success("Successful Login!", {
+      position: toast.POSITION.BOTTOM_LEFT,
+      autoClose: true,
+      pauseOnFocusLoss: false
+    });
+  }, []);
 
   useEffect(() => {
     userRef.current.focus();
@@ -58,7 +63,12 @@ export default function Login() {
     setAuth({ user, accessToken, userId, avatar});
     setUser("");
     setPwd("");
-    navigate(from, { replace: true });
+    setSuccess(true);
+    handleSuccess();
+    setTimeout(() => {
+      setIsRedirecting(false);
+      navigate(from, { replace: true });
+    }, 1000)
     } catch (err) {
       if(!err?.response) {
         setErrMsg('No Server Response')
@@ -97,14 +107,9 @@ export default function Login() {
   return (
     <>
       {success ? (
-        <section>
-          <h1>You are logged in!</h1>
-          <br />
-          <p>
-            {/*Should automatically reroute to /user using react router*/}
-            <a href="/user">Go to Home</a>
-          </p>
-        </section>
+        <Box mt={50} sx={{ display: 'flex', alignItems: "center", justifyContent: "center", flexDirection: "column", alignContent: 'center'}}>
+        <CircularProgress size={120}/>
+          </Box>
       ) : (
         <Grid>
           <Paper elevation={10} style={paperStyle}>
