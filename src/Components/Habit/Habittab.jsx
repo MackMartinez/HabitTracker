@@ -16,9 +16,13 @@ export default function HabitTabPanel (props) {
   {
     const habiturl = `http://localhost:8080/habit/${props.habit.id}`
    
-
+    
     axios.delete(habiturl)
-    .then((res)=> console.log("Deleted"))
+    .then((res)=> {
+      let remainingHabits = props.state.habits.filter((habit)=>habit.id !== props.habit.id);
+      props.setState(prev => ({...prev, habits: remainingHabits}));
+      console.log("Deleted");
+  })
   }
 
 

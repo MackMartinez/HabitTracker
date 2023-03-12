@@ -125,7 +125,7 @@ export default function UserLandingPage(props) {
             state={props.state}
             setState={props.setState}
           />}
-         {mode === CREATING && <CreateHabit setMode={setMode} sunday={startOfRange} habitId={habitId} setHabitId={setHabitId}/> }
+         {mode === CREATING && <CreateHabit setMode={setMode} sunday={startOfRange} habitId={habitId} setHabitId={setHabitId} state={props.state} setState={props.setState}/> }
         </Item>
       </Grid>
     </Grid>
