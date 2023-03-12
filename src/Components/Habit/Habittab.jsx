@@ -3,7 +3,6 @@ import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import { Typography } from "@mui/material";
 import axios from "axios";
-import { render } from "react-dom";
 
 export default function HabitTabPanel (props) {
   
