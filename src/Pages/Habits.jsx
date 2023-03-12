@@ -26,33 +26,33 @@ const Item = styled(Paper)(({ theme }) => ({
   
 */
 
-const data = {
-  categories: ['June', 'July', 'Aug', 'Sep', 'Oct', 'Nov'],
-  series: [
-    {
-      //Call from API
-      name: 'Flying',
-      data: [20, 10, 15, 20, 10, 18],
-    },
-    {
-      //Call from API
-      name: 'Strength building',
-      data: [10, 13, 16, 14, 18, 25],
-    },
-  ],
-};
-
-const dataWeek = {
+const dataBarChart = {
   categories: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
   series: [
     {
       //Call from API
-      name: 'Flying',
+      name: 'Coding',
+      data: [1, 0, 1, 1, 1, 0, 1],
+    },
+    {
+      //Call from API
+      name: 'Shooting',
+      data: [1, 0, 1, 1, 1, 0, 1],
+    },
+  ],
+};
+
+const dataLineChart = {
+  categories: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+  series: [
+    {
+      //Call from API
+      name: 'Coding',
       data: [20, 10, 15, 20, 10, 18],
     },
     {
       //Call from API
-      name: 'Strength building',
+      name: 'Shooting',
       data: [10, 13, 16, 14, 18, 25],
     },
   ],
@@ -89,9 +89,9 @@ export default function HabitPageLayout (props) {
 
   const showChartPeriod = () => {
     if (selectedValue === 'week') {
-      return <LineChart data={dataWeek} options={options} style={containerStyle}/> // What is the style tag doing?
+      return <LineChart data={dataLineChart} options={options} style={containerStyle}/> // What is the style tag doing?
     }
-    return <BarChart data={data} options={options} style={containerStyle} />
+    return <BarChart data={dataBarChart} options={options} style={containerStyle} />
   }
 
   return(
@@ -165,13 +165,13 @@ export default function HabitPageLayout (props) {
           </Grid>
           <Grid xs={3}>
             <Item style={{minHeight: "250px", minWidth: "200px" , backgroundColor: "inherit"}}>
-              <h3>Amount of Completed Habits</h3>
+              <h3>Amount of Completed Habit Events</h3>
               <CompleteHabitList eventsCount={props.state.eventsCount}/>
             </Item>
           </Grid>
           <Grid xs={3}>
             <Item style={{minHeight: "250px", minWidth: "200px" , backgroundColor: "inherit"}}>
-              <h3>Amount of Incomplete Habits</h3>
+              <h3>Amount of Incompleted Habit Events</h3>
               <IncompleteHabitList eventsCount={props.state.eventsCount}/>
             </Item>
           </Grid>
