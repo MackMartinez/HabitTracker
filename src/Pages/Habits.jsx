@@ -26,39 +26,49 @@ const Item = styled(Paper)(({ theme }) => ({
   
 */
 
-const dataBarChart = {
-  categories: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-  series: [
-    {
-      //Call from API
-      name: 'Coding',
-      data: [1, 0, 1, 1, 1, 0, 1],
-    },
-    {
-      //Call from API
-      name: 'Shooting',
-      data: [1, 0, 1, 1, 1, 0, 1],
-    },
-  ],
-};
-
-const dataLineChart = {
-  categories: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-  series: [
-    {
-      //Call from API
-      name: 'Coding',
-      data: [20, 10, 15, 20, 10, 18],
-    },
-    {
-      //Call from API
-      name: 'Shooting',
-      data: [10, 13, 16, 14, 18, 25],
-    },
-  ],
-};
 
 export default function HabitPageLayout (props) {
+  let codingCompletedEvents = Number(props.state.eventsCount.filter((event) => event.completed)[0].event_count)
+  let exerciseCompletedEvents = Number(props.state.eventsCount.filter((event) => event.completed)[1].event_count)
+  let shootingCompletedEvents = Number(props.state.eventsCount.filter((event) => event.completed)[2].event_count)
+  
+  console.log("***Completed events:", shootingCompletedEvents)
+
+  const dataBarChart = {
+    categories: ['January', 'Februay', 'March'],
+    series: [
+      {
+        name: 'Coding',
+        data: [4, 5, codingCompletedEvents],
+      },
+      {
+        name: 'Shooting',
+        data: [8, 3, shootingCompletedEvents],
+      },
+      {
+        name: 'Exercise',
+        data: [5, 6, exerciseCompletedEvents],
+      },
+    ],
+  };
+  
+  const dataLineChart = {
+    categories: ['January', 'Februay', 'March'],
+    series: [
+      {
+        name: 'Coding',
+        data: [4, 5, codingCompletedEvents],
+      },
+      {
+        name: 'Shooting',
+        data: [8, 3, shootingCompletedEvents],
+      },
+      {
+        name: 'Exercise',
+        data: [5, 6, exerciseCompletedEvents],
+      },
+    ],
+  };
 
 
   const [selectedValue, setSelectedValue] = React.useState('week');
