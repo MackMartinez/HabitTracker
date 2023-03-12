@@ -52,6 +52,7 @@ export default function CreateHabit (props) {
     })
       .then(res => {
         let eventsList = generateEvents(res.data[0], props.sunday)
+        console.log("***HABIT:", habit)
         console.log("***EventsList:", eventsList)
         // loop through events generated and post each event to db
         for (let x = 0; x < eventsList.length; x++) {
