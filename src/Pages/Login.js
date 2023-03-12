@@ -17,7 +17,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const LOGIN_URL = '/login'; 
 
-export default function Login() {
+export default function Login(props) {
   const { setAuth, persist, setPersist } = useAuth();
 
   const navigate = useNavigate();
@@ -59,6 +59,7 @@ export default function Login() {
     setUser("");
     setPwd("");
     navigate(from, { replace: true });
+    props.setState(prev => ({...prev}));
     } catch (err) {
       if(!err?.response) {
         setErrMsg('No Server Response')
