@@ -30,11 +30,10 @@ export default function useApplicationData() {
       })
     ]).then((all) => {
       setState(prev => ({...prev, habits: all[0].data, events: all[1].data, eventsCount: all[2].data}))
-      // console.log(state.events)
+      console.log(all[2].data)
     });
   },[])
 
-  
 
   return {
     state, setState

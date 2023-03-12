@@ -165,14 +165,14 @@ export default function HabitPageLayout (props) {
           </Grid>
           <Grid xs={3}>
             <Item style={{minHeight: "250px", minWidth: "200px" , backgroundColor: "inherit"}}>
-              <h3>Completed Habits</h3>
-              <CompleteHabitList events={props.state.events}/>
+              <h3>Amount of Completed Habits</h3>
+              <CompleteHabitList eventsCount={props.state.eventsCount}/>
             </Item>
           </Grid>
           <Grid xs={3}>
             <Item style={{minHeight: "250px", minWidth: "200px" , backgroundColor: "inherit"}}>
-              <h3>Incomplete Habits</h3>
-              <IncompleteHabitList events={props.state.events}/>
+              <h3>Amount of Incomplete Habits</h3>
+              <IncompleteHabitList eventsCount={props.state.eventsCount}/>
             </Item>
           </Grid>
           <Grid xs={3}>

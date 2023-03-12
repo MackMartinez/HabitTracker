@@ -4,9 +4,9 @@ import HabitStatusListItem from "./HabitStatusListItem";
 
 export function CompleteHabitList(props) {
 
-  let completeHabitsList = props.events.filter((event) => event.completed).map((event, index) => {
+  let completeHabitsList = props.eventsCount.filter((event) => event.completed).map((event, index) => {
     return(
-       <HabitStatusListItem key ={index} habitStatusListItem={event.habit_id}/>
+       <HabitStatusListItem key ={index} eventTitle={event.title} eventCount={event.event_count}/>
       )
     }); 
 
@@ -18,9 +18,9 @@ export function CompleteHabitList(props) {
 };
 export function IncompleteHabitList(props) {
 
-  let incompleteHabitsList = props.events.filter((event) => !event.completed).map((event, index) => {
+  let incompleteHabitsList = props.eventsCount.filter((event) => !event.completed).map((event, index) => {
     return(
-       <HabitStatusListItem key ={index} habitStatusListItem={event.habit_id}/>
+       <HabitStatusListItem key ={index} eventTitle={event.title} eventCount={event.event_count}/>
       )
     }); 
 
