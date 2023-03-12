@@ -18,7 +18,9 @@ export default function useApplicationData() {
     }
 
     Promise.all([
-      axios.get(routes.getHabits)
+      axios.get(routes.getHabits, {
+        withCredentials: true
+    })
     ]).then((all) => {
       setState(prev => ({...prev, habits: all[0].data}))
       // console.log(all[0].data)
