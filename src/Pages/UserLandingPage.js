@@ -23,7 +23,7 @@ const Item = styled(Paper)(({ theme }) => ({
  // Sets the details of the calendar
   
 
-export default function UserLandingPage() {
+export default function UserLandingPage(props) {
   const [calendarView, setCalendarView] = React.useState('week');
   const [habitId, setHabitId] = useState(0)
 
@@ -107,11 +107,11 @@ export default function UserLandingPage() {
       <Grid item xs={2}>
         <Item style={{maxheight: "450px", backgroundColor: "inherit"}}>
          <Typography>Active Habits</Typography>
-          <HabitList date={date} upcoming={true}/>
+          <HabitList date={date} upcoming={true} state={props.state} setState={props.setState}/>
         </Item>
         <Item style={{maxheight: "450px", backgroundColor: "inherit"}}>
          <Typography>Inactive Habits</Typography>
-          <HabitList date={date} upcoming={false}/>
+          <HabitList date={date} upcoming={false} state={props.state} setState={props.setState}/>
         </Item>
       </Grid>
       <Grid item xs={10}>
@@ -122,6 +122,8 @@ export default function UserLandingPage() {
             initialYear={date.getFullYear()}
             setStartOfRange={setStartOfRange}
             sunday={startOfRange}
+            state={props.state}
+            setState={props.setState}
           />}
          {mode === CREATING && <CreateHabit setMode={setMode} sunday={startOfRange} habitId={habitId} setHabitId={setHabitId}/> }
         </Item>

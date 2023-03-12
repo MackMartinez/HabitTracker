@@ -69,8 +69,8 @@ import { generateEvents } from "../../helpers/events";
     rangeStart();
   },[])
   
-  const { state } = useApplicationData();
-  let habits = state.habits
+ 
+  let habits = props.state.habits
   let eventsArray = []
   
   if (props.sunday) {

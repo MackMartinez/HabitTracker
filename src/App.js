@@ -11,6 +11,7 @@ import PersistLogin from './Components/PersistLogin';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import HomeLandingPage from './Pages/HomeLandingPage';
+import useApplicationData from './hooks/useApplicationData';
 
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
@@ -32,6 +33,8 @@ function App() {
       })
   },[])
 
+  const { state, setState} = useApplicationData();  // Import data at the top level
+
   return (
     <div height={500}>
     { loading && (
@@ -46,8 +49,8 @@ function App() {
       <Route path="/register" element={<Register/>}/>
       {/* This should be /:user to render specific user logged in  */}
       <Route element={<PersistLogin/>}>
-        <Route path="/user" element={<UserLandingPage/>}/>
-        <Route path="/user/habit" element={<HabitPageLayout/>}/>
+        <Route path="/user" element={<UserLandingPage state={state} setState={setState}/>}/>
+        <Route path="/user/habit" element={<HabitPageLayout state={state} setState={setState}/>}/>
         <Route path="/user/habit/create" element={<CreateHabit/>}/>
         <Route path="/habit-info" element={<HabitInfoPage/>}/>
         <Route path="/about" element={<AboutUsPage/>}/>

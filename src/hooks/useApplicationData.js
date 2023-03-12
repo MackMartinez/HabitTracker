@@ -5,7 +5,8 @@ export default function useApplicationData() {
 
   
   const [ state, setState ] = useState({
-    habits: []
+    habits: [],
+    events:[]
   });
   
 
@@ -23,7 +24,7 @@ export default function useApplicationData() {
       // console.log(all[0].data)
     });
 
-  },[])
+  },[state])
 
   return {
     // console.log(state)

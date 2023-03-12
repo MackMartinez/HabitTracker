@@ -6,22 +6,19 @@ import moment from "moment";
   
 export default function HabitList(props) {
 
-  const {
-    state
-  } = useApplicationData();
 
-  let pastHabits = state.habits.filter((habit) => moment(props.date,'YYYY-MM-DDTHH:mm:ss').diff(moment(habit.end_date,'YYYY-MM-DDTHH:mm:ss'), 'days') >= 0).map((habit, index) => {
+  let pastHabits = props.state.habits.filter((habit) => moment(props.date,'YYYY-MM-DDTHH:mm:ss').diff(moment(habit.end_date,'YYYY-MM-DDTHH:mm:ss'), 'days') >= 0).map((habit, index) => {
     return(
       <HabitListItem key={index} habit={habit} upcoming={props.upcoming}/>
     )
   });
 
-  let futureHabits = state.habits.filter((habit) => moment(props.date,'YYYY-MM-DDTHH:mm:ss').diff(moment(habit.end_date,'YYYY-MM-DDTHH:mm:ss'), 'days') <= 0).map((habit, index) => {
+  let futureHabits = props.state.habits.filter((habit) => moment(props.date,'YYYY-MM-DDTHH:mm:ss').diff(moment(habit.end_date,'YYYY-MM-DDTHH:mm:ss'), 'days') <= 0).map((habit, index) => {
     return(
       <HabitListItem key={index} habit={habit} upcoming={props.upcoming}/>
     )
   });
-  let allHabits = state.habits.map((habit, index) => {
+  let allHabits = props.state.habits.map((habit, index) => {
     return(
       <HabitListItem key={index} habit={habit} upcoming={props.upcoming}/>
     )

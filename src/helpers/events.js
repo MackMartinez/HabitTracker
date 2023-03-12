@@ -24,8 +24,8 @@ const addDays = (start_date, end_date, num) => { // Adds days to the date passed
 
 const generateEvents = (habit, sunday) => { // Use sunday as the reference point to change the day
 
-  let SundayEventStart = `${sunday.d.getFullYear()}-0${sunday.d.getMonth() + 1}-0${sunday.d.getDate()}T${habit.start_time}:00`;  // Moment JS could probably format better
-  let SundayEventEnd = `${sunday.d.getFullYear()}-0${sunday.d.getMonth() + 1}-0${sunday.d.getDate()}T${habit.end_time}:00`;  // Moment JS could probably format better
+  let startOfRange = `${sunday.d.getFullYear()}-0${sunday.d.getMonth() + 1}-0${sunday.d.getDate()}T${habit.start_time}:00`;  // Moment JS could probably format better
+  let endOfRange = `${sunday.d.getFullYear()}-0${sunday.d.getMonth() + 1}-0${sunday.d.getDate()}T${habit.end_time}:00`;  // Moment JS could probably format better
   // Template event object to be created
   let event = {
     habit_id: habit.id,   // DB
@@ -47,12 +47,19 @@ const generateEvents = (habit, sunday) => { // Use sunday as the reference point
   
   let eventsGenerated = [];
 
-  let loopStartDate = SundayEventStart;
-  let loopEndDate = SundayEventEnd;
-
-  let duration = moment(habit.end_date,'YYYY-MM-DDTHH:mm:ss').diff(moment(habit.start_date,'YYYY-MM-DDTHH:mm:ss'), 'weeks');
-
-  for (let i = 0; i < duration; i ++ ) { // Weekly loop
+  let loopStartDate = startOfRange;
+  let loopEndDate = endOfRange;
+  
+  let duration = Math.round((moment(habit.end_date,'YYYY-MM-DDTHH:mm:ss').diff(moment(habit.start_date,'YYYY-MM-DDTHH:mm:ss'), 'day')/7));
+  
+    if(habit.title === "test") {
+      console.log(habit.title,"start", habit.start_date, "ttime", habit.start_time)
+      console.log("end", habit.end_date)
+      console.log("duration", duration);
+  
+    }
+  
+  for (let i = 0; i <= duration; i ++ ) { // Weekly loop
     
     habit.days.split(",").forEach(day => {
       let [newStartDay, newEndDay] = addDays(loopStartDate, loopEndDate, weekObject[day])
