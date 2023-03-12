@@ -26,12 +26,12 @@ function App() {
       setLoading(false)
     }, 2000)
   }, []) //Create hook for this to us with onClicks
-  React.useEffect(() => {
-    fetch("http://localhost:8080/habit")
-      .then(res => {
-        console.log(res)
-      })
-  },[])
+  // React.useEffect(() => {
+  //   fetch("http://localhost:8080/habit")
+  //     .then(res => {
+  //       console.log(res)
+  //     })
+  // },[])
 
   const { state, setState} = useApplicationData();  // Import data at the top level
 
