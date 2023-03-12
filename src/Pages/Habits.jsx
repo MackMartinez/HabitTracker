@@ -12,6 +12,8 @@ import RadialBar from '../Components/Gauge/StrokedGauge';
 import '@toast-ui/chart/dist/toastui-chart.min.css';
 import { BarChart, LineChart } from '@toast-ui/react-chart';
 import Typography from '@mui/material/Typography';
+import FormLabel from '@mui/material/FormLabel';
+
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -34,54 +36,62 @@ const Dashboard = styled(Paper)(({ theme }) => ({
   
 */
 
-const dataBarChart = {
-  categories: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-  series: [
-    {
-      //Call from API
-      name: 'Coding',
-      data: [1, 0, 1, 1, 1, 0, 1],
-    },
-    {
-      //Call from API
-      name: 'Shooting',
-      data: [1, 0, 1, 1, 1, 0, 1],
-    },
-  ],
-};
-
-const dataLineChart = {
-  categories: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-  series: [
-    {
-      //Call from API
-      name: 'Coding',
-      data: [20, 10, 15, 20, 10, 18],
-    },
-    {
-      //Call from API
-      name: 'Shooting',
-      data: [10, 13, 16, 14, 18, 25],
-    },
-  ],
-};
 
 export default function HabitPageLayout (props) {
+  let codingCompletedEvents = Number(props.state.eventsCount.filter((event) => event.completed)[0].event_count)
+  let exerciseCompletedEvents = Number(props.state.eventsCount.filter((event) => event.completed)[1].event_count)
+  let shootingCompletedEvents = Number(props.state.eventsCount.filter((event) => event.completed)[2].event_count)
+  
+  const dataBarChart = {
+    categories: ['January', 'Februay', 'March'],
+    series: [
+      {
+        name: 'Coding',
+        data: [4, 5, codingCompletedEvents],
+      },
+      {
+        name: 'Shooting',
+        data: [8, 3, shootingCompletedEvents],
+      },
+      {
+        name: 'Exercise',
+        data: [5, 6, exerciseCompletedEvents],
+      },
+    ],
+  };
+  
+  const dataLineChart = {
+    categories: ['January', 'Februay', 'March'],
+    series: [
+      {
+        name: 'Coding',
+        data: [4, 5, codingCompletedEvents],
+      },
+      {
+        name: 'Shooting',
+        data: [8, 3, shootingCompletedEvents],
+      },
+      {
+        name: 'Exercise',
+        data: [5, 6, exerciseCompletedEvents],
+      },
+    ],
+  };
 
 
-  const [selectedValue, setSelectedValue] = React.useState('week');
+  const [selectedValue, setSelectedValue] = React.useState('Line');
 
   const options = {
     chart: {
       width: 800,
       height: 500,
-      title: selectedValue === "week" ? '# of times habit completed per week': '# of times habit completed per month' ,
+      title: selectedValue === "Line" ? 'Amount of Habits Completed per Month': 'Amount of Habits Completed per Month' ,
     },
     yAxis: {
-      title: selectedValue === "week" ? 'Hours':'Month',
+      title: selectedValue === "Line" ? 'Amount':'Month',
     },
     xAxis: {
-      title: "week" ? 'Day':'Amount',
+      title: selectedValue === "Line" ? 'Month':'Amount',
     },
   };
   
@@ -96,7 +106,7 @@ export default function HabitPageLayout (props) {
   };
 
   const showChartPeriod = () => {
-    if (selectedValue === 'week') {
+    if (selectedValue === 'Line') {
       return <LineChart data={dataLineChart} options={options} style={containerStyle}/> // What is the style tag doing?
     }
     return <BarChart data={dataBarChart} options={options} style={containerStyle} />
@@ -115,14 +125,15 @@ export default function HabitPageLayout (props) {
           <Typography variant="h4">Your Habits</Typography>
           </Grid>
           <Grid xs={2}>
-            <Item>  
+            <Item>
+            <FormLabel id="demo-row-radio-buttons-group-label">Select Chart Type</FormLabel>  
               <FormControlLabel
                 value="start"
                 control={
                   <Radio
-                  checked={selectedValue === 'week'}
+                  checked={selectedValue === 'Line'}
                   onChange={handleChange}
-                  value="week"
+                  value="Line"
                   name="radio-buttons"
                   inputProps={{ 'aria-label': 'A' }}
                   sx={{
@@ -131,7 +142,7 @@ export default function HabitPageLayout (props) {
                     }}}
                   />
                   }
-                  label="Week"
+                  label="Line"
                   labelPlacement="top"
                   />
               <FormControlLabel
@@ -149,7 +160,7 @@ export default function HabitPageLayout (props) {
                     }}}
                   />
                   }
-                  label="Month"
+                  label="Bar"
                   labelPlacement="top"
                   />
             </Item>
