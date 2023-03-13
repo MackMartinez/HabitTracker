@@ -11,7 +11,7 @@ export default function GetStartedButton() {
   }
 
   return(
-    <Button variant="contained" onClick={navRegister} sx={{py:20, px:30}}>
+    <Button variant="contained" onClick={navRegister} sx={{py:3, px:7}}>
       <Typography>
         Get Started
       </Typography> 
