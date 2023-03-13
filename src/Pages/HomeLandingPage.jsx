@@ -1,13 +1,12 @@
 import React from "react"
-import ButtonAppBar from "../Components/Appbar";
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Unstable_Grid2';
 import HabitBG from '../Images/HabitBG.jpg';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider } from '@mui/material'
+import { Button, createTheme, ThemeProvider } from '@mui/material'
 import GetStartedButton from "../Components/GetStartedButton";
+import { useNavigate } from "react-router-dom"
+
 
 const theme = createTheme({
   components: {
@@ -38,6 +37,10 @@ const theme = createTheme({
 
 export default function HomeLandingPage () {
 
+  const navigate = useNavigate()
+  const navLogin = () => {
+    navigate('/login', { replace: true});
+  }
     
   return (
     <>
@@ -52,7 +55,8 @@ export default function HomeLandingPage () {
             justifyContent: 'center',
             alignItems: 'center'
           }}
-        >
+          >
+            <img src="../Images/Habtrack.png" alt="Italian Trulli"/>
           {/* <ButtonAppBar /> */}
           <Box 
             sx={{
@@ -61,7 +65,8 @@ export default function HomeLandingPage () {
               flexDirection: "column",
               alignItems: 'center',
             }}
-          >
+            >
+              <Button onClick={navLogin} sx={{bottom: 370, left: '40%' }}> Sign In </Button>
             <Typography variant="h2">Unlock your Potential, Build Long Lasting Habits </Typography>
             <Typography variant="h4">Build the best version of yourself by mastering your habits </Typography>
             <GetStartedButton />
