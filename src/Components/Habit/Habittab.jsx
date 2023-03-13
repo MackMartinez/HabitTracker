@@ -8,7 +8,8 @@ export default function HabitTabPanel (props) {
   
   const editHabit = () =>
   {
-    console.log("edit");
+    props.setState(prev => ({...prev, selected : props.habit }))
+    props.setEditMode(true);
   }
 
   const deleteHabit = () =>
