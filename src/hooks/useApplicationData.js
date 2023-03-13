@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { generateEvents } from "../helpers/events";
 
 export default function useApplicationData() {
 
@@ -8,7 +9,8 @@ export default function useApplicationData() {
     habits: [],
     events: [],
     eventsCount:[],
-    selected:{}
+    selected:{},
+    calendarEvents: []
   });
   
    // Use effect to make axios call and get habit data
@@ -30,8 +32,9 @@ export default function useApplicationData() {
         withCredentials: true
       })
     ]).then((all) => {
-      setState(prev => ({...prev, habits: all[0].data, events: all[1].data, eventsCount: all[2].data, selected: all[0].data[0]}));
-      console.log(all[2].data)
+      let eventsArray = all[0].data.map((habit) => generateEvents(habit));
+      let calendarEvents = eventsArray.flat();
+      setState(prev => ({...prev, habits: all[0].data, events: all[1].data, eventsCount: all[2].data, selected: all[0].data[0], calendarEvents: calendarEvents}));
     });
   },[])
 
