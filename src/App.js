@@ -39,7 +39,7 @@ function App() {
     <Routes>
       <Route path="/" element={<HomeLandingPage/>}/>
       <Route path="/login" element={<Login setState={setState}/>}/>
-      <Route path="/register" element={<Register/>}/>
+      <Route path="/register" element={<Register setState={setState}/>}/>
       {/* This should be /:user to render specific user logged in  */}
       <Route element={<PersistLogin/>}>
         <Route path="/user" element={<UserLandingPage state={state} setState={setState}/>}/>
