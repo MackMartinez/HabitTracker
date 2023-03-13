@@ -9,6 +9,15 @@ import { useNavigate } from "react-router-dom";
 import useLogout from "../hooks/useLogout";
 import useAuth from "../hooks/useAuth";
 import AppBarMenuButton from "./AppBarMenu";
+import {
+  faCoffee,
+  faMusic,
+  faBicycle,
+  faBolt,
+  faHeartbeat,
+  faFutbol,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function ButtonAppBar(props) {
   const avatarStyle = { margin: "0px 0px 0px 10px" };
@@ -33,7 +42,33 @@ export default function ButtonAppBar(props) {
 
   const user = auth.user;
 
-  const avatar = auth.avatar;
+  let avatar = auth.avatar;
+  avatar = avatar.charAt(0).toUpperCase() + avatar.slice(1);
+  avatar = `fa${avatar}`;
+
+  let newAvatar;
+  switch (avatar) {
+    case "faCoffee":
+      newAvatar = faCoffee;
+      break;
+    case "fafaMusic":
+      newAvatar = faMusic;
+      break;
+    case "faBicycle":
+      newAvatar = faBicycle;
+      break;
+    case "faBolt":
+      newAvatar = faBolt;
+      break;
+    case "faHeartbeat":
+      newAvatar = faHeartbeat;
+      break;
+    case "faFutbol":
+      newAvatar = faFutbol;
+      break;
+    default:
+      newAvatar = faCoffee; // set a default icon incase of no icon
+  }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -53,8 +88,10 @@ export default function ButtonAppBar(props) {
           </Button>
           {/* if signed into an account */}
           <Button color="inherit">
-            {user}
-            <Avatar style={avatarStyle} src={avatar}></Avatar>
+            <span>{user}</span>
+            <span style={{ marginLeft: "8px" }}>
+              <FontAwesomeIcon icon={newAvatar} size="2x" />
+            </span>
           </Button>
         </Toolbar>
       </AppBar>

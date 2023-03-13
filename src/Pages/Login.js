@@ -9,6 +9,8 @@ import "react-toastify/dist/ReactToastify.css";
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
+import Yoga from '../Images/Yoga.jpg';
+
 const LOGIN_URL = '/login'; 
 
 export default function Login(props) {
@@ -96,11 +98,10 @@ export default function Login(props) {
   const paperStyle = {
     padding: 20,
     height: "auto",
-    width: "50vh",
-    margin: "70px auto",
+    width: "50vh"
   };
 
-  const avatarStyle = { backgroundColor: "blue" };
+  const avatarStyle = { backgroundColor: "#007bff" };
 
   const textStyle = { margin: "8px 0px" };
 
@@ -112,6 +113,10 @@ export default function Login(props) {
           </Box>
       ) : (
         <Grid>
+          <Box sx={{display: 'flex', flexWrap: 'wrap', margin: "200px auto", justifyContent: "center", '& > :not(style)': {
+          m: 0}}}>
+          <Paper elevation={10} style={paperStyle} sx={{backgroundImage: `url(${Yoga})`,
+            backgroundSize: "cover"}}></Paper>
           <Paper elevation={10} style={paperStyle}>
             <Grid align="center">
               <Avatar style={avatarStyle}>
@@ -163,6 +168,7 @@ export default function Login(props) {
               </FormGroup>
             </Grid>
           </Paper>
+          </Box>
         </Grid>
       )}
     </>
