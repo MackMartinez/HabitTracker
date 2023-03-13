@@ -10,7 +10,6 @@ import {
 import {
   faCheck,
   faTimes,
-  faInfoCircle,
   faCoffee,
   faMusic,
   faBicycle,
