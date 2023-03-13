@@ -1,6 +1,5 @@
 import React from "react";
 import HabitListItem from "./HabitsListItem";
-import useApplicationData from "../../hooks/useApplicationData";
 import moment from "moment";
 
   
