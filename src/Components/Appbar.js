@@ -4,7 +4,6 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { Avatar } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import useLogout from "../hooks/useLogout";
 import useAuth from "../hooks/useAuth";
@@ -18,6 +17,7 @@ import {
   faFutbol,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect } from "react";
 
 export default function ButtonAppBar(props) {
   const avatarStyle = { margin: "0px 0px 0px 10px" };
@@ -40,9 +40,22 @@ export default function ButtonAppBar(props) {
 
   const { auth } = useAuth();
 
-  const user = auth.user;
+  let user = auth.user;
+
+  useEffect(() => {
+    if (!user) {
+      // handle case where user is not defined
+      navigate("/login")
+    }
+  }, [user, navigate])
 
   let avatar = auth.avatar;
+
+  if (!avatar) {
+    // handle case where avatar is not defined
+    avatar = "faCoffee";
+  }
+  
   avatar = avatar.charAt(0).toUpperCase() + avatar.slice(1);
   avatar = `fa${avatar}`;
 

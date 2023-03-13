@@ -10,7 +10,6 @@ import {
 import {
   faCheck,
   faTimes,
-  faInfoCircle,
   faCoffee,
   faMusic,
   faBicycle,
@@ -124,7 +123,7 @@ export default function Register() {
       return;
     }
     try {
-      const avatar = selectedIcon.iconName;
+      const avatar = selectedIcon?.iconName ?? "faCoffee";
       const response = await axios.post(
         REGISTER_URL,
         JSON.stringify({avatar, firstName, lastName, user, email, pwd }),
