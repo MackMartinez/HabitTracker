@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { generateEvents } from "../helpers/events";
+import { countCompleteEvents, generateEvents } from "../helpers/events";
 
 export default function useApplicationData() {
 
@@ -34,6 +34,8 @@ export default function useApplicationData() {
     ]).then((all) => {
       let eventsArray = all[0].data.map((habit) => generateEvents(habit));
       let calendarEvents = eventsArray.flat();
+      let updatedHabits = countCompleteEvents (all[0].data, calendarEvents);
+      console.log("updated events", updatedHabits);
       setState(prev => ({...prev, habits: all[0].data, events: all[1].data, eventsCount: all[2].data, selected: all[0].data[0], calendarEvents: calendarEvents}));
     });
   },[])
