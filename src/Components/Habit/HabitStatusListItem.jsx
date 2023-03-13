@@ -1,7 +1,6 @@
 import * as React from 'react';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import Checkbox from '@mui/material/Checkbox';
 import Divider from '@mui/material/Divider';
 import { List, Typography } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material'
