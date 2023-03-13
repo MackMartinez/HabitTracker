@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
-import { Grid, Paper, Avatar, TextField, Checkbox, FormGroup, FormControlLabel, Button } from "@mui/material";
+import { Grid, Paper, Avatar, TextField, Checkbox, FormGroup, FormControlLabel, Button, Typography, Link } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import useAuth from "../hooks/useAuth";
 import axios from "../api/axios";
@@ -17,6 +17,10 @@ export default function Login(props) {
   const { setAuth, persist, setPersist } = useAuth();
 
   const navigate = useNavigate();
+  const navRegister = () => {
+    navigate("/register");
+  };
+
   const location = useLocation();
   const from = location.state?.from?.pathname || "/user";
 
@@ -163,7 +167,7 @@ export default function Login(props) {
                   <br />
                   <span className="line">
                     {/*put router link here*/}
-                    <a href="/register">Sign Up</a>
+                    <Link onClick={navRegister}>Sign Up</Link>
                   </span>
                 </p>
               </FormGroup>
