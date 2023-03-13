@@ -69,16 +69,16 @@ import { generateEvents } from "../../helpers/events";
   },[])
   
  
-  let habits = props.state.habits
-  let eventsArray = []
+  // let habits = props.state.habits
+  // let eventsArray = []
   
-  if (props.sunday) {
-    habits.forEach((habit) => {
-      eventsArray.push(generateEvents(habit, props.sunday));
-    });
-  }
+  // if (props.sunday) {
+  //   habits.forEach((habit) => {
+  //     eventsArray.push(generateEvents(habit, props.sunday));
+  //   });
+  // }
 
-  let events = eventsArray.flat();
+  // let events = eventsArray.flat();
 
   return ( 
     <Grid >
@@ -114,7 +114,7 @@ import { generateEvents } from "../../helpers/events";
           }}
           useDetailPopup={false}
           useFormPopup={false}
-          events={events}
+          events={props.state.calendarEvents}
           />
       </Grid>
     </Grid>
