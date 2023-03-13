@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import { useNavigate } from "react-router-dom"
+import { Typography } from '@mui/material';
 
 
 export default function GetStartedButton() {
@@ -10,6 +11,10 @@ export default function GetStartedButton() {
   }
 
   return(
-    <Button variant="contained" onClick={navRegister}> Get Started</Button>
+    <Button variant="contained" onClick={navRegister} sx={{py:20, px:30}}>
+      <Typography>
+        Get Started
+      </Typography> 
+    </Button>
   )
 }
