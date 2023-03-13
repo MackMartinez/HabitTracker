@@ -6,7 +6,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import ButtonAppBar from '../Components/Appbar';
-
+import useApplicationData from '../hooks/useApplicationData';
 import {CompleteHabitList, IncompleteHabitList} from '../Components/Habit/HabitStatusList';
 import RadialBar from '../Components/Gauge/StrokedGauge';
 import '@toast-ui/chart/dist/toastui-chart.min.css';
@@ -33,15 +33,16 @@ const Dashboard = styled(Paper)(({ theme }) => ({
 }));
 
 /* 
-  We should have 2 data queries ready for when we select week or month.
-  
+We should have 2 data queries ready for when we select week or month.
+
 */
 
 
 export default function HabitPageLayout (props) {
-  // let codingCompletedEvents = Number(props.state.eventsCount.filter((event) => event.completed)[0].event_count)
-  // let exerciseCompletedEvents = Number(props.state.eventsCount.filter((event) => event.completed)[1].event_count)
-  // let shootingCompletedEvents = Number(props.state.eventsCount.filter((event) => event.completed)[2].event_count)
+  const { state, setState} = useApplicationData();
+  // let codingCompletedEvents = Number(state.eventsCount.filter((event) => event.completed)[0].event_count)
+  // let exerciseCompletedEvents = Number(state.eventsCount.filter((event) => event.completed)[1].event_count)
+  // let shootingCompletedEvents = Number(state.eventsCount.filter((event) => event.completed)[2].event_count)
   
   const dataBarChart = {
     categories: ['January', 'Februay', 'March'],
@@ -172,8 +173,8 @@ export default function HabitPageLayout (props) {
 
         <Grid container spacing ={2} sx={{ flexGrow: 1 }}>
           <Grid xs={6}>
-            {editMode === false && <HabitCard state={props.state} setState={props.setState} setEditMode={setEditMode}/>}
-            {editMode === true && <EditHabit selectedHabit={props.state.selected} setEditMode={setEditMode} state={props.state} setState={props.setState}/>}
+            {editMode === false && <HabitCard state={state} setState={setState} setEditMode={setEditMode}/>}
+            {editMode === true && <EditHabit selectedHabit={state.selected} setEditMode={setEditMode} state={state} setState={setState}/>}
           </Grid>
           <Grid xs={6}>
             <Item style={{maxHeight: "500px", maxWidth: "800px" , backgroundColor: "inherit"}}>
@@ -189,13 +190,13 @@ export default function HabitPageLayout (props) {
           <Grid xs={4}>
             <Dashboard>
               <h3>Amount of Completed Habit Events</h3>
-              <CompleteHabitList eventsCount={props.state.eventsCount}/>
+              <CompleteHabitList eventsCount={state.eventsCount}/>
             </Dashboard>
           </Grid>
           <Grid xs={4}>
             <Dashboard>
               <h3>Amount of Incompleted Habit Events</h3>
-              <IncompleteHabitList eventsCount={props.state.eventsCount}/>
+              <IncompleteHabitList eventsCount={state.eventsCount}/>
             </Dashboard>
           </Grid>
           <Grid xs={4}>
