@@ -56,7 +56,6 @@ export default function HomeLandingPage () {
             alignItems: 'center'
           }}
           >
-            <img src="../Images/Habtrack.png" alt="Italian Trulli"/>
           {/* <ButtonAppBar /> */}
           <Box 
             sx={{
@@ -66,11 +65,15 @@ export default function HomeLandingPage () {
               alignItems: 'center',
             }}
             >
-              <Button onClick={navLogin} sx={{bottom: 370, left: '40%' }}> Sign In </Button>
+              {/* <img src={HabitLogo} alt="Habit Logo" height={270} width={380}  />  */}
+              <Button onClick={navLogin} sx={{bottom: 340, left: '40%' }}> Sign In </Button>
             <Typography variant="h2">Unlock your Potential, Build Long Lasting Habits </Typography>
             <Typography variant="h4">Build the best version of yourself by mastering your habits </Typography>
             <GetStartedButton />
           </Box>
+        </Box>
+        <Box>
+          <Typography> Hello </Typography>
         </Box>
       </ThemeProvider>
     {/* Here are some of the key features of our habit tracker:

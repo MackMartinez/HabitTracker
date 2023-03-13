@@ -38,24 +38,24 @@ const Dashboard = styled(Paper)(({ theme }) => ({
 
 
 export default function HabitPageLayout (props) {
-  let codingCompletedEvents = Number(props.state.eventsCount.filter((event) => event.completed)[0].event_count)
-  let exerciseCompletedEvents = Number(props.state.eventsCount.filter((event) => event.completed)[1].event_count)
-  let shootingCompletedEvents = Number(props.state.eventsCount.filter((event) => event.completed)[2].event_count)
+  // let codingCompletedEvents = Number(props.state.eventsCount.filter((event) => event.completed)[0].event_count)
+  // let exerciseCompletedEvents = Number(props.state.eventsCount.filter((event) => event.completed)[1].event_count)
+  // let shootingCompletedEvents = Number(props.state.eventsCount.filter((event) => event.completed)[2].event_count)
   
   const dataBarChart = {
     categories: ['January', 'Februay', 'March'],
     series: [
       {
         name: 'Coding',
-        data: [4, 5, codingCompletedEvents],
+        data: [4, 5, 1],
       },
       {
         name: 'Shooting',
-        data: [8, 3, shootingCompletedEvents],
+        data: [8, 3, 1],
       },
       {
         name: 'Exercise',
-        data: [5, 6, exerciseCompletedEvents],
+        data: [5, 6, 1],
       },
     ],
   };
@@ -65,15 +65,15 @@ export default function HabitPageLayout (props) {
     series: [
       {
         name: 'Coding',
-        data: [4, 5, codingCompletedEvents],
+        data: [4, 5, 1],
       },
       {
         name: 'Shooting',
-        data: [8, 3, shootingCompletedEvents],
+        data: [8, 3, 1],
       },
       {
         name: 'Exercise',
-        data: [5, 6, exerciseCompletedEvents],
+        data: [5, 6, 1],
       },
     ],
   };
