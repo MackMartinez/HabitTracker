@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Grid from '@mui/material/Unstable_Grid2';
 import HabitCard from "../Components/Habit/HabitCard";
 import Radio from '@mui/material/Radio';
@@ -13,6 +13,7 @@ import '@toast-ui/chart/dist/toastui-chart.min.css';
 import { BarChart, LineChart } from '@toast-ui/react-chart';
 import Typography from '@mui/material/Typography';
 import FormLabel from '@mui/material/FormLabel';
+import EditHabit from "../Components/Habit/EditHabit";
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -112,6 +113,8 @@ export default function HabitPageLayout (props) {
     return <BarChart data={dataBarChart} options={options} style={containerStyle} />
   }
 
+  const [editMode, setEditMode] = useState(true);
+
   return(
       <>
         <ButtonAppBar/>
@@ -169,7 +172,8 @@ export default function HabitPageLayout (props) {
 
         <Grid container spacing ={2} sx={{ flexGrow: 1 }}>
           <Grid xs={6}>
-            <HabitCard state={props.state} setState={props.setState}/>
+            {editMode === false && <HabitCard state={props.state} setState={props.setState} setEditMode={setEditMode}/>}
+            {editMode === true && <EditHabit selectedHabit={props.state.selected} setEditMode={setEditMode}/>}
           </Grid>
           <Grid xs={6}>
             <Item style={{maxHeight: "500px", maxWidth: "800px" , backgroundColor: "inherit"}}>
