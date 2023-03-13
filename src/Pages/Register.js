@@ -149,7 +149,6 @@ export default function Register(props) {
       setUser("");
       setPwd("");
       setMatchPwd("");
-      props.setState(prev=>({...prev}));
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");
