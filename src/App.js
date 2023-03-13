@@ -25,33 +25,32 @@ function App() {
       setLoading(false)
     }, 2000)
   }, []) //Create hook for this to us with onClicks
-
+  
   const { state, setState} = useApplicationData();  // Import data at the top level
 
   return (
     <div height={500}>
-    { loading && (
-      <Box mt={50} sx={{ display: 'flex', alignItems: "center", justifyContent: "center", flexDirection: "column", alignContent: 'center'}}>
-    <CircularProgress size={120} />
-      </Box>
-    ) || (
-     <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<HomeLandingPage/>}/>
-      <Route path="/login" element={<Login setState={setState}/>}/>
-      <Route path="/register" element={<Register setState={setState}/>}/>
-      {/* This should be /:user to render specific user logged in  */}
-      <Route element={<PersistLogin/>}>
-        <Route path="/user" element={<UserLandingPage state={state} setState={setState}/>}/>
-        <Route path="/user/habit" element={<HabitPageLayout state={state} setState={setState}/>}/>
-        <Route path="/user/habit/create" element={<CreateHabit/>}/>
-        <Route path="/habit-info" element={<HabitInfoPage/>}/>
-        <Route path="/about" element={<AboutUsPage/>}/>
-      </Route>
-    </Routes>
-    </BrowserRouter> 
-  )}
-  </div>
+      { loading && (
+        <Box mt={50} sx={{ display: 'flex', alignItems: "center", justifyContent: "center", flexDirection: "column", alignContent: 'center'}}>
+      <CircularProgress size={120} />
+        </Box>
+      ) || (
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomeLandingPage/>}/>
+          <Route path="/login" element={<Login setState={setState}/>}/>
+          <Route path="/register" element={<Register setState={setState}/>}/>
+          {/* This should be /:user to render specific user logged in  */}
+          <Route element={<PersistLogin/>}/>
+          <Route path="/user" element={<UserLandingPage state={state} setState={setState}/>}/>
+          <Route path="/user/habit" element={<HabitPageLayout state={state} setState={setState}/>}/>
+          <Route path="/user/habit/create" element={<CreateHabit/>}/>
+          <Route path="/habit-info" element={<HabitInfoPage/>}/>
+          <Route path="/about" element={<AboutUsPage/>}/>
+        </Routes>
+      </BrowserRouter> 
+      )}
+    </div>
   );
 }
 
