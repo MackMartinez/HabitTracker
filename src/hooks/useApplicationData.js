@@ -37,6 +37,6 @@ export default function useApplicationData() {
 
 
   return {
-    state, setState, eventsCount, selected
+    state, setState
   };
 };
