@@ -52,7 +52,8 @@ export default function CreateHabit (props) {
     })
       .then(res => {
         props.setState(prev=>({...prev, habits:[...prev.habits, habit]}));
-        let eventsList = generateEvents(res.data[0], props.sunday)
+        let eventsList = generateEvents(res.data[0])
+        props.setState(prev => ({...prev, calendarEvents: [...eventsList]}));
         console.log("***HABIT:", habit)
         console.log("***EventsList:", eventsList)
         // loop through events generated and post each event to db
