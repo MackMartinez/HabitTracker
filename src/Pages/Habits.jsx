@@ -113,7 +113,7 @@ export default function HabitPageLayout (props) {
     return <BarChart data={dataBarChart} options={options} style={containerStyle} />
   }
 
-  const [editMode, setEditMode] = useState(true);
+  const [editMode, setEditMode] = useState(false);
 
   return(
       <>
@@ -173,7 +173,7 @@ export default function HabitPageLayout (props) {
         <Grid container spacing ={2} sx={{ flexGrow: 1 }}>
           <Grid xs={6}>
             {editMode === false && <HabitCard state={props.state} setState={props.setState} setEditMode={setEditMode}/>}
-            {editMode === true && <EditHabit selectedHabit={props.state.selected} setEditMode={setEditMode}/>}
+            {editMode === true && <EditHabit selectedHabit={props.state.selected} setEditMode={setEditMode} state={props.state} setState={props.setState}/>}
           </Grid>
           <Grid xs={6}>
             <Item style={{maxHeight: "500px", maxWidth: "800px" , backgroundColor: "inherit"}}>

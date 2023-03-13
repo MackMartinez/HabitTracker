@@ -20,21 +20,10 @@ export default function CreateHabit (props) {
     props.setEditMode(false);
   }
   
-  const [habit, setHabit] = useState({
-    id: props.habitId,
-    title:"",
-    body:"",
-    start_date:"",
-    end_date:"",
-    start_time: "",
-    end_time:"",
-    days:"",
-    user_id: userid,
-    completed: false 
-  });
+  const [habit, setHabit] = useState(props.selectedHabit);
   
   const saveHabit = (event) => {
-    const habiturl = "http://localhost:8080/habit"
+    const habiturl = "http://localhost:8080/habit/Edit"  //Need to create an edit route
     const eventurl = "http://localhost:8080/habit/events"
   
     event.preventDefault();
@@ -51,8 +40,12 @@ export default function CreateHabit (props) {
       completed: false
     })
       .then(res => {
-        props.setState(prev=>({...prev, habits:[...prev.habits, habit]}));
-        let eventsList = generateEvents(res.data[0], props.sunday)
+        
+        // Remove the old habit from state and generate new events
+        let excludedHabits = props.state.habits.filter((prevHabit) => prevHabit.id !== habit.id );
+        props.setState(prev=>({...prev, habits:[...excludedHabits, habit]})); 
+
+        let eventsList = generateEvents(res.data[0])
         console.log("***HABIT:", habit)
         console.log("***EventsList:", eventsList)
         // loop through events generated and post each event to db
@@ -69,7 +62,7 @@ export default function CreateHabit (props) {
             })
         }
         // Return to Calendar 
-        props.setMode("SHOWING");
+        props.setMode("false");
       })
       .catch(error => {
         console.error(error)
@@ -93,7 +86,7 @@ export default function CreateHabit (props) {
           placeholder="Enter the name of your habit" 
           style={textStyle}
           type="text"
-          value={!habit.title ? props.selectedHabit.title : habit.title }
+          value={habit.title}
           name="title"
           onChange={(event) => handleOnChange(event)}
 
@@ -105,7 +98,7 @@ export default function CreateHabit (props) {
           placeholder="Add a description of your habit" 
           style={textStyle}
           type="text"
-          value={!habit.body ? props.selectedHabit.body : habit.body}
+          value={habit.body}
           multiline
           rows={4}
           name="body"
@@ -119,7 +112,7 @@ export default function CreateHabit (props) {
         >
           <DaysToggleButtons
             setHabit={setHabit}
-            days={!habit.days ? props.selectedHabit.days : habit.days}
+            days={habit.days}
           />
 
         </Grid>
@@ -143,7 +136,7 @@ export default function CreateHabit (props) {
               style={textStyle}
               type="date"
               name="start_date"
-              value={props.selectedHabit.start_date}
+              value={habit.start_date}
               onChange={(event) => handleOnChange(event)}
             />
           </Grid>
@@ -159,7 +152,7 @@ export default function CreateHabit (props) {
               style={textStyle}
               type="date"
               name="end_date"
-              value={props.selectedHabit.end_date}
+              value={habit.end_date}
               onChange={(event) => handleOnChange(event)}
 
             />
@@ -176,7 +169,7 @@ export default function CreateHabit (props) {
               style={textStyle}
               type="time"
               name="start_time"
-              value={props.selectedHabit.start_time}
+              value={habit.start_time}
               onChange={(event) => handleOnChange(event)}
             />
           </Grid>
@@ -192,7 +185,7 @@ export default function CreateHabit (props) {
               style={textStyle}
               type="time"
               name="end_time"
-              value={props.selectedHabit.end_time}
+              value={habit.end_time}
               onChange={(event) => handleOnChange(event)}
             />
           </Grid>
