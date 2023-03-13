@@ -58,7 +58,7 @@ export default function VerticalTabs(props) {
     return (
     
     <TabPanel key={index} value={value} index={index}>
-      <HabitTabPanel habit={habit} state={props.state} setState={props.setState}/>
+      <HabitTabPanel habit={habit} state={props.state} setState={props.setState} setEditMode={props.setEditMode}/>
     </TabPanel>
     )
   })
