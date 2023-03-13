@@ -10,6 +10,7 @@ import HabitList from '../Components/Habit/HabitList';
 import HabitCalendar from "../Components/Calendar";
 import CreateHabit from "../Components/Habit/CreateHabit";
 import { Typography } from "@mui/material";
+import useApplicationData from "../hooks/useApplicationData";
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -20,12 +21,13 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
- // Sets the details of the calendar
-  
+// Sets the details of the calendar
+
 
 export default function UserLandingPage(props) {
   const [calendarView, setCalendarView] = React.useState('week');
   const [habitId, setHabitId] = useState(0)
+  const { state, setState} = useApplicationData();
 
   const handleChange = (event) => {
     setCalendarView(event.target.value);
@@ -107,11 +109,11 @@ export default function UserLandingPage(props) {
       <Grid item xs={2}>
         <Item style={{maxheight: "450px", backgroundColor: "inherit"}}>
          <Typography>Active Habits</Typography>
-          <HabitList date={date} upcoming={true} state={props.state} setState={props.setState}/>
+          <HabitList date={date} upcoming={true} state={state} setState={setState}/>
         </Item>
         <Item style={{maxheight: "450px", backgroundColor: "inherit"}}>
          <Typography>Inactive Habits</Typography>
-          <HabitList date={date} upcoming={false} state={props.state} setState={props.setState}/>
+          <HabitList date={date} upcoming={false} state={state} setState={setState}/>
         </Item>
       </Grid>
       <Grid item xs={10}>
@@ -122,10 +124,10 @@ export default function UserLandingPage(props) {
             initialYear={date.getFullYear()}
             setStartOfRange={setStartOfRange}
             sunday={startOfRange}
-            state={props.state}
-            setState={props.setState}
+            state={state}
+            setState={setState}
           />}
-         {mode === CREATING && <CreateHabit setMode={setMode} sunday={startOfRange} habitId={habitId} setHabitId={setHabitId} state={props.state} setState={props.setState}/> }
+         {mode === CREATING && <CreateHabit setMode={setMode} sunday={startOfRange} habitId={habitId} setHabitId={setHabitId} state={state} setState={setState}/> }
         </Item>
       </Grid>
     </Grid>
