@@ -6,7 +6,6 @@ import Grid from '@mui/material/Unstable_Grid2';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import Button from '@mui/material/Button';
-import useApplicationData from "../../hooks/useApplicationData";
 import { generateEvents } from "../../helpers/events";
 
 
