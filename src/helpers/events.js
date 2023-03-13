@@ -1,7 +1,7 @@
 import moment from "moment";
 
 let weekObject = {
-  "Sunday": 0,
+  "Sunday": 7,
   "Monday": 1,
   "Tuesday": 2,
   "Wednesday": 3,
@@ -10,22 +10,13 @@ let weekObject = {
   "Saturday": 6
 }
 
+const dateGenerator = (startDate, startTime, endDate, endTime, days, habit) => {
+  let startDateName = moment(startDate, 'YYYY-MM-DDTHH:mm:ss').format('dddd')
+  let startDateNum = weekObject[startDateName];
+  let repeatDaysArray = days.split(",")
 
-const addDays = (start_date, end_date, num) => { // Adds days to the date passed in
-  // Event Start
-  let eventStart = moment(start_date, 'YYYY-MM-DDTHH:mm:ss');
-  let eventStartResult = eventStart.add(num, "days");
-  // Event End
-  let eventEnd = moment(end_date, 'YYYY-MM-DDTHH:mm:ss');
-  let eventEndResult = eventEnd.add(num, "days");
-  return [eventStartResult.format('YYYY-MM-DDTHH:mm:ss'), eventEndResult.format('YYYY-MM-DDTHH:mm:ss')];
-}
+  let generatedEvents = [];
 
-
-const generateEvents = (habit, sunday) => { // Use sunday as the reference point to change the day
-
-  let startOfRange = `${sunday.d.getFullYear()}-0${sunday.d.getMonth() + 1}-0${sunday.d.getDate()}T${habit.start_time}:00`;  // Moment JS could probably format better
-  let endOfRange = `${sunday.d.getFullYear()}-0${sunday.d.getMonth() + 1}-0${sunday.d.getDate()}T${habit.end_time}:00`;  // Moment JS could probably format better
   // Template event object to be created
   let event = {
     habit_id: habit.id,   // DB
@@ -44,43 +35,46 @@ const generateEvents = (habit, sunday) => { // Use sunday as the reference point
     completed: false, // DB
     user_id: habit.user_id
   }
-  
-  let eventsGenerated = [];
 
-  let loopStartDate = startOfRange;
-  let loopEndDate = endOfRange;
-  
-  let duration = Math.round((moment(habit.end_date,'YYYY-MM-DDTHH:mm:ss').diff(moment(habit.start_date,'YYYY-MM-DDTHH:mm:ss'), 'day')/7));
-  
-    if(habit.title === "test") {
-      console.log(habit.title,"start", habit.start_date, "ttime", habit.start_time)
-      console.log("end", habit.end_date)
-      console.log("duration", duration);
-  
-    }
-  
-  for (let i = 0; i <= duration; i ++ ) { // Weekly loop
-    
-    habit.days.split(",").forEach(day => {
-      let [newStartDay, newEndDay] = addDays(loopStartDate, loopEndDate, weekObject[day])
-      
-      const randomEventId = () => {
-        return Math.floor(Math.random() * 10000)
-      }
+  // Calculate the days
+  let repeatDates = repeatDaysArray.map((day) => {
+    // if (startDateNum < weekObject[day]) {
+      let num = weekObject[day] === startDateNum ? 0 : weekObject[day] - startDateNum;
+      // console.log(weekObject[day])
+      return moment(startDate,'YYYY-MM-DDTHH:mm:ss').add(num, "days")
+    // }  
+});
 
-      let updatedEvent = {...event, unique_event_id: randomEventId(), start: newStartDay, end: newEndDay}
+  let duration = Math.round((moment(endDate,'YYYY-MM-DDTHH:mm:ss').diff(moment(startDate,'YYYY-MM-DDTHH:mm:ss'), 'day')/7));
 
-      eventsGenerated.push(updatedEvent);
-    });
+  for (let i = 0; i <=duration; i++) {
 
-    loopStartDate = moment(loopStartDate,'YYYY-MM-DDTHH:mm:ss').add(1, "week"); // Update the starting point for each week
-    loopEndDate = moment(loopEndDate,'YYYY-MM-DDTHH:mm:ss').add(1,"week");
+    // Generate events
+    const randomEventId = () => {
+      return Math.floor(Math.random() * 10000)
+    };
+
+
+    repeatDates.forEach((date) => {
+      let newStartDate = (moment(date,'YYYY-MM-DDTHH:mm:ss').add(7 * i, "days").add(startTime,"time").format('YYYY-MM-DDTHH:mm:ss'));
+      let newEndDate = (moment(date,'YYYY-MM-DDTHH:mm:ss').add(7 * i, "days").add(endTime,"time").format('YYYY-MM-DDTHH:mm:ss'));
+      let updatedEvent = {...event, unique_event_id: randomEventId(), start: newStartDate, end: newEndDate};
+      generatedEvents.push(updatedEvent);
+    })
   }
-
-  const filteredEventsGenerated = eventsGenerated.filter((item) => (item.start >= habit.start_date && item.end <= habit.end_date)); // Filter to ensure only dates within the limits are added
   
-  return filteredEventsGenerated
+  return generatedEvents;
+};
 
+
+
+const generateEvents = (habit) => { // Use sunday as the reference point to change the day
+  
+  console.log(habit)
+  
+  // console.log(dateGenerator(habit.start_date, habit.start_time, habit.end_date, habit.end_time, habit.days, habit))
+  return dateGenerator(habit.start_date, habit.start_time, habit.end_date, habit.end_time, habit.days, habit).filter((item) => (item.start >= habit.start_date && item.end <= habit.end_date));
+  
 }
 
 export { generateEvents }
