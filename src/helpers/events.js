@@ -75,6 +75,29 @@ const generateEvents = (habit) => { // Use sunday as the reference point to chan
   // console.log(dateGenerator(habit.start_date, habit.start_time, habit.end_date, habit.end_time, habit.days, habit))
   return dateGenerator(habit.start_date, habit.start_time, habit.end_date, habit.end_time, habit.days, habit).filter((item) => (item.start >= habit.start_date && item.end <= habit.end_date));
   
-}
+};
 
-export { generateEvents }
+
+const countCompleteEvents = (habits, events) => {
+  let updatedHabitsArray = [];
+  habits.forEach((habit) => {
+    let completedCount = 0;
+    let incompletedCount = 0;
+    let filteredEventArray = events.filter((event) => event.habit_id === habit.id); // find all the events for the habit
+
+    filteredEventArray.forEach((event)=>{ // Count of 
+      if(event.completed) {
+        completedCount++;
+      } else {
+        incompletedCount++;
+      }
+    })
+
+    let updatedHabit = {...habit, completedCount,  incompletedCount};
+    updatedHabitsArray.push(updatedHabit);
+  });
+
+  return updatedHabitsArray;
+};
+
+export { generateEvents, countCompleteEvents }
