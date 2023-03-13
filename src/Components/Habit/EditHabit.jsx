@@ -7,7 +7,7 @@ import { generateEvents } from "../../helpers/events";
 import Axios from "axios";
 import useAuth from "../../hooks/useAuth";
 
-export default function CreateHabit (props) {
+export default function EditHabit (props) {
 
   //gets user id object
   const { auth } = useAuth();
@@ -62,7 +62,7 @@ export default function CreateHabit (props) {
             })
         }
         // Return to Calendar 
-        props.setMode("false");
+        props.setEditMode(false);
       })
       .catch(error => {
         console.error(error)
