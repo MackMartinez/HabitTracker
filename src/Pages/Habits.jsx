@@ -38,44 +38,34 @@ const Dashboard = styled(Paper)(({ theme }) => ({
 
 
 export default function HabitPageLayout (props) {
-  let codingCompletedEvents = Number(props.state.eventsCount.filter((event) => event.completed)[0].event_count)
-  let exerciseCompletedEvents = Number(props.state.eventsCount.filter((event) => event.completed)[1].event_count)
-  let shootingCompletedEvents = Number(props.state.eventsCount.filter((event) => event.completed)[2].event_count)
+
+  let habitsEventsCompleted = props.state.eventsCount.filter((event) => event.completed)
   
+  let chartData = []
+  let eventData = {}
+  const buildChartData = () => {
+    habitsEventsCompleted.forEach((event) =>{
+      eventData.data = []
+      eventData.data.push(Number(event.event_count))
+      eventData.name = event.title
+      chartData.push(eventData)
+      eventData = {}
+    })
+    return chartData
+  }
+
+  buildChartData()
+
   const dataBarChart = {
-    categories: ['January', 'Februay', 'March'],
-    series: [
-      {
-        name: 'Coding',
-        data: [4, 5, codingCompletedEvents],
-      },
-      {
-        name: 'Shooting',
-        data: [8, 3, shootingCompletedEvents],
-      },
-      {
-        name: 'Exercise',
-        data: [5, 6, exerciseCompletedEvents],
-      },
-    ],
+    
+    categories: ['2023'],
+    series: chartData
   };
+  console.log("***ChartData", chartData)
   
   const dataLineChart = {
-    categories: ['January', 'Februay', 'March'],
-    series: [
-      {
-        name: 'Coding',
-        data: [4, 5, codingCompletedEvents],
-      },
-      {
-        name: 'Shooting',
-        data: [8, 3, shootingCompletedEvents],
-      },
-      {
-        name: 'Exercise',
-        data: [5, 6, exerciseCompletedEvents],
-      },
-    ],
+    categories: ['2023'],
+    series: chartData
   };
 
 
