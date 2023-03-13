@@ -190,13 +190,13 @@ export default function HabitPageLayout (props) {
           <Grid xs={4}>
             <Dashboard>
               <h3>Amount of Completed Habit Events</h3>
-              <CompleteHabitList eventsCount={state.eventsCount}/>
+              <CompleteHabitList eventsCount={state.eventsCount} habits={state.habits}/>
             </Dashboard>
           </Grid>
           <Grid xs={4}>
             <Dashboard>
               <h3>Amount of Incompleted Habit Events</h3>
-              <IncompleteHabitList eventsCount={state.eventsCount}/>
+              <IncompleteHabitList eventsCount={state.eventsCount} habits={state.habits}/>
             </Dashboard>
           </Grid>
           <Grid xs={4}>
