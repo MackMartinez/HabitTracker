@@ -67,6 +67,7 @@ export default function Login(props) {
     setPwd("");
     setSuccess(true);
     handleSuccess();
+    props.setState(prev=>({...prev}));
     setTimeout(() => {
       setIsRedirecting(false);
       navigate(from, { replace: true });

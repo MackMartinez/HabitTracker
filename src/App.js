@@ -39,7 +39,7 @@ function App() {
      <BrowserRouter>
     <Routes>
       <Route path="/" element={<HomeLandingPage/>}/>
-      <Route path="/login" element={<Login/>}/>
+      <Route path="/login" element={<Login setState={setState}/>}/>
       <Route path="/register" element={<Register/>}/>
       {/* This should be /:user to render specific user logged in  */}
       <Route element={<PersistLogin/>}>
