@@ -6,6 +6,7 @@ import {
   TextField,
   FormGroup,
   Button,
+  Link
 } from "@mui/material";
 import {
   faCheck,
@@ -44,12 +45,16 @@ const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{6,24}$/;
 const REGISTER_URL = "/register";
 
-export default function Register() {
+export default function Register(props) {
   const userRef = useRef();
   const emailRef = useRef();
   const errRef = useRef();
 
   const navigate = useNavigate();
+
+  const navLogin= () => {
+    navigate("/login");
+  };
   const location = useLocation();
   const from = location.state?.from?.pathname || "/login";
 
@@ -144,6 +149,7 @@ export default function Register() {
       setUser("");
       setPwd("");
       setMatchPwd("");
+      props.setState(prev=>({...prev}));
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");
@@ -495,7 +501,7 @@ export default function Register() {
                   <br />
                   <span className="line">
                     
-                    <a href="/login">Sign In</a>
+                  <Link onClick={navLogin}>Sign In</Link>
                   </span>
                 </p>
               </Grid>
