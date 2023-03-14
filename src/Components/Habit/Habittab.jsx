@@ -25,10 +25,12 @@ export default function HabitTabPanel (props) {
   })
   }
   const rootStyles = {
-    width: '500px',
-    height: '500px',
+    width: '400px',
+    height: '400px',
     padding: '16px',
     backgroundColor: '#fff',
+    display:'flex',
+    justifyContent:'space-between'
   };
 
   const buttonContainerStyles = {
@@ -65,21 +67,21 @@ export default function HabitTabPanel (props) {
         <Typography variant="h4">{props.habit.title}</Typography>
       </Grid>
       <Grid item>
-        <Typography variant="h5">Notes</Typography>
+        <Typography variant="h5">Description</Typography>
         <Typography variant="body1">{props.habit.body}</Typography>
       </Grid>
       <Grid item>
-        <Typography variant="h5">Range</Typography>
+        <Typography variant="h5">Date Range</Typography>
         <Typography variant="body1">
-          <span style={dateStyles}>Start:</span> {props.habit.start_date} &nbsp;
-          <span style={dateStyles}>End:</span> {props.habit.end_date}
+          Start: {props.habit.start_date};
+          End: {props.habit.end_date}
         </Typography>
       </Grid>
       <Grid item>
         <Typography variant="h5">Time</Typography>
         <Typography variant="body1">
-          <span style={dateStyles}>Start:</span> {props.habit.start_time} &nbsp;
-          <span style={dateStyles}>End:</span> {props.habit.end_time}
+          Start: {props.habit.start_time} ;
+          End: {props.habit.end_time}
         </Typography>
       </Grid>
       <Grid item style={buttonContainerStyles}>

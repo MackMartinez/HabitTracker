@@ -11,8 +11,7 @@ import HabitCalendar from "../Components/Calendar";
 import CreateHabit from "../Components/Habit/CreateHabit";
 import { Typography } from "@mui/material";
 import useApplicationData from "../hooks/useApplicationData";
-import Layout from "../Components/Layout";
-
+import TextureBG from '../Images/TextureBG.jpg';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -55,9 +54,8 @@ export default function UserLandingPage(props) {
         container 
         rowSpacing={2}
         columnSpacing={3}
-        pt={12}
-        paddingLeft={20}
-        paddingRight={20}
+        sx={{pt:12, paddingLeft:25, paddingRight:25, pb:20, backgroundImage: `url(${TextureBG})`,
+        backgroundSize: "cover",}}
         >
         <Grid item xs={2}>
           <Item>{date.toLocaleDateString("en-US", options)}</Item>
@@ -110,11 +108,11 @@ export default function UserLandingPage(props) {
           </Item>
         </Grid>
         <Grid item xs={2}>
-          <Item style={{maxheight: "450px", backgroundColor: "inherit"}}>
+          <Item style={{maxheight: "450px"}}>
           <Typography>Active Habits</Typography>
             <HabitList date={date} upcoming={true} state={state} setState={setState}/>
           </Item>
-          <Item style={{maxheight: "450px", backgroundColor: "inherit"}}>
+          <Item style={{maxheight: "450px"}}>
           <Typography>Inactive Habits</Typography>
             <HabitList date={date} upcoming={false} state={state} setState={setState}/>
           </Item>

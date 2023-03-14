@@ -14,7 +14,7 @@ import { BarChart, LineChart } from '@toast-ui/react-chart';
 import Typography from '@mui/material/Typography';
 import FormLabel from '@mui/material/FormLabel';
 import EditHabit from "../Components/Habit/EditHabit";
-
+import TextureBG from '../Images/TextureBG.jpg';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -86,8 +86,8 @@ export default function HabitPageLayout (props) {
 
   const options = {
     chart: {
-      width: '100%',
-      height: 500,
+      width: 1220,
+      height: 517,
       title: selectedValue === "Line" ? 'Amount of Habits Completed per Month': 'Amount of Habits Completed per Month' ,
     },
     yAxis: {
@@ -112,17 +112,14 @@ export default function HabitPageLayout (props) {
   const [editMode, setEditMode] = useState(false);
 
   return(
-      <>
-        <ButtonAppBar/>
         <Grid  
-         container 
-         rowSpacing={2}
-         columnSpacing={3}
-         pt={12}
-         paddingLeft={20}
-         paddingRight={20}
-         backgroundColor={'#f9f9f9'}
+          container 
+          rowSpacing={2}
+          columnSpacing={3}
+          sx={{pt:12, paddingLeft:25, paddingRight:25, pb:20, backgroundImage: `url(${TextureBG})`,
+          backgroundSize:"cover", height:'100%'}}
         >
+        <ButtonAppBar/>
           <Grid xs={10}>
           <Typography variant="h4">Your Habits</Typography>
           </Grid>
@@ -169,14 +166,14 @@ export default function HabitPageLayout (props) {
           </Grid>
 
         <Grid container spacing ={2} sx={{ flexGrow: 1 }}>
-          <Grid xs={6}>
+          <Grid xs={5}>
             {editMode === false && <HabitCard state={state} setState={setState} setEditMode={setEditMode}/>}
             {editMode === true && <EditHabit selectedHabit={state.selected} setEditMode={setEditMode} state={state} setState={setState}/>}
           </Grid>
-          <Grid xs={6}>
-            <Item style={{maxHeight: "500px", backgroundColor: "inherit"}}>
+          <Grid xs={7}>
+            {/* <Item style={{maxHeight: "500px", backgroundColor: "inherit"}}> */}
               {showChartPeriod()}
-            </Item>
+            {/* </Item> */}
           </Grid>
 
         </Grid>
@@ -207,7 +204,6 @@ export default function HabitPageLayout (props) {
           </Grid>  
         </Grid>
       </Grid>
-    </>
   ) 
 
 } 
