@@ -42,13 +42,6 @@ export default function ButtonAppBar(props) {
 
   let user = auth.user;
 
-  useEffect(() => {
-    if (!user) {
-      // handle case where user is not defined
-      navigate("/login")
-    }
-  }, [user, navigate])
-
   let avatar = auth.avatar;
 
   if (!avatar) {
