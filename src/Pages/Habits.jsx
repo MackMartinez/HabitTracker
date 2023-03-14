@@ -14,6 +14,7 @@ import { BarChart, LineChart } from '@toast-ui/react-chart';
 import Typography from '@mui/material/Typography';
 import FormLabel from '@mui/material/FormLabel';
 import EditHabit from "../Components/Habit/EditHabit";
+import TextureBG from '../Images/TextureBG.jpg';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -85,8 +86,8 @@ export default function HabitPageLayout (props) {
 
   const options = {
     chart: {
-      width: 800,
-      height: 500,
+      width: 1220,
+      height: 517,
       title: selectedValue === "Line" ? 'Amount of Habits Completed per Month': 'Amount of Habits Completed per Month' ,
     },
     yAxis: {
@@ -97,34 +98,28 @@ export default function HabitPageLayout (props) {
     },
   };
   
-  const containerStyle = {
-    width: '600px',
-    height: '600px',
-  };
-
-
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
   };
 
   const showChartPeriod = () => {
     if (selectedValue === 'Line') {
-      return <LineChart data={dataLineChart} options={options} style={containerStyle}/> // What is the style tag doing?
+      return <LineChart data={dataLineChart} options={options}/>
     }
-    return <BarChart data={dataBarChart} options={options} style={containerStyle} />
+    return <BarChart data={dataBarChart} options={options} />
   }
 
   const [editMode, setEditMode] = useState(false);
 
   return(
-      <>
-        <ButtonAppBar/>
         <Grid  
-         container 
-         rowSpacing={2}
-         columnSpacing={3}
-         pt={12}
+          container 
+          rowSpacing={2}
+          columnSpacing={3}
+          sx={{pt:12, paddingLeft:25, paddingRight:25, pb:20, backgroundImage: `url(${TextureBG})`,
+          backgroundSize:"cover", height:'100%'}}
         >
+        <ButtonAppBar/>
           <Grid xs={10}>
           <Typography variant="h4">Your Habits</Typography>
           </Grid>
@@ -169,23 +164,25 @@ export default function HabitPageLayout (props) {
                   />
             </Item>
           </Grid>
-        </Grid>
 
         <Grid container spacing ={2} sx={{ flexGrow: 1 }}>
-          <Grid xs={6}>
+          <Grid xs={5}>
             {editMode === false && <HabitCard state={state} setState={setState} setEditMode={setEditMode}/>}
             {editMode === true && <EditHabit selectedHabit={state.selected} setEditMode={setEditMode} state={state} setState={setState}/>}
           </Grid>
-          <Grid xs={6}>
-            <Item style={{maxHeight: "500px", maxWidth: "800px" , backgroundColor: "inherit"}}>
+          <Grid xs={7}>
+            {/* <Item style={{maxHeight: "500px", backgroundColor: "inherit"}}> */}
               {showChartPeriod()}
-            </Item>
+            {/* </Item> */}
           </Grid>
 
         </Grid>
-        <Grid container spacing ={2}>
-          <Grid xs={12}>
-          <Typography variant="h4" style={{backgroundColor:"#1976d2", color:"#fff"}}>Your Stats</Typography>
+        <Grid 
+          container 
+          spacing ={2}
+          width={"100%"}>
+          <Grid xs={12} >
+            <Typography variant="h4" style={{backgroundColor:"#1976d2", color:"#fff", textAlign:"center", paddingTop: 10, paddingBottom: 10}}>Your Stat Summary</Typography>
           </Grid>
           <Grid xs={4}>
             <Dashboard>
@@ -206,7 +203,7 @@ export default function HabitPageLayout (props) {
             </Dashboard>
           </Grid>  
         </Grid>
-    </>
+      </Grid>
   ) 
 
 } 
