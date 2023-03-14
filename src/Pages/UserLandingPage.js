@@ -11,6 +11,7 @@ import HabitCalendar from "../Components/Calendar";
 import CreateHabit from "../Components/Habit/CreateHabit";
 import { Typography } from "@mui/material";
 import useApplicationData from "../hooks/useApplicationData";
+import Layout from "../Components/Layout";
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -49,88 +50,90 @@ export default function UserLandingPage(props) {
 
   return (
     <>
-    <ButtonAppBar />
-    <Grid 
-      container 
-      rowSpacing={2}
-      columnSpacing={3}
-      pt={12}
-      >
-      <Grid item xs={2}>
-        <Item>{date.toLocaleDateString("en-US", options)}</Item>
-      </Grid>
-      <Grid item xs={2}>
-        <AddHabitButton 
-          setMode={setMode}
-        />
-      </Grid>
-      <Grid item xs={6}>
-      </Grid>
-      <Grid item xs={2}>
-        <Item>  
-          <FormControlLabel
-            value="start"
-            control={
-              <Radio
-              checked={calendarView === 'week'}
-              onChange={handleChange}
-              value="week"
-              name="radio-buttons"
-              inputProps={{ 'aria-label': 'A' }}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 15
-                }}}
+      <ButtonAppBar />
+      <Grid 
+        container 
+        rowSpacing={2}
+        columnSpacing={3}
+        pt={12}
+        paddingLeft={20}
+        paddingRight={20}
+        >
+        <Grid item xs={2}>
+          <Item>{date.toLocaleDateString("en-US", options)}</Item>
+        </Grid>
+        <Grid item xs={2}>
+          <AddHabitButton 
+            setMode={setMode}
+          />
+        </Grid>
+        <Grid item xs={6}>
+        </Grid>
+        <Grid item xs={2}>
+          <Item>  
+            <FormControlLabel
+              value="start"
+              control={
+                <Radio
+                checked={calendarView === 'week'}
+                onChange={handleChange}
+                value="week"
+                name="radio-buttons"
+                inputProps={{ 'aria-label': 'A' }}
+                sx={{
+                  '& .MuiSvgIcon-root': {
+                    fontSize: 15
+                  }}}
+                  />
+                }
+                label="Week"
+                labelPlacement="top"
                 />
-              }
-              label="Week"
-              labelPlacement="top"
-              />
-          <FormControlLabel
-            value="start"
-            control={
-              <Radio
-              checked={calendarView === 'month'}
-              onChange={handleChange}
-              value="month"
-              name="radio-buttons"
-              inputProps={{ 'aria-label': 'B' }}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 15
-                }}}
+            <FormControlLabel
+              value="start"
+              control={
+                <Radio
+                checked={calendarView === 'month'}
+                onChange={handleChange}
+                value="month"
+                name="radio-buttons"
+                inputProps={{ 'aria-label': 'B' }}
+                sx={{
+                  '& .MuiSvgIcon-root': {
+                    fontSize: 15
+                  }}}
+                  />
+                }
+                label="Month"
+                labelPlacement="top"
                 />
-              }
-              label="Month"
-              labelPlacement="top"
-              />
-        </Item>
+          </Item>
+        </Grid>
+        <Grid item xs={2}>
+          <Item style={{maxheight: "450px", backgroundColor: "inherit"}}>
+          <Typography>Active Habits</Typography>
+            <HabitList date={date} upcoming={true} state={state} setState={setState}/>
+          </Item>
+          <Item style={{maxheight: "450px", backgroundColor: "inherit"}}>
+          <Typography>Inactive Habits</Typography>
+            <HabitList date={date} upcoming={false} state={state} setState={setState}/>
+          </Item>
+        </Grid>
+        <Grid item xs={10}>
+          <Item>
+          { mode === SHOWING && <HabitCalendar 
+              view={calendarView}
+              initialMonth={date.getMonth()}
+              initialYear={date.getFullYear()}
+              setStartOfRange={setStartOfRange}
+              sunday={startOfRange}
+              state={state}
+              setState={setState}
+            />}
+          {mode === CREATING && <CreateHabit setMode={setMode} sunday={startOfRange} habitId={habitId} setHabitId={setHabitId} state={state} setState={setState}/> }
+          </Item>
+        </Grid>
       </Grid>
-      <Grid item xs={2}>
-        <Item style={{maxheight: "450px", backgroundColor: "inherit"}}>
-         <Typography>Active Habits</Typography>
-          <HabitList date={date} upcoming={true} state={state} setState={setState}/>
-        </Item>
-        <Item style={{maxheight: "450px", backgroundColor: "inherit"}}>
-         <Typography>Inactive Habits</Typography>
-          <HabitList date={date} upcoming={false} state={state} setState={setState}/>
-        </Item>
-      </Grid>
-      <Grid item xs={10}>
-        <Item>
-         { mode === SHOWING && <HabitCalendar 
-            view={calendarView}
-            initialMonth={date.getMonth()}
-            initialYear={date.getFullYear()}
-            setStartOfRange={setStartOfRange}
-            sunday={startOfRange}
-            state={state}
-            setState={setState}
-          />}
-         {mode === CREATING && <CreateHabit setMode={setMode} sunday={startOfRange} habitId={habitId} setHabitId={setHabitId} state={state} setState={setState}/> }
-        </Item>
-      </Grid>
-    </Grid>
   </>
   );
 }
