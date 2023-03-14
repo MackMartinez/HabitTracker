@@ -4,7 +4,7 @@ import HabitStatusListItem from "./HabitStatusListItem";
 
 export function CompleteHabitList(props) {
 
-  let completeHabitsList = props.habits.filter((habit) => habit.completed > 0).map((habit, index) => {
+  let completeHabitsList = props.habits.filter((habit) => habit.completedCount > 0).map((habit, index) => {
     return(
        <HabitStatusListItem key ={index} eventTitle={habit.title} eventCount={habit.completedCount}/>
       )
