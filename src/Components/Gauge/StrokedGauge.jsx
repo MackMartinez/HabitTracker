@@ -7,7 +7,7 @@ class RadialBar extends Component {
 
     this.state = {
     
-      series: [66],
+      series: [],
       options: {
         chart: {
           height: 220,
@@ -52,9 +52,18 @@ class RadialBar extends Component {
   }
 
   render() {
+
+    const { state } = this.props;
+
+    let eventCount = state.calendarEvents.length;
+    let sum = 0;
+    state.habits.forEach((habit) => sum += habit.completedCount);
+    let percent = Math.floor((sum/eventCount)*100);  // Calculating the value of the completed %
+
+
     return (
       <div className="RadialBar">
-        <Chart options={this.state.options} series={this.state.series} type="radialBar" height={350} />
+        <Chart options={this.state.options} series={[percent]} type="radialBar" height={350} />
       </div>
      );
     }
