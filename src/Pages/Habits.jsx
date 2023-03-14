@@ -199,7 +199,7 @@ export default function HabitPageLayout (props) {
           <Grid xs={4}>
             <Dashboard>
               <h3>Habit Progress</h3>
-              <RadialBar/>
+              <RadialBar state={state}/>
             </Dashboard>
           </Grid>  
         </Grid>
