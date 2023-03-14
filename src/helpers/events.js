@@ -70,8 +70,6 @@ const dateGenerator = (startDate, startTime, endDate, endTime, days, habit) => {
 
 const generateEvents = (habit) => { // Use sunday as the reference point to change the day
   
-  console.log(habit)
-  
   // console.log(dateGenerator(habit.start_date, habit.start_time, habit.end_date, habit.end_time, habit.days, habit))
   return dateGenerator(habit.start_date, habit.start_time, habit.end_date, habit.end_time, habit.days, habit).filter((item) => (item.start >= habit.start_date && item.end <= habit.end_date));
   
