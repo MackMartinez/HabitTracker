@@ -13,22 +13,19 @@ const PersistLogin = () => {
     const verifyRefreshToken = async () => {
       try {
         await refresh();
-      }
-      catch (err) {
+      } catch (err) {
         console.error(err);
-      }
-      finally {
+      } finally {
         isMounted && setIsLoading(false); // prevents endless loading loop
       }
-    }
+    };
 
     !auth?.accessToken ? verifyRefreshToken() : setIsLoading(false);
 
     return () => {
-      isMounted = false
-    }
-  }, [])
-
+      isMounted = false;
+    };
+  }, []);
 
   // For testing JWT
   // useEffect(() => {
@@ -37,10 +34,8 @@ const PersistLogin = () => {
   // }, [isLoading])
 
   return (
-    <>
-    {!persist ? <Outlet /> : isLoading ? <p>Loading...</p> : <Outlet />}
-    </>
-  )
-}
+    <>{!persist ? <Outlet /> : isLoading ? <p>Loading...</p> : <Outlet />}</>
+  );
+};
 
 export default PersistLogin;

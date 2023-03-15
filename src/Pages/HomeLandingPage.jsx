@@ -1,12 +1,11 @@
-import React from "react"
-import HabitBG from '../Images/HabitBG.jpg';
-import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
-import Typography from '@mui/material/Typography';
-import { Button, createTheme, ThemeProvider } from '@mui/material'
+import React from "react";
+import HabitBG from "../Images/HabitBG.jpg";
+import Box from "@mui/material/Box";
+import CssBaseline from "@mui/material/CssBaseline";
+import Typography from "@mui/material/Typography";
+import { Button, createTheme, ThemeProvider } from "@mui/material";
 import GetStartedButton from "../Components/GetStartedButton";
-import { useNavigate } from "react-router-dom"
-
+import { useNavigate } from "react-router-dom";
 
 const theme = createTheme({
   components: {
@@ -19,7 +18,7 @@ const theme = createTheme({
           style: {
             fontSize: "3.2rem",
             fontWeight: "700",
-          }
+          },
         },
         {
           props: {
@@ -27,48 +26,54 @@ const theme = createTheme({
           },
           style: {
             fontSize: "2.0rem",
-            marginBottom: "20px"
-          }
-        }
-      ]
+            marginBottom: "20px",
+          },
+        },
+      ],
     },
-  }
-})
+  },
+});
 
-export default function HomeLandingPage () {
-
-  const navigate = useNavigate()
+export default function HomeLandingPage() {
+  const navigate = useNavigate();
   const navLogin = () => {
-    navigate('/login', { replace: true});
-  }
-    
+    navigate("/login", { replace: true });
+  };
+
   return (
     <>
       <ThemeProvider theme={theme}>
-        <CssBaseline/>
+        <CssBaseline />
         <Box
           sx={{
             backgroundImage: `url(${HabitBG})`,
             backgroundSize: "cover",
             height: "100vh",
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center'
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }}
-          >
+        >
           {/* <ButtonAppBar /> */}
-          <Box 
+          <Box
             sx={{
               mb: "300px",
-              display: 'flex',
+              display: "flex",
               flexDirection: "column",
-              alignItems: 'center',
+              alignItems: "center",
             }}
-            >
-              {/* <img src={HabitLogo} alt="Habit Logo" height={270} width={380}  />  */}
-              <Button onClick={navLogin} sx={{bottom: 340, left: '40%' }}> Sign In </Button>
-            <Typography variant="h2">Unlock your Potential, Build Long Lasting Habits </Typography>
-            <Typography variant="h4">Build the best version of yourself by mastering your habits </Typography>
+          >
+            {/* <img src={HabitLogo} alt="Habit Logo" height={270} width={380}  />  */}
+            <Button onClick={navLogin} sx={{ bottom: 340, left: "40%" }}>
+              {" "}
+              Sign In{" "}
+            </Button>
+            <Typography variant="h2">
+              Unlock your Potential, Build Long Lasting Habits{" "}
+            </Typography>
+            <Typography variant="h4">
+              Build the best version of yourself by mastering your habits{" "}
+            </Typography>
             <GetStartedButton />
           </Box>
         </Box>
@@ -76,7 +81,7 @@ export default function HomeLandingPage () {
           <Typography> Hello </Typography>
         </Box>
       </ThemeProvider>
-    {/* Here are some of the key features of our habit tracker:
+      {/* Here are some of the key features of our habit tracker:
 
 Customizable habit tracking: You can create your own habits or choose from a pre-existing list of habits to track, set reminders for yourself, and track your progress over time.
 
@@ -90,5 +95,5 @@ Seamless integration: Our habit tracker seamlessly integrates with other apps an
 
 With our habit tracker web application, developing positive habits has never been easier. Start tracking your habits today and achieve your goals one step at a time. */}
     </>
-  )
+  );
 }

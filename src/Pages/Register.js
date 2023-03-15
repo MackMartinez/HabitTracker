@@ -6,7 +6,7 @@ import {
   TextField,
   FormGroup,
   Button,
-  Link
+  Link,
 } from "@mui/material";
 import {
   faCheck,
@@ -52,7 +52,7 @@ export default function Register(props) {
 
   const navigate = useNavigate();
 
-  const navLogin= () => {
+  const navLogin = () => {
     navigate("/login");
   };
   const location = useLocation();
@@ -131,7 +131,7 @@ export default function Register(props) {
       const avatar = selectedIcon?.iconName ?? "faCoffee";
       const response = await axios.post(
         REGISTER_URL,
-        JSON.stringify({avatar, firstName, lastName, user, email, pwd }),
+        JSON.stringify({ avatar, firstName, lastName, user, email, pwd }),
         {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
@@ -499,8 +499,7 @@ export default function Register(props) {
                   Already registered?
                   <br />
                   <span className="line">
-                    
-                  <Link onClick={navLogin}>Sign In</Link>
+                    <Link onClick={navLogin}>Sign In</Link>
                   </span>
                 </p>
               </Grid>

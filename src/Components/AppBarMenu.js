@@ -34,34 +34,33 @@ export default function AppBarMenuButton() {
   };
 
   return (
-      <div>
-        <IconButton
-          size="large"
-          edge="start"
-          color="inherit"
-          aria-label="menu-button"
-          sx={{ mr: 2 }}
-          onClick={handleClick}
-          aria-controls={open ? "basic-menu" : undefined}
-          aria-haspopup="true"
-          aria-expanded={open ? "true" : undefined}
-        >
-          <MenuIcon />
-        </IconButton>
-        <Menu
-          id="basic-menu"
-          anchorEl={anchorEl}
-          open={open}
-          onClose={handleClose}
-          MenuListProps={{
-            "aria-labelledby": "menu-button",
-          }}
-        >
-          <MenuItem onClick={navHabitInfo}>Why Track Habits?</MenuItem>
-          <MenuItem onClick={navAboutUs}>About us</MenuItem>
-          <MenuItem onClick={signOut}>Logout</MenuItem>
-        </Menu>
-      </div>
-  
+    <div>
+      <IconButton
+        size="large"
+        edge="start"
+        color="inherit"
+        aria-label="menu-button"
+        sx={{ mr: 2 }}
+        onClick={handleClick}
+        aria-controls={open ? "basic-menu" : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? "true" : undefined}
+      >
+        <MenuIcon />
+      </IconButton>
+      <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          "aria-labelledby": "menu-button",
+        }}
+      >
+        <MenuItem onClick={navHabitInfo}>Why Track Habits?</MenuItem>
+        <MenuItem onClick={navAboutUs}>About us</MenuItem>
+        <MenuItem onClick={signOut}>Logout</MenuItem>
+      </Menu>
+    </div>
   );
 }

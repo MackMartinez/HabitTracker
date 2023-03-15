@@ -48,7 +48,7 @@ export default function ButtonAppBar(props) {
     // handle case where avatar is not defined
     avatar = "faCoffee";
   }
-  
+
   avatar = avatar.charAt(0).toUpperCase() + avatar.slice(1);
   avatar = `fa${avatar}`;
 
