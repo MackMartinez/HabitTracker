@@ -11,9 +11,16 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import HomeLandingPage from './Pages/HomeLandingPage';
 import useApplicationData from './hooks/useApplicationData';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 
 function App() {
 
@@ -29,6 +36,8 @@ function App() {
   // const { state, setState} = useApplicationData();  // Import data at the top level
 
   return (
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
     <div height={500}>
       { loading && (
         <Box mt={50} sx={{ display: 'flex', alignItems: "center", justifyContent: "center", flexDirection: "column", alignContent: 'center'}}>
@@ -40,7 +49,6 @@ function App() {
           <Route path="/" element={<HomeLandingPage/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/register" element={<Register/>}/>
-          {/* This should be /:user to render specific user logged in  */}
           <Route element={<PersistLogin/>}/>
           <Route path="/user" element={<UserLandingPage 
           // state={state} setState={setState}
@@ -56,6 +64,7 @@ function App() {
       </BrowserRouter> 
       )}
     </div>
+    </ThemeProvider>
   );
 }
 
