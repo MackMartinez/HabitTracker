@@ -45,23 +45,34 @@ function a11yProps(index) {
 
 export default function VerticalTabs(props) {
   const [value, setValue] = React.useState(0);
+  const [eventValue, setEventValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
+  const handleEventChange = (event, newValue) => {
+    setEventValue(newValue);
+  };
+
   let tabs = props.state.habits.map((habit, index) => {
-    return (<Tab key={index} label={habit.title} {...a11yProps(index)}/>)
-  })
+    return (<Tab key={index} label={habit.title} {...a11yProps(index)} />)
+  });
+
+  let eventTabs = props.state.calendarEvents.filter((event) => {
+    //Only show events that match the currently selected habit
+    return event.habit_id === props.state.habits[value].id;
+  }).map((event, index) => {
+    return (<Tab key={index} label={`Event ${index+1}`} {...a11yProps(index)} />)
+  });
+
   let tabpanels = props.state.habits.map((habit, index) => {
     return (
-    
-    <TabPanel key={index} value={value} index={index}>
-      <HabitTabPanel habit={habit} state={props.state} setState={props.setState} setEditMode={props.setEditMode}/>
-    </TabPanel>
+      <TabPanel key={index} value={value} index={index}>
+        <HabitTabPanel habit={habit} state={props.state} setState={props.setState} setEditMode={props.setEditMode} />
+      </TabPanel>
     )
   })
-
 
   return (
     <Card>
@@ -79,7 +90,18 @@ export default function VerticalTabs(props) {
           {tabs}
         </Tabs>
         {tabpanels}
+        <Tabs
+          orientation="vertical"
+          variant="scrollable"
+          value={eventValue}
+          onChange={handleEventChange}
+          aria-label="Vertical tabs example"
+          sx={{ borderLeft: 1, borderColor: 'divider' }}
+        >
+          {eventTabs}
+        </Tabs>
       </Box>
     </Card>
   );
 }
+

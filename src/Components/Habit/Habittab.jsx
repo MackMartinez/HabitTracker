@@ -25,7 +25,7 @@ export default function HabitTabPanel (props) {
   })
   }
   const rootStyles = {
-    width: '400px',
+    width: '350px',
     height: '400px',
     padding: '16px',
     backgroundColor: '#fff',
