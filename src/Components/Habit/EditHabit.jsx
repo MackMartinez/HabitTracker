@@ -1,33 +1,38 @@
-import React, {useState, useEffect} from "react";
-import Grid from '@mui/material/Unstable_Grid2';
-import Button from '@mui/material/Button';
-import { FormGroup, TextField, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import Grid from "@mui/material/Unstable_Grid2";
+import Button from "@mui/material/Button";
+import {
+  FormGroup,
+  TextField,
+  ToggleButton,
+  ToggleButtonGroup,
+  Typography,
+} from "@mui/material";
 import DaysToggleButtons from "./DaysToggleButton";
 import { generateEvents } from "../../helpers/events";
 import Axios from "axios";
 import useAuth from "../../hooks/useAuth";
 
-export default function EditHabit (props) {
-
+export default function EditHabit(props) {
   //gets user id object
   const { auth } = useAuth();
-  
+
   const userid = auth.userId;
-  
-  const textStyle = {margin:'8px 0px'}
-  
+
+  const textStyle = { margin: "8px 0px" };
+
   const handleClick = () => {
     props.setEditMode(false);
-  }
-  
+  };
+
   const [habit, setHabit] = useState(props.selectedHabit);
-  
+
   const saveHabit = (event) => {
-    const habiturl = "http://localhost:8080/habit/Edit"  //Need to create an edit route
-    const eventurl = "http://localhost:8080/habit/events"
-  
+    const habiturl = "http://localhost:8080/habit/Edit"; //Need to create an edit route
+    const eventurl = "http://localhost:8080/habit/events";
+
     event.preventDefault();
-  
+
     Axios.post(habiturl, {
       title: habit.title,
       body: habit.body,
@@ -37,101 +42,96 @@ export default function EditHabit (props) {
       end_time: habit.end_time,
       days: habit.days,
       user_id: userid,
-      completed: false
+      completed: false,
     })
-      .then(res => {
-        
+      .then((res) => {
         // Remove the old habit from state and generate new events
-        let excludedHabits = props.state.habits.filter((prevHabit) => prevHabit.id !== habit.id );
-        props.setState(prev=>({...prev, habits:[...excludedHabits, habit]})); 
+        let excludedHabits = props.state.habits.filter(
+          (prevHabit) => prevHabit.id !== habit.id
+        );
+        props.setState((prev) => ({
+          ...prev,
+          habits: [...excludedHabits, habit],
+        }));
 
-        let eventsList = generateEvents(res.data[0])
-        console.log("***HABIT:", habit)
-        console.log("***EventsList:", eventsList)
+        let eventsList = generateEvents(res.data[0]);
+        console.log("***HABIT:", habit);
+        console.log("***EventsList:", eventsList);
         // loop through events generated and post each event to db
         for (let x = 0; x < eventsList.length; x++) {
-          let uniqueEvent = eventsList[x].unique_event_id
-          let completedBoolean = eventsList[x].completed
-          Axios.post(eventurl, { unique_event_id: uniqueEvent, habit_id: res.data[0].id, user_id: userid, completed: completedBoolean })
-            .then(response => {
-              console.log(response.data)
+          let uniqueEvent = eventsList[x].unique_event_id;
+          let completedBoolean = eventsList[x].completed;
+          Axios.post(eventurl, {
+            unique_event_id: uniqueEvent,
+            habit_id: res.data[0].id,
+            user_id: userid,
+            completed: completedBoolean,
+          })
+            .then((response) => {
+              console.log(response.data);
             })
-            .catch(error => {
-              console.error(error)
-              throw new Error("Failed to save event")
-            })
+            .catch((error) => {
+              console.error(error);
+              throw new Error("Failed to save event");
+            });
         }
-        // Return to Calendar 
+        // Return to Calendar
         props.setEditMode(false);
       })
-      .catch(error => {
-        console.error(error)
-        throw new Error("Failed to save habit")
-      })
+      .catch((error) => {
+        console.error(error);
+        throw new Error("Failed to save habit");
+      });
   };
-  
+
   const handleOnChange = (event) => {
-  const value = event.target.value;
-  setHabit({...habit, [event.target.name]: value})
-}
+    const value = event.target.value;
+    setHabit({ ...habit, [event.target.name]: value });
+  };
 
   return (
     <>
       <Typography variant="h3"> Create your Habit</Typography>
       <FormGroup>
-        <TextField 
-          id="outlined-basic" 
-          label="Habit Name" 
+        <TextField
+          id="outlined-basic"
+          label="Habit Name"
           variant="outlined"
-          placeholder="Enter the name of your habit" 
+          placeholder="Enter the name of your habit"
           style={textStyle}
           type="text"
           value={habit.title}
           name="title"
           onChange={(event) => handleOnChange(event)}
-
         />
-        <TextField 
-          id="outlined-basic" 
-          label="Habit Details" 
+        <TextField
+          id="outlined-basic"
+          label="Habit Details"
           variant="outlined"
-          placeholder="Add a description of your habit" 
+          placeholder="Add a description of your habit"
           style={textStyle}
           type="text"
           value={habit.body}
           multiline
           rows={4}
           name="body"
-          onChange={(event)=> handleOnChange(event)}
+          onChange={(event) => handleOnChange(event)}
         />
 
-        <Grid
-          container
-          justifyContent="space-between"
-          alignItems="center"
-        >
-          <DaysToggleButtons
-            setHabit={setHabit}
-            days={habit.days}
-          />
-
+        <Grid container justifyContent="space-between" alignItems="center">
+          <DaysToggleButtons setHabit={setHabit} days={habit.days} />
         </Grid>
 
         <Grid
-         container
-         direction="row"
-         justifyContent="space-between"
-         alignItems="center"
-         xs={6.5}
-        >
-          <Grid
-          item
           container
-          direction="column"
+          direction="row"
+          justifyContent="space-between"
           alignItems="center"
-          >
-            <TextField 
-              id="outlined-basic" 
+          xs={6.5}
+        >
+          <Grid item container direction="column" alignItems="center">
+            <TextField
+              id="outlined-basic"
               variant="outlined"
               style={textStyle}
               type="date"
@@ -140,31 +140,20 @@ export default function EditHabit (props) {
               onChange={(event) => handleOnChange(event)}
             />
           </Grid>
-          <Grid
-            item
-            container
-            direction="column"
-            alignItems="center"
-          >
-            <TextField 
-              id="outlined-basic" 
+          <Grid item container direction="column" alignItems="center">
+            <TextField
+              id="outlined-basic"
               variant="outlined"
               style={textStyle}
               type="date"
               name="end_date"
               value={habit.end_date}
               onChange={(event) => handleOnChange(event)}
-
             />
           </Grid>
-          <Grid
-            item
-            container
-            direction="column"
-            alignItems="center"
-          >
-            <TextField 
-              id="outlined-basic" 
+          <Grid item container direction="column" alignItems="center">
+            <TextField
+              id="outlined-basic"
               variant="outlined"
               style={textStyle}
               type="time"
@@ -173,14 +162,9 @@ export default function EditHabit (props) {
               onChange={(event) => handleOnChange(event)}
             />
           </Grid>
-          <Grid
-            item
-            container
-            direction="column"
-            alignItems="center"
-          >
-            <TextField 
-              id="outlined-basic" 
+          <Grid item container direction="column" alignItems="center">
+            <TextField
+              id="outlined-basic"
               variant="outlined"
               style={textStyle}
               type="time"
@@ -190,7 +174,7 @@ export default function EditHabit (props) {
             />
           </Grid>
         </Grid>
-        
+
         <Grid
           item
           container
@@ -200,11 +184,11 @@ export default function EditHabit (props) {
           xs={12}
           spacing={1}
         >
-          <Typography>* Habits will repeat weekly until the designated end date</Typography>
-        
+          <Typography>
+            * Habits will repeat weekly until the designated end date
+          </Typography>
         </Grid>
-        
-        
+
         <Grid
           item
           container
@@ -212,16 +196,19 @@ export default function EditHabit (props) {
           justifyContent="space-between"
           alignItems="center"
         >
-        <Button onClick={handleClick} color="error" variant="contained">
-          Cancel
-        </Button>
-        <Button onClick={saveHabit} type="submit" color="primary" variant="contained">
-          Save
-        </Button>
-        
+          <Button onClick={handleClick} color="error" variant="contained">
+            Cancel
+          </Button>
+          <Button
+            onClick={saveHabit}
+            type="submit"
+            color="primary"
+            variant="contained"
+          >
+            Save
+          </Button>
         </Grid>
       </FormGroup>
-
     </>
-  )
+  );
 }

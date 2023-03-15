@@ -1,14 +1,11 @@
-import Card from '@mui/material/Card';
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import HabitTabPanel from './Habittab';
-
-
-
+import Card from "@mui/material/Card";
+import * as React from "react";
+import PropTypes from "prop-types";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import HabitTabPanel from "./Habittab";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -39,7 +36,7 @@ TabPanel.propTypes = {
 function a11yProps(index) {
   return {
     id: `vertical-tab-${index}`,
-    'aria-controls': `vertical-tabpanel-${index}`,
+    "aria-controls": `vertical-tabpanel-${index}`,
   };
 }
 
@@ -51,22 +48,30 @@ export default function VerticalTabs(props) {
   };
 
   let tabs = props.state.habits.map((habit, index) => {
-    return (<Tab key={index} label={habit.title} {...a11yProps(index)}/>)
-  })
+    return <Tab key={index} label={habit.title} {...a11yProps(index)} />;
+  });
   let tabpanels = props.state.habits.map((habit, index) => {
     return (
-    
-    <TabPanel key={index} value={value} index={index}>
-      <HabitTabPanel habit={habit} state={props.state} setState={props.setState} setEditMode={props.setEditMode}/>
-    </TabPanel>
-    )
-  })
-
+      <TabPanel key={index} value={value} index={index}>
+        <HabitTabPanel
+          habit={habit}
+          state={props.state}
+          setState={props.setState}
+          setEditMode={props.setEditMode}
+        />
+      </TabPanel>
+    );
+  });
 
   return (
     <Card>
       <Box
-        sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: 515 }}
+        sx={{
+          flexGrow: 1,
+          bgcolor: "background.paper",
+          display: "flex",
+          height: 515,
+        }}
       >
         <Tabs
           orientation="vertical"
@@ -74,7 +79,7 @@ export default function VerticalTabs(props) {
           value={value}
           onChange={handleChange}
           aria-label="Vertical tabs example"
-          sx={{ borderRight: 1, borderColor: 'divider' }}
+          sx={{ borderRight: 1, borderColor: "divider" }}
         >
           {tabs}
         </Tabs>
