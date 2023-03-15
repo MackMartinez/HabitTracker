@@ -1,7 +1,6 @@
 import * as React from "react";
-import Button from "@mui/material/Button";
+import {Button, Typography} from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { Typography } from "@mui/material";
 
 export default function GetStartedButton() {
   const navigate = useNavigate();

@@ -1,8 +1,6 @@
 import * as React from "react";
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import {ToggleButton, Typography,ToggleButtonGroup} from "@mui/material";
 import { useState } from "react";
-import { Typography } from "@mui/material";
 
 export default function DaysToggleButtons(props) {
   const [daySelected, setDaySelected] = useState("");

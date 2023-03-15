@@ -1,9 +1,6 @@
 import React from "react";
 import HabitBG from "../Images/HabitBG.jpg";
-import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
-import Typography from "@mui/material/Typography";
-import { Button, createTheme, ThemeProvider } from "@mui/material";
+import {Box, CssBaseline, Typography,Button, createTheme, ThemeProvider}  from "@mui/material";
 import GetStartedButton from "../Components/GetStartedButton";
 import { useNavigate } from "react-router-dom";
 

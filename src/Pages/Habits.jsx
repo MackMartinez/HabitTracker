@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import Grid from "@mui/material/Unstable_Grid2";
 import HabitCard from "../Components/Habit/HabitCard";
-import Radio from "@mui/material/Radio";
-import FormControlLabel from "@mui/material/FormControlLabel";
+import {Radio, FormControlLabel, Paper, Typography, FormLabel} from "@mui/material";
 import { styled } from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
 import ButtonAppBar from "../Components/Appbar";
 import useApplicationData from "../hooks/useApplicationData";
 import {
@@ -14,8 +12,6 @@ import {
 import RadialBar from "../Components/Gauge/StrokedGauge";
 import "@toast-ui/chart/dist/toastui-chart.min.css";
 import { BarChart, LineChart } from "@toast-ui/react-chart";
-import Typography from "@mui/material/Typography";
-import FormLabel from "@mui/material/FormLabel";
 import EditHabit from "../Components/Habit/EditHabit";
 import TextureBG from "../Images/TextureBG.jpg";
 

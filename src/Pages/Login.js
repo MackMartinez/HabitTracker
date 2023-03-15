@@ -10,6 +10,8 @@ import {
   Button,
   Typography,
   Link,
+  CircularProgress,
+  Box
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import useAuth from "../hooks/useAuth";
@@ -17,8 +19,6 @@ import axios from "../api/axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
 
 import Yoga from "../Images/Yoga.jpg";
 

@@ -7,6 +7,10 @@ import {
   FormGroup,
   Button,
   Link,
+  Box,
+  CircularProgress,
+  Tooltip,
+  Typography
 } from "@mui/material";
 import {
   faCheck,
@@ -23,13 +27,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "../api/axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
-
 import Gym from "../Images/Gym.jpg";
-import { Tooltip, Typography } from "@mui/material";
 
 const iconList = [
   { name: "faCoffee", icon: faCoffee },

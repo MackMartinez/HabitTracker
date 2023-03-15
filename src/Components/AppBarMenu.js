@@ -1,8 +1,6 @@
 import * as React from "react";
-import IconButton from "@mui/material/IconButton";
+import {IconButton, Menu,MenuItem} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
 import useLogout from "../hooks/useLogout";
 import { useNavigate } from "react-router-dom";
 

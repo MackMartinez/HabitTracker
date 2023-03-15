@@ -1,9 +1,5 @@
 import * as React from "react";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import Divider from "@mui/material/Divider";
-import { List, Typography } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material";
+import {ListItem,ListItemText, Divider, List, Typography, createTheme, ThemeProvider} from "@mui/material";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 

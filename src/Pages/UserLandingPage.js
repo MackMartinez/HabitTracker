@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Unstable_Grid2";
-import Radio from "@mui/material/Radio";
+import {Paper, Grid, Radio, Typography} from "@mui/material";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import ButtonAppBar from "../Components/Appbar";
 import AddHabitButton from "../Components/Habit/AddHabitButton";
 import HabitList from "../Components/Habit/HabitList";
 import HabitCalendar from "../Components/Calendar";
 import CreateHabit from "../Components/Habit/CreateHabit";
-import { Typography } from "@mui/material";
 import useApplicationData from "../hooks/useApplicationData";
 import TextureBG from "../Images/TextureBG.jpg";
 
