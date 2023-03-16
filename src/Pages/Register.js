@@ -6,7 +6,11 @@ import {
   TextField,
   FormGroup,
   Button,
-  Link
+  Link,
+  Box,
+  CircularProgress,
+  Tooltip,
+  Typography
 } from "@mui/material";
 import {
   faCheck,
@@ -23,13 +27,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "../api/axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
-
 import Gym from "../Images/Gym.jpg";
-import { Tooltip, Typography } from "@mui/material";
 
 const iconList = [
   { name: "faCoffee", icon: faCoffee },
@@ -52,7 +51,7 @@ export default function Register(props) {
 
   const navigate = useNavigate();
 
-  const navLogin= () => {
+  const navLogin = () => {
     navigate("/login");
   };
   const location = useLocation();
@@ -131,7 +130,7 @@ export default function Register(props) {
       const avatar = selectedIcon?.iconName ?? "faCoffee";
       const response = await axios.post(
         REGISTER_URL,
-        JSON.stringify({avatar, firstName, lastName, user, email, pwd }),
+        JSON.stringify({ avatar, firstName, lastName, user, email, pwd }),
         {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
@@ -499,8 +498,7 @@ export default function Register(props) {
                   Already registered?
                   <br />
                   <span className="line">
-                    
-                  <Link onClick={navLogin}>Sign In</Link>
+                    <Link onClick={navLogin}>Sign In</Link>
                   </span>
                 </p>
               </Grid>

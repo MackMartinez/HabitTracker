@@ -35,37 +35,36 @@ const theme = createTheme({
         }
       ]
     },
-  }
-})
+  },
+});
 
-export default function HomeLandingPage () {
-
-  const navigate = useNavigate()
+export default function HomeLandingPage() {
+  const navigate = useNavigate();
   const navLogin = () => {
-    navigate('/login', { replace: true});
-  }
-    
+    navigate("/login", { replace: true });
+  };
+
   return (
     <>
       <ThemeProvider theme={theme}>
-        <CssBaseline/>
+        <CssBaseline />
         <Box
           sx={{
             backgroundImage: `url(${HabitBG})`,
             backgroundSize: "cover",
             height: "100vh",
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center'
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }}
-          >
+        >
           {/* <ButtonAppBar /> */}
-          <Box 
+          <Box
             sx={{
               mb: "300px",
-              display: 'flex',
+              display: "flex",
               flexDirection: "column",
-              alignItems: 'center',
+              alignItems: "center",
             }}
             >
               <img src={logo_title} alt="Habit Logo" height={700} width={700} style={{ marginTop: '-275px' }} /> 
@@ -77,5 +76,5 @@ export default function HomeLandingPage () {
         </Box>
       </ThemeProvider>
     </>
-  )
+  );
 }
