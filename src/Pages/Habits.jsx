@@ -41,10 +41,14 @@ We should have 2 data queries ready for when we select week or month.
 
 export default function HabitPageLayout (props) {
   const { state, setState} = useApplicationData();
-  // let codingCompletedEvents = Number(state.eventsCount.filter((event) => event.completed)[0].event_count)
-  // let exerciseCompletedEvents = Number(state.eventsCount.filter((event) => event.completed)[1].event_count)
-  // let shootingCompletedEvents = Number(state.eventsCount.filter((event) => event.completed)[2].event_count)
   
+  
+  const handleChange = (event) => {
+    setSelectedValue(event.target.value);
+  };
+
+  const [editMode, setEditMode] = useState(false);
+
   const dataBarChart = {
     categories: ['January', 'Februay', 'March'],
     series: [
@@ -85,21 +89,20 @@ export default function HabitPageLayout (props) {
   const [selectedValue, setSelectedValue] = React.useState('Line');
 
   const options = {
-    chart: {
-      width: 1220,
-      height: 517,
-      title: selectedValue === "Line" ? 'Amount of Habits Completed per Month': 'Amount of Habits Completed per Month' ,
-    },
-    yAxis: {
-      title: selectedValue === "Line" ? 'Amount':'Month',
-    },
-    xAxis: {
-      title: selectedValue === "Line" ? 'Month':'Amount',
-    },
-  };
-  
-  const handleChange = (event) => {
-    setSelectedValue(event.target.value);
+    
+      chart: {
+        width: 1220,
+        height: 517,
+        backgroundColor: 'black',
+        title: selectedValue === "Line" ? 'Amount of Habits Completed per Month': 'Amount of Habits Completed per Month' ,
+      },
+      yAxis: {
+        title: selectedValue === "Line" ? 'Amount':'Month',
+      },
+      xAxis: {
+        title: selectedValue === "Line" ? 'Month':'Amount',
+      },
+    
   };
 
   const showChartPeriod = () => {
@@ -108,15 +111,13 @@ export default function HabitPageLayout (props) {
     }
     return <BarChart data={dataBarChart} options={options} />
   }
-
-  const [editMode, setEditMode] = useState(false);
-
+  
   return(
         <Grid  
           container 
           rowSpacing={2}
           columnSpacing={3}
-          sx={{pt:12, paddingLeft:25, paddingRight:25, pb:20, backgroundImage: `url(${TextureBG})`,
+          sx={{pt:12, paddingLeft:25, paddingRight:25, pb:20, 
           backgroundSize:"cover", height:'100%'}}
         >
         <ButtonAppBar/>
