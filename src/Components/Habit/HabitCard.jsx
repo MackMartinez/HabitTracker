@@ -43,6 +43,10 @@ function a11yProps(index) {
   };
 }
 
+function shortenString(date) {
+  return date.slice(0, 10);
+}
+
 export default function VerticalTabs(props) {
   const [value, setValue] = React.useState(0);
   const [eventValue, setEventValue] = React.useState(0);
@@ -63,7 +67,7 @@ export default function VerticalTabs(props) {
     //Only show events that match the currently selected habit
     return event.habit_id === props.state.habits[value].id;
   }).map((event, index) => {
-    return (<Tab key={index} label={`Event ${index+1}`} {...a11yProps(index)} />)
+    return (<Tab sx={{fontSize: 12 }} key={index} label={`${event.title} ${shortenString(event.start)}`} {...a11yProps(index)} />)
   });
 
   let tabpanels = props.state.habits.map((habit, index) => {
