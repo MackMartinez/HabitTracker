@@ -58,7 +58,7 @@ export default function VerticalTabs(props) {
 
   let eventTabs = props.state.calendarEvents.filter((event) => {
     //Only show events that match the currently selected habit
-    return event.habit_id === props.state.habits[value].id;
+    return event.habit_id === props.state.habits[value]?.id;
   }).map((event, index) => {
     return (<Tab sx={{fontSize: 12 }} key={index} label={`${event.title} ${shortenString(event.start)}`} {...a11yProps(index)} />)
   });
