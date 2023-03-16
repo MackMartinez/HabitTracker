@@ -14,6 +14,7 @@ import "@toast-ui/chart/dist/toastui-chart.min.css";
 import { BarChart, LineChart } from "@toast-ui/react-chart";
 import EditHabit from "../Components/Habit/EditHabit";
 import TextureBG from "../Images/TextureBG.jpg";
+import useAuth from "../hooks/useAuth";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -65,15 +66,15 @@ export default function HabitPageLayout(props) {
     series: [
       {
         name: "Coding",
-        data: [4, 5, 1],
+        data: [4, 5, 7],
       },
       {
         name: "Shooting",
-        data: [8, 3, 1],
+        data: [8, 3, 8],
       },
       {
         name: "Exercise",
-        data: [5, 6, 1],
+        data: [5, 6, 6],
       },
     ],
   };
@@ -110,6 +111,10 @@ export default function HabitPageLayout(props) {
 
   const [editMode, setEditMode] = useState(false);
 
+  const { auth } = useAuth();
+
+  let user = auth.user;
+
   return (
     <Grid
       container
@@ -127,7 +132,7 @@ export default function HabitPageLayout(props) {
     >
       <ButtonAppBar />
       <Grid xs={10}>
-        <Typography variant="h4">Your Habits</Typography>
+        <Typography variant="h4">{user} Habits</Typography>
       </Grid>
       <Grid xs={2}>
         <Item>
