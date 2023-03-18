@@ -9,6 +9,7 @@ We've created our own API server to host our data.
 ### Step 1
 Clone the API Server from this link:
 
+[HabitTracker-api](https://github.com/nickidells97/HabitTracker-api)
 
 Run `npm install` to install dependencies.
 
